@@ -2,7 +2,7 @@
   %li
     = link_to root_path do
       %span logged in as
-      %b= current_user.email
+      %strong= current_user.email
   %li= link_to "Logout", controller: :sessions, action: :destroy
 - else
   %li= link_to "Login", 'auth/google_oauth2'
