@@ -11,4 +11,4 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require_tree .
-//= require bootstrap
+//= require twitter/bootstrap
