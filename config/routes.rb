@@ -1,4 +1,6 @@
 Shiita::Application.routes.draw do
+  get "home/index"
+
   match '/auth/:provider/callback', :to => 'sessions#callback'
 
   # The priority is based upon order of creation:
