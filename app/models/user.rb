@@ -14,7 +14,7 @@ class User
     private
 
     def find_from_auth(auth)
-      where(uid: auth[:uid]).first
+      where(uid: auth[:uid].to_i).first
     end
 
     def create_from_auth(auth)
