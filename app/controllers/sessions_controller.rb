@@ -1,7 +1,14 @@
 class SessionsController < ApplicationController
   def callback
-    auth # Do what you want with the auth hash!
+    user = User.find_or_create_from_auth(request.env['omniauth.auth'])
+    session[:uid] = user.uid
+    flash[:notice] = "Success to login as #{user.name}."
+    redirect_to root_path
   end
 
-  def auth; request.env['omniauth.auth'] end
+  def destroy
+    reset_session
+    flash[:notice] = "Success to logout."
+    redirect_to root_path
+  end
 end
