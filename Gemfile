@@ -21,6 +21,9 @@ gem "haml", ">= 3.0.0"
 gem "haml-rails"
 gem 'therubyracer'
 gem "jquery-rails"
+gem 'twitter-bootstrap-rails'
+gem 'jquery-ui-rails'
+gem 'jquery-ui-bootstrap-rails'
 gem "bson_ext"
 gem "mongoid", ">= 2.0.0.beta.19"
 gem "omniauth", "~> 0.2.0"
