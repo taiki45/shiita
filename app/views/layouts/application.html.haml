@@ -29,16 +29,8 @@
           .container.nav-collapse
             %ul.nav.pull-left
               %li= link_to "Link 1", "/path1"
-
             %ul.nav.pull-right
-              - if login?
-                %li
-                  = link_to root_path do
-                    %span logged in as
-                    %b= current_user.email
-                %li= link_to "Logout", controller: :sessions, action: :destroy
-              - else
-                %li= link_to "Login", 'auth/google_oauth2'
+              = render 'layouts/top_status'
 
 
 
@@ -50,11 +42,7 @@
           = bootstrap_flash
           = yield
 
-        .span3
-          .well.sidebar-nav
-            %ul.nav.nav-list
-              %li.nav-header Sidebar
-              %li= link_to "Link 1", "/path1"
+        = content_for?(:sidebar) ? yield(:sidebar) : render('layouts/sidebar')
 
       %footer
         %p &copy; Company 2013
