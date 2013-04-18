@@ -42,6 +42,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.2)
+    commonjs (0.2.6)
     daemons (1.1.9)
     diff-lcs (1.2.3)
     erb2haml (0.1.4)
@@ -83,6 +84,11 @@ GEM
       railties (>= 3.1.0)
     json (1.7.7)
     kgio (2.8.0)
+    less (2.3.2)
+      commonjs (~> 0.2.6)
+    less-rails (2.3.3)
+      actionpack (>= 3.1)
+      less (~> 2.3.1)
     libv8 (3.11.8.17)
     mail (2.5.3)
       i18n (>= 0.4.0)
@@ -252,6 +258,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-bootstrap-rails
   jquery-ui-rails
+  less-rails
   mongoid (>= 2.0.0.beta.19)
   omniauth (~> 0.2.0)
   pry-rails
