@@ -19,6 +19,7 @@ gem "settingslogic"
 
 group :development, :test do
   gem "rspec-rails", ">= 2.0.1"
+  gem "factory_girl_rails"
   gem 'spork-rails', "~> 3.2"
   gem "database_cleaner"
   gem "mongoid-rspec"
