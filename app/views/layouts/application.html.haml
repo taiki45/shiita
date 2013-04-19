@@ -40,12 +40,16 @@
 
         .span9
           = bootstrap_flash
-          = yield
+          .content-wrapper
+            = yield
 
         = content_for?(:sidebar) ? yield(:sidebar) : render('layouts/sidebar')
 
-      %footer
-        %p &copy; Company 2013
+    %footer
+      %p
+        %span powered by
+        %span= link_to "Shiita", "https://github.com/taiki45/shiita"
+
     /
       Javascripts
       \==================================================

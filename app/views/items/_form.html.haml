@@ -2,9 +2,9 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :source
-    = f.input :title
-    = f.input :tags
+    = f.input :title, input_html: {class: 'input-block-level'}
+    = f.input :source, as: :text, input_html: {class: 'input-block-level'}
+    = f.input :tags, input_html: {class: 'input-block-level'}
 
   .form-actions
     = f.button :submit
