@@ -20,6 +20,8 @@ gem "settingslogic"
 group :development, :test do
   gem "rspec-rails", ">= 2.0.1"
   gem 'spork-rails', "~> 3.2"
+  gem "database_cleaner"
+  gem "mongoid-rspec"
   gem "pry-rails"
   gem "html2haml"
   gem "erb2haml"
