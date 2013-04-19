@@ -7,6 +7,8 @@ class User
   field :name, type: String
   field :email, type: String
 
+  has_many :items
+
   class << self
     def find_or_create_from_auth(auth)
       find_from_auth(auth) || create_from_auth(auth)
