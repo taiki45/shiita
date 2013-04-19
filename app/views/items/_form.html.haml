@@ -1,0 +1,10 @@
+= simple_form_for(@item) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :source
+    = f.input :title
+    = f.input :tags
+
+  .form-actions
+    = f.button :submit

@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Source:
+  = @item.source
+%p
+  %b Title:
+  = @item.title
+%p
+  %b Tags:
+  = @item.tags
+
+= link_to 'Edit', edit_item_path(@item)
+\|
+= link_to 'Back', items_path

@@ -1,6 +1,7 @@
 class User
 
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   field :uid, type: BigDecimal
   field :name, type: String

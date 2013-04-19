@@ -1,5 +1,8 @@
 Shiita::Application.routes.draw do
 
+  resources :items
+
+
   get "/users/:email", to: "users#show"
 
   match '/auth/:provider/callback', to: 'sessions#callback'
