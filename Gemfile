@@ -12,6 +12,7 @@ gem "haml", ">= 3.0.0"
 gem "haml-rails"
 gem 'therubyracer'
 gem 'jbuilder'
+gem 'simple_form'
 
 gem "omniauth-google-oauth2"
 gem "settingslogic"
