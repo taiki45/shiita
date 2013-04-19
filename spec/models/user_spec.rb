@@ -1,5 +1,23 @@
 require 'spec_helper'
 
 describe User do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  describe "validations" do
+    context "when it has unvalid data" do
+      its(:valid?) { should be false }
+    end
+
+    context "when it has valid data" do
+      subject do
+        User.new(
+          name: 'name',
+          email: 'mail@gamil.com',
+          uid: '1'
+        )
+      end
+
+      its(:valid?) { should be true }
+    end
+  end
+
 end
