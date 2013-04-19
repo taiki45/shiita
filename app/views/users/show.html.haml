@@ -1,1 +1,8 @@
 %h2= @user.email
+%dl
+  %dt Name
+  %dd= @user.name
+  %dt Items
+  %dd
+    %ul
+      = render partial: 'item', collection: @user.items
