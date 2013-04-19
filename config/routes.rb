@@ -1,5 +1,7 @@
 Shiita::Application.routes.draw do
 
+  get "/users/:email", to: "users#show"
+
   match '/auth/:provider/callback', to: 'sessions#callback'
   get 'logout', to: "sessions#destroy"
   get 'local_login', to: "sessions#local_login"

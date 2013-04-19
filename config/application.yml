@@ -1,11 +1,12 @@
 defaults: &defaults
-  mail_domain: <%= ENV['SHIITA_DOMAIN'] %>
+  email_domain: <%= ENV['SHIITA_DOMAIN'] %>
 
 development:
   <<: *defaults
 
 test:
   <<: *defaults
+  email_domain: example.com
 
 production:
   <<: *defaults

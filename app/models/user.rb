@@ -11,6 +11,11 @@ class User
       find_from_auth(auth) || create_from_auth(auth)
     end
 
+    def find_by_part_of(email)
+      expanded = email + "@" + Settings.email_domain
+      find_by(email: expanded)
+    end
+
     private
 
     def find_from_auth(auth)
