@@ -64,6 +64,9 @@ module Shiita
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # For local login
+    config.local_uid = ENV['SHIITA_DEV']
   end
 end
 
