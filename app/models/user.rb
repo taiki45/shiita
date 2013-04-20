@@ -13,6 +13,7 @@ class User
   validates :uid, presence: true
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
+  validate :uniqueness_of_uid
 
   class << self
     def find_or_create_from_auth(auth)
@@ -37,6 +38,10 @@ class User
       }
       create(auth.merge(addition))
     end
+  end
+
+  def uniqueness_of_uid
+    errors.add(:unique_uid, "uid: #{uid} is not unique.") if self.class.where(uid: uid).count > 0
   end
 
 end

@@ -18,6 +18,15 @@ describe User do
   it { should validate_presence_of(:name) }
   it { should validate_uniqueness_of(:email) }
 
+  describe "#uniqueness_of_uid" do
+    let(:already) { create :user }
+    let(:duplicated) { already.attributes.merge email: "not_duplicated@test.com" }
+    subject { described_class.new(duplicated).tap(&:invalid?) }
+
+    it { should be_invalid }
+    it { should have(1).error_on(:unique_uid) }
+  end
+
 
   let(:auth) do
     {
