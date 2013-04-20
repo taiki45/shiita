@@ -11,12 +11,12 @@ describe ApplicationController do
     end
 
     context "with correct user uid in session" do
-      before { session[:uid] = user.uid }
+      before { session[:id] = user.id }
       it { should eq user }
     end
 
     context "with wrong user uid in session" do
-      before { session[:uid] = -1 }
+      before { session[:id] = -1 }
       it { should be_nil }
     end
   end

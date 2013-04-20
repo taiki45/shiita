@@ -5,10 +5,10 @@ class ApplicationController < ActionController::Base
   private
 
   def login?
-    session[:uid] && current_user
+    session[:id] && current_user
   end
 
   def current_user
-    User.where(uid: session[:uid]).first
+    User.where(id: session[:id]).first
   end
 end
