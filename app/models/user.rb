@@ -12,7 +12,7 @@ class User
 
   validates :uid, presence: true
   validates :name, presence: true
-  validates :email, presence: true
+  validates :email, presence: true, uniqueness: true
 
   class << self
     def find_or_create_from_auth(auth)

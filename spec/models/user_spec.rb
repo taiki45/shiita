@@ -2,6 +2,22 @@ require 'spec_helper'
 
 describe User do
 
+  it { should have_field(:uid).of_type(Bignum) }
+  it { should have_field(:name).of_type(String) }
+  it { should have_field(:email).of_type(String) }
+  it { should be_timestamped_document }
+
+  it { should have_many(:items).with_foreign_key(:user_id) }
+
+  it { should_not allow_mass_assignment_of(:_id) }
+  it { should_not allow_mass_assignment_of(:id) }
+  it { should_not allow_mass_assignment_of(:_type) }
+
+  it { should validate_presence_of(:uid) }
+  it { should validate_presence_of(:email) }
+  it { should validate_presence_of(:name) }
+  it { should validate_uniqueness_of(:email) }
+
   describe "validations" do
     context "when it has unvalid data" do
       its(:valid?) { should be false }
