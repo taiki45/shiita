@@ -17,8 +17,12 @@ describe ApplicationController do
     end
 
     context "with wrong user uid in session" do
-      before { session[:id] = -1 }
-      it { should be_nil }
+      before { session[:id], session[:should_reset] = -1, "has_value" }
+
+      it "should reset session with wrong user" do
+        expect(subject).to be_nil
+        expect(session[:should_reset]).to be_nil
+      end
     end
   end
 

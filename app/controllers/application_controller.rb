@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    User.where(id: session[:id]).first
+    @current_user ||= User.find(session[:id]) if session[:id]
+  rescue Mongoid::Errors::DocumentNotFound
+    reset_session
   end
 end
