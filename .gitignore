@@ -13,4 +13,4 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-google_keys.sh
+set_env.sh
