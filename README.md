@@ -7,6 +7,9 @@ Shiita is open source Qiita clone, especially for private gourp such as enterpri
 ## Status
 Early part of development.
 
+## Setup for development
+* Create your setting environment script or Set ENV key. `env_sample.sh` is sample. See more detail to get API key in [omniauth-google-oauth2](https://github.com/zquestz/omniauth-google-oauth2).
+
 ## License
 Copyright (c) 2013 Taiki ONO
 
