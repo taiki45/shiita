@@ -9,6 +9,6 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    User.where(uid: session[:uid].to_i).first
+    User.where(uid: session[:uid]).first
   end
 end
