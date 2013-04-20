@@ -3,7 +3,8 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  field :uid, type: BigDecimal
+  # Bignum extended in Root/lib/mongoid_ext.rb
+  field :uid, type: Bignum
   field :name, type: String
   field :email, type: String
 
@@ -26,7 +27,7 @@ class User
     private
 
     def find_from_auth(auth)
-      where(uid: auth[:uid].to_i).first
+      where(uid: auth[:uid]).first
     end
 
     def create_from_auth(auth)
