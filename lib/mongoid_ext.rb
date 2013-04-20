@@ -1,5 +1,9 @@
 module Mongoid::Extensions
   module Bignum
+    def mongoize
+      to_s
+    end
+
     module ClassMethods
       def mongoize(obj)
         obj.to_s
@@ -14,4 +18,5 @@ module Mongoid::Extensions
   end
 end
 
+::Bignum.__send__(:include, Mongoid::Extensions::Bignum)
 ::Bignum.__send__(:extend, Mongoid::Extensions::Bignum::ClassMethods)
