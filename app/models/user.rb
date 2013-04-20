@@ -40,6 +40,8 @@ class User
     end
   end
 
+  private
+
   def uniqueness_of_uid
     errors.add(:unique_uid, "uid: #{uid} is not unique.") if self.class.where(uid: uid).count > 0
   end
