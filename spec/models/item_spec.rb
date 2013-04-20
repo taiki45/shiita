@@ -7,7 +7,7 @@ describe Item do
     its(:created_at) { should be_within(10.seconds).of(Time.now) }
   end
 
-  describe "updated_at" do
+  describe "#updated_at" do
     subject { create :item }
     its(:updated_at) { should be_within(10.seconds).of(Time.now) }
 

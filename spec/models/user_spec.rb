@@ -19,12 +19,21 @@ describe User do
   it { should validate_uniqueness_of(:email) }
 
   describe "#uniqueness_of_uid" do
-    let(:already) { create :user }
-    let(:duplicated) { already.attributes.merge email: "not_duplicated@test.com" }
-    subject { described_class.new(duplicated).tap(&:invalid?) }
+    context "when duplicated" do
+      let(:already) { create :user }
+      let(:duplicated) { already.attributes.merge email: "not_duplicated@test.com" }
+      subject { described_class.new(duplicated).tap(&:invalid?) }
 
-    it { should be_invalid }
-    it { should have(1).error_on(:unique_uid) }
+      it { should be_invalid }
+      it { should have(1).error_on(:unique_uid) }
+    end
+
+    context "when not duplicated" do
+      subject { build(:user).tap(&:valid?) }
+      it { should be_valid }
+      its(:errors) { should have(:no).error }
+      it { should have(:no).error_on(:unique_uid) }
+    end
   end
 
 
