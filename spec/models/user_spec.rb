@@ -18,12 +18,13 @@ describe User do
   it { should validate_presence_of(:name) }
   it { should validate_uniqueness_of(:email) }
 
+
   describe "#uniqueness_of_uid" do
     context "when duplicated" do
       let(:already) { create :user }
       let(:duplicated) { already.attributes.merge email: "not_duplicated@test.com" }
-      subject { described_class.new(duplicated).tap(&:invalid?) }
 
+      subject { described_class.new(duplicated).tap(&:invalid?) }
       it { should be_invalid }
       it { should have(1).error_on(:unique_uid) }
     end
@@ -74,22 +75,26 @@ describe User do
   end
 
   describe "#create_from_auth" do
-    subject { described_class.__send__ :create_from_auth, auth }
+    context "with given fixture" do
+      subject { described_class.__send__ :create_from_auth, auth }
 
-    its(:uid) { should eq 123456789012345678901 }
-    its(:name) { should eq "John Doe" }
-    its(:email) { should eq "john@company_name.com" }
-    its(:info) { should have(5).attrs }
-    its(:credentials) { should have(4).attrs }
-    its(:extra) { should have_key :raw_info }
+      its(:uid) { should eq 123456789012345678901 }
+      its(:name) { should eq "John Doe" }
+      its(:email) { should eq "john@company_name.com" }
+      its(:info) { should have(5).attrs }
+      its(:credentials) { should have(4).attrs }
+      its(:extra) { should have_key :raw_info }
+    end
   end
 
   describe "#find_from_auth" do
-    before { @saved_one = described_class.__send__ :create_from_auth, auth }
+    context "with given fixture" do
+      let(:saved_one) { described_class.__send__ :create_from_auth, auth }
 
-    subject { described_class.__send__ :find_from_auth, auth }
-    its(:id) { should eq @saved_one.id }
-    its(:uid) { should eq 123456789012345678901 }
+      subject { described_class.__send__ :find_from_auth, auth }
+      its(:id) { should eq saved_one.id }
+      its(:uid) { should eq saved_one.uid }
+    end
   end
 
 end
