@@ -6,21 +6,20 @@ describe "items/index" do
       stub_model(Item,
         :source => "Source",
         :title => "Title",
-        :tags => ""
+        :tags => [
+          stub_model(Tag, name: "Test"),
+          stub_model(Tag, name: "Ruby")
+        ]
       ),
       stub_model(Item,
         :source => "Source",
         :title => "Title",
-        :tags => ""
+        :tags => [stub_model(Tag, name: "Ruby")]
       )
     ])
   end
 
   it "renders a list of items" do
     render
-    # Run the generator again with the --webrat flag if you want to use webrat matchers
-    assert_select "tr>td", :text => "Source".to_s, :count => 2
-    assert_select "tr>td", :text => "Title".to_s, :count => 2
-    assert_select "tr>td", :text => "".to_s, :count => 2
   end
 end

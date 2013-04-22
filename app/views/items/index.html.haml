@@ -1,23 +1,6 @@
 %h1 Listing items
+%hr
 
-%table
-  %tr
-    %th Source
-    %th Title
-    %th Tags
-    %th
-    %th
-    %th
+= render partial: "share/item", collection: @items
 
-  - @items.each do |item|
-    %tr
-      %td= item.source
-      %td= item.title
-      %td= item.tags
-      %td= link_to 'Show', item
-      %td= link_to 'Edit', edit_item_path(item)
-      %td= link_to 'Destroy', item, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-%br
-
-= link_to 'New Item', new_item_path
+= button_to 'New Item', new_item_path, class: "btn"
