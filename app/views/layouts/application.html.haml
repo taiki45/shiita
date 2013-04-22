@@ -25,10 +25,13 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.brand(href="#") Shiita
+          = link_to "Shiita", root_path, class: "brand"
           .container.nav-collapse
             %ul.nav.pull-left
-              %li= link_to "Link 1", "/path1"
+              %li
+                = form_tag "/users", method: :get, class: "navbar-form", id: "top-search" do
+                  = text_field_tag :user_email, nil, {class: "search-query", placeholder: "search by email"}
+              %li= link_to "Help", "/help"
             %ul.nav.pull-right
               = render 'layouts/top_status'
 
