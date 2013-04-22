@@ -26,6 +26,7 @@ footer {
   @include fixed_container;
 
   border-top: solid 1px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
   padding: {
     top: 5px;
     bottom: 5px;
