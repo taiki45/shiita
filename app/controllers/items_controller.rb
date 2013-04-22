@@ -63,6 +63,12 @@ class ItemsController < ApplicationController
   # PUT /items/1.json
   def update
     @item = Item.find(params[:id])
+    if params[:tag_names]
+      params[:item][:tags] = params[:tag_names].split(' ').map do |e|
+        Tag.find_or_initialize_by(name: e)
+      end
+      @item.tags.each(&:save!)
+    end
 
     respond_to do |format|
       if @item.update_attributes(params[:item])
