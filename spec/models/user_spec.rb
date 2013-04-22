@@ -37,6 +37,12 @@ describe User do
     end
   end
 
+  describe "#to_param" do
+    subject { create :user }
+    let(:fore_of_email) { subject.email.split("@").first }
+    its(:to_param) { should eq fore_of_email }
+  end
+
 
   let(:auth) do
     {
