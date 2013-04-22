@@ -40,6 +40,10 @@ class User
     end
   end
 
+  def to_param
+    email.split("@").first
+  end
+
   private
 
   def uniqueness_of_uid

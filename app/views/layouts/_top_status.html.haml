@@ -1,6 +1,6 @@
 - if login?
   %li
-    = link_to root_path do
+    = link_to current_user do
       %span logged in as
       %strong= current_user.email
   %li= link_to "Logout", controller: :sessions, action: :destroy

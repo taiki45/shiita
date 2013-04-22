@@ -1,4 +1,8 @@
-%h1= item.title
+- if params[:controller] == "items"
+  %h1= item.title
+- else
+  =link_to item do
+    %h1= item.title
 
 %p
   %strong tags:

@@ -1,8 +1,8 @@
-%h2= @user.email
-%dl
-  %dt Name
-  %dd= @user.name
-  %dt Items
-  %dd
-    %ul
-      = render partial: 'item', collection: @user.items
+%h1
+  %span= @user.email
+  %span :
+  %span= @user.name
+
+%hr
+
+= render partial: "share/item", collection: @user.items, spacer_template: "item_spacer"

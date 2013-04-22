@@ -2,8 +2,7 @@ Shiita::Application.routes.draw do
 
   resources :items
 
-
-  get "/users/:email", to: "users#show"
+  match "/users/:email" => "users#show", as: :user
 
   match '/auth/:provider/callback', to: 'sessions#callback'
   get 'logout', to: "sessions#destroy"
