@@ -164,6 +164,7 @@ GEM
     rake (10.0.4)
     rdoc (3.12.2)
       json (~> 1.4)
+    redcarpet (2.1.1)
     ref (1.0.4)
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
@@ -249,6 +250,7 @@ DEPENDENCIES
   omniauth-google-oauth2
   pry-rails
   rails (= 3.2.13)
+  redcarpet
   rspec-rails (>= 2.0.1)
   sass-rails (~> 3.2.3)
   settingslogic
