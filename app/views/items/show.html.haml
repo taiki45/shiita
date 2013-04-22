@@ -1,18 +1,6 @@
 %p#notice= notice
 
-%h1= @item.title
-
-.well
-  :markdown
-    #{@item.source}
-
-%p
-  %strong Tags:
-  - @item.tags.each do |tag|
-    - #TODO Add link to the tag
-    %span.badge
-      %i.icon-tag
-        = tag
+= render partial: "share/item", object: @item
 
 = link_to 'Edit', edit_item_path(@item)
 \|
