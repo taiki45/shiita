@@ -27,7 +27,7 @@ class ItemsController < ApplicationController
     @item = Item.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
       format.json { render json: @item }
     end
   end
@@ -40,9 +40,13 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
-    params[:item][:tags] = params[:item][:tags].split(' ')
+    params[:item][:tags] = params[:tag_names].split(' ').map do |e|
+      Tag.find_or_initialize_by(name: e)
+    end
+
     @item = Item.new(params[:item])
     @item.user = current_user
+    @item.tags.each(&:save!)
 
     respond_to do |format|
       if @item.save

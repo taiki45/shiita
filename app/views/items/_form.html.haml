@@ -4,7 +4,8 @@
   .form-inputs
     = f.input :title, input_html: {class: 'input-block-level'}
     = f.input :source, as: :text, input_html: {class: 'input-block-level'}
-    = f.input :tags, input_html: {class: 'input-block-level'}
+    = label :tag_names, :tag_names
+    = text_field_tag :tag_names, @item.tags.join(" "), {class: 'input-block-level'}
 
   .form-actions
     = f.button :submit

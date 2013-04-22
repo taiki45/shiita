@@ -5,8 +5,8 @@ class Item
 
   field :source, type: String
   field :title, type: String
-  field :tags, type: Array
 
   belongs_to :user
+  has_and_belongs_to_many :tags
 
 end
