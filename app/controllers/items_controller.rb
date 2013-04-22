@@ -40,6 +40,7 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
+    params[:item][:tags] = params[:item][:tags].split(' ')
     @item = Item.new(params[:item])
     @item.user = current_user
 

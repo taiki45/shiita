@@ -1,14 +1,18 @@
 %p#notice= notice
 
+%h1= @item.title
+
+.well
+  :markdown
+    #{@item.source}
+
 %p
-  %b Source:
-  = @item.source
-%p
-  %b Title:
-  = @item.title
-%p
-  %b Tags:
-  = @item.tags
+  %strong Tags:
+  - @item.tags.each do |tag|
+    - #TODO Add link to the tag
+    %span.badge
+      %i.icon-tag
+        = tag
 
 = link_to 'Edit', edit_item_path(@item)
 \|
