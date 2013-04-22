@@ -1,13 +1,13 @@
 %h1= item.title
 
-.well
-  :markdown
-    #{item.source}
-
 %p
-  %strong Tags:
+  %strong tags:
   - item.tags.each do |tag|
     - #TODO Add link to the tag
     %span.badge
       %i.icon-tag
         = tag
+
+.well
+  :markdown
+    #{item.source}
