@@ -6,10 +6,10 @@
 %p
   %strong tags:
   - item.tags.each do |tag|
-    - #TODO Add link to the tag
-    %span.badge
-      %i.icon-tag
-        = tag
+    = link_to tag do
+      %span.badge
+        %i.icon-tag
+        = tag.name
 
 .well
   :markdown

@@ -2,6 +2,7 @@ Shiita::Application.routes.draw do
 
   resources :items
 
+  match "/tags/:name" => "tags#show", as: :tag
   match "/users/:email" => "users#show", as: :user
 
   match '/auth/:provider/callback', to: 'sessions#callback'

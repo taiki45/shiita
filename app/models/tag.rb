@@ -5,4 +5,8 @@ class Tag
 
   has_and_belongs_to_many :items
 
+  def to_param
+    name
+  end
+
 end
