@@ -4,8 +4,22 @@ Open source Qiita clone
 ## About
 Shiita is open source Qiita clone, especially for private gourp such as enterprise.
 
-## Status
-Early part of development.
+## Features
+Already
+
+- Authentication with google account
+- Github flavored markdown
+- Syntax highlight
+
+Not yet
+- Tag following
+- User following
+- UI with Ajax, Pjax
+- Tag limitation system with suggestion
+- json-based API
+
+Maybe
+- Mac app client
 
 ## Setup for development
 * Create your setting environment script or Set ENV key. `env_sample.sh` is sample. See more detail to get API key in [omniauth-google-oauth2](https://github.com/zquestz/omniauth-google-oauth2).
