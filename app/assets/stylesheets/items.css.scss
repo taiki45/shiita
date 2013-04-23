@@ -1,3 +1,18 @@
 // Place all the styles related to the items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+div {
+  .wrap {
+    padding: 5px;
+    margin: 10px auto;
+    background-color: #eee;
+    border-radius: 3px;
+  }
+
+  .content {
+    border: 1px solid #ccc;
+    background-color: #F8F8F8;
+    padding: 15px;
+  }
+}
