@@ -10,7 +10,7 @@ class Item
   has_and_belongs_to_many :tags
 
   def tag_names
-    tags.map {|e| e.name }
+    tags.map {|e| e.name }.join(" ")
   end
 
 end

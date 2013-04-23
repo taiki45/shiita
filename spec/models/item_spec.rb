@@ -17,7 +17,7 @@ describe Item do
 
   describe "#tag_names" do
     subject { create(:item).tap {|e| e.tags = [create(:tag)] } }
-    its(:tag_names) { should eq subject.tags.map {|e| e.name } }
+    its(:tag_names) { should eq subject.tags.map {|e| e.name }.join(" ") }
   end
 
 end
