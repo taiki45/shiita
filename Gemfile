@@ -5,8 +5,11 @@ gem 'rails', '3.2.13'
 gem 'unicorn'
 gem 'thin'
 
-gem "bson_ext"
 gem "mongoid", ">= 2.0.0.beta.19"
+
+platform :ruby do
+    gem "bson_ext"
+end
 
 gem "haml", ">= 3.0.0"
 gem "haml-rails"
