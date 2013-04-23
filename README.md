@@ -1,4 +1,4 @@
-# Shiita
+# Shiita [![Build Status](https://travis-ci.org/taiki45/shiita.png?branch=master)](https://travis-ci.org/taiki45/shiita)
 Open source Qiita clone
 
 ## About
