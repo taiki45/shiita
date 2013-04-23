@@ -13,4 +13,10 @@ class Item
     tags.map {|e| e.name }.join(" ")
   end
 
+  def tag_names=(names_string)
+    self.tags = names_string.split(" ").map do |name|
+      Tag.find_or_initialize_by(name: name)
+    end
+  end
+
 end
