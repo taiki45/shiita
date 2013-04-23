@@ -11,6 +11,7 @@ gem "mongoid", ">= 2.0.0.beta.19"
 gem "haml", ">= 3.0.0"
 gem "haml-rails"
 gem "redcarpet"
+gem "coderay"
 gem 'therubyracer'
 gem 'jbuilder'
 gem 'simple_form'

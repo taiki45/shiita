@@ -14,6 +14,7 @@ end
 
 ## require Root/lib
 require File.expand_path('../../lib/mongoid_ext', __FILE__)
+require File.expand_path('../../lib/syntax_highlighting', __FILE__)
 
 module Shiita
   class Application < Rails::Application

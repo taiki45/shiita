@@ -233,6 +233,7 @@ PLATFORMS
 
 DEPENDENCIES
   bson_ext
+  coderay
   coffee-rails (~> 3.2.1)
   database_cleaner
   erb2haml
