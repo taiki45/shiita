@@ -1,28 +1,37 @@
 # Shiita [![Build Status](https://travis-ci.org/taiki45/shiita.png?branch=master)](https://travis-ci.org/taiki45/shiita)
-Open source Qiita clone
+Shiita is open source [Qiita](http://qiita.com/) clone, especially for private gourps such as enterprise.
 
-## About
-Shiita is open source Qiita clone, especially for private gourp such as enterprise.
+## Why Shiita?
+Qiita is fantastic service for most of us. Besides, Qiita started [Qiita:Team](https://teams.qiita.com/) for private use.
+
+But we are good to have a choice, which is fee-free and of course open-source.
+We can try private Qiita like service easily. If the service brings much good to you, you can start Qiita:Team.
 
 ## Features
-Already
+### Already
 
 - Authentication with google account
 - Github flavored markdown
 - Syntax highlight
 
-Not yet
+### Not yet
 - Tag following
 - User following
 - UI with Ajax, Pjax
 - Tag limitation system with suggestion
 - json-based API
+- Full text search
 
-Maybe
+### Maybe
 - Mac app client
 
+## Requirements
+- Ruby >= 1.9.3
+- MongoDB
+
 ## Setup for development
-* Create your setting environment script or Set ENV key. `env_sample.sh` is sample. See more detail to get API key in [omniauth-google-oauth2](https://github.com/zquestz/omniauth-google-oauth2).
+* Create your setting environment script or Set ENV key. `env_sample.sh` is sample.
+* See more detail to get API key in [omniauth-google-oauth2](https://github.com/zquestz/omniauth-google-oauth2).
 
 ## License
 Copyright (c) 2013 Taiki ONO
