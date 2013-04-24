@@ -51,6 +51,7 @@ describe ApplicationHelper do
 
       it { should match /CodeRay/ }
       it { should match /code/ }
+      it { should_not match /style/ }
     end
 
     context "with text including some codes and language" do
