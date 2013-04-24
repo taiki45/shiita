@@ -41,9 +41,14 @@
 
       .row-fluid
 
-        .span9
+        - unless params[:controller] == "home"
+          .span9
+            = bootstrap_flash
+            .content-wrapper
+              = yield
+        - else
           = bootstrap_flash
-          .content-wrapper
+          .index-wrapper
             = yield
 
         = content_for?(:sidebar) ? yield(:sidebar) : render('layouts/sidebar')

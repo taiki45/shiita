@@ -1,2 +1,14 @@
-%h1 Home#index
-%p Find me in app/views/home/index.html.haml
+= content_for :sidebar do
+  .div= nil
+
+.home-head
+  %span Shiita
+
+.home-box
+  %p Shiita is a Qiita clone service.
+  %p
+    %span See more detail at
+    %a{href: "https://github.com/taiki45/shiita", target: "_blank"} github
+
+.home-btn
+  = link_to "Start with your google account", login_path, class: "btn btn-large"

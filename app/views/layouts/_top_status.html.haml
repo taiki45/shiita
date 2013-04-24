@@ -5,4 +5,4 @@
       %strong= current_user.email
   %li= link_to "Logout", controller: :sessions, action: :destroy
 - else
-  %li= link_to "Login", 'auth/google_oauth2'
+  %li= link_to "Login", login_path
