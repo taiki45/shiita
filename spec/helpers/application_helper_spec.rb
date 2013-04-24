@@ -29,7 +29,7 @@ describe ApplicationHelper do
         let(:one_new_line_text) { "test test\ntest test" }
         subject { helper.markdown one_new_line_text }
 
-        it "should create br onw tag" do
+        it "should create only one br tag" do
           expect(subject).to match /<br>/
         end
       end
@@ -38,7 +38,7 @@ describe ApplicationHelper do
         let(:two_new_line_text) { "test test\n\ntest test" }
         subject { helper.markdown two_new_line_text }
 
-        it "should create p tag around paragraph" do
+        it "should create p tags around paragraph" do
           result = subject.match(/(<p>).*(<p>)/m).captures
           expect(result).to have(2).match
         end
