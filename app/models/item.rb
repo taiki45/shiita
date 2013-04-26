@@ -6,8 +6,10 @@ class Item
   field :source, type: String
   field :title, type: String
 
-  belongs_to :user
-  has_and_belongs_to_many :tags
+  belongs_to :user, index: true
+  has_and_belongs_to_many :tags, index: true
+
+  index updated_at: -1
 
   def tag_names
     tags.map {|e| e.name }.join(" ")
