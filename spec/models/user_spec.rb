@@ -9,6 +9,9 @@ describe User do
 
   it { should have_many(:items).with_foreign_key(:user_id) }
 
+  it { should have_index_for(uid: 1) }
+  it { should have_index_for(email: 1) }
+
   it { should_not allow_mass_assignment_of(:_id) }
   it { should_not allow_mass_assignment_of(:id) }
   it { should_not allow_mass_assignment_of(:_type) }

@@ -8,6 +8,10 @@ describe Item do
   it { should belong_to(:user).of_type(User) }
   it { should have_and_belong_to_many(:tags).of_type(Tag) }
 
+  it { should have_index_for(updated_at: -1) }
+  it { should have_index_for(user_id: 1).with_options(background: true) }
+  it { should have_index_for(tag_ids: 1).with_options(background: true) }
+
   describe "#user" do
     subject { create :item }
 
