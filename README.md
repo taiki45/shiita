@@ -32,6 +32,7 @@ We can try private Qiita like service easily. If the service brings much good to
 ## Setup for development
 * Create your setting environment script or Set ENV key. `env_sample.sh` is sample.
 * See more detail to get API key in [omniauth-google-oauth2](https://github.com/zquestz/omniauth-google-oauth2).
+* Do `rake db:mongoid:create_indexes` to create indexed on DB.
 
 ## License
 Copyright (c) 2013 Taiki ONO
