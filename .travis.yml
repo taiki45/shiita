@@ -1,7 +1,7 @@
 language: ruby
 rvm:
-  - 1.9.3
   - 2.0.0
+  - 1.9.3
 services:
   - mongodb
 branches:
@@ -12,4 +12,4 @@ script:
 notifications:
   emails:
     on_success: never
-    on_failure: change
+    on_failure: never
