@@ -3,10 +3,6 @@ module ApplicationHelper
     redcarpet.render(text).html_safe
   end
 
-  def login_path
-    'auth/google_oauth2'
-  end
-
   private
 
   def redcarpet
