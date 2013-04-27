@@ -10,6 +10,7 @@ class User
 
   has_many :items
   has_and_belongs_to_many :tags, index: true
+  has_and_belongs_to_many :users, index: true
 
   index uid: 1
   index email: 1
@@ -49,9 +50,9 @@ class User
   end
 
   def following_items
-    item_ids = tags.map {|tag| tag.item_ids }.flatten.uniq
+    item_ids = [tags, users].map {|e| e.map {|ee| ee.item_ids } }.flatten.uniq
     result = Item.order_by(updated_at: -1).find(*item_ids)
-    [result] unless Array === result
+    Array === result ? result : [result]
   end
 
   private

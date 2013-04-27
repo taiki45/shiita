@@ -9,10 +9,12 @@ describe User do
 
   it { should have_many(:items).with_foreign_key(:user_id).of_type(Item) }
   it { should have_and_belong_to_many(:tags).with_foreign_key(:tag_ids).of_type(Tag) }
+  it { should have_and_belong_to_many(:users).with_foreign_key(:user_ids).of_type(User) }
 
   it { should have_index_for(uid: 1) }
   it { should have_index_for(email: 1) }
   it { should have_index_for(tag_ids: 1).with_options(background: true) }
+  it { should have_index_for(user_ids: 1).with_options(background: true) }
 
   it { should_not allow_mass_assignment_of(:_id) }
   it { should_not allow_mass_assignment_of(:id) }
@@ -60,12 +62,6 @@ describe User do
 
       subject { @user.following_items }
       it { should have(1).items }
-
-      it "should be ordered by update_at" do
-        pending "learn relation with factory girl"
-        sorted_items = Item.order_by(update_at: -1).all.to_a
-        subject.should eq sorted_items
-      end
     end
   end
 
