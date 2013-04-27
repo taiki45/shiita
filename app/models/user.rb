@@ -50,7 +50,8 @@ class User
 
   def following_items
     item_ids = tags.map {|tag| tag.item_ids }.flatten.uniq
-    Item.order_by(updated_at: -1).find(*item_ids)
+    result = Item.order_by(updated_at: -1).find(*item_ids)
+    [result] unless Array === result
   end
 
   private

@@ -48,6 +48,27 @@ describe User do
     its(:to_param) { should eq fore_of_email }
   end
 
+  describe "#following_items" do
+    context "with fixtures" do
+      before do
+        tag = create :tag
+        item = create :item
+        @user = item.user
+        tag.items.push item
+        @user.tags.push tag
+      end
+
+      subject { @user.following_items }
+      it { should have(1).items }
+
+      it "should be ordered by update_at" do
+        pending "learn relation with factory girl"
+        sorted_items = Item.order_by(update_at: -1).all.to_a
+        subject.should eq sorted_items
+      end
+    end
+  end
+
 
   let(:auth) do
     {
