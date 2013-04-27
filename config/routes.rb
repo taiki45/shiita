@@ -3,6 +3,8 @@ Shiita::Application.routes.draw do
   resources :items
 
   get "/tags/:name" => "tags#show", as: :tag
+  get "tags/:name/follow" => "tags#follow", as: :tag_follow
+
   get "/users/:email" => "users#show", as: :user
 
   get "/login" => redirect("/auth/google_oauth2"), as: :login

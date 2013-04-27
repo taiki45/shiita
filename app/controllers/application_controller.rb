@@ -13,4 +13,8 @@ class ApplicationController < ActionController::Base
   rescue Mongoid::Errors::DocumentNotFound
     reset_session
   end
+
+  def require_login
+    redirect_to "home#index" unless login?
+  end
 end

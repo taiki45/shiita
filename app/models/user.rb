@@ -9,6 +9,7 @@ class User
   field :email, type: String
 
   has_many :items
+  has_and_belongs_to_many :tags, index: true
 
   index uid: 1
   index email: 1

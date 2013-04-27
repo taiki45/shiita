@@ -7,10 +7,12 @@ describe User do
   it { should have_field(:email).of_type(String) }
   it { should be_timestamped_document }
 
-  it { should have_many(:items).with_foreign_key(:user_id) }
+  it { should have_many(:items).with_foreign_key(:user_id).of_type(Item) }
+  it { should have_and_belong_to_many(:tags).with_foreign_key(:tag_ids).of_type(Tag) }
 
   it { should have_index_for(uid: 1) }
   it { should have_index_for(email: 1) }
+  it { should have_index_for(tag_ids: 1).with_options(background: true) }
 
   it { should_not allow_mass_assignment_of(:_id) }
   it { should_not allow_mass_assignment_of(:id) }
