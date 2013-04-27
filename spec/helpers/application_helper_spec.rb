@@ -2,12 +2,6 @@ require 'spec_helper'
 
 describe ApplicationHelper do
 
-  describe "#login_path" do
-    subject { helper.login_path }
-    it { should eq "auth/google_oauth2" }
-  end
-
-
   describe "#markdown" do
 
     context "with valid markdown text" do
