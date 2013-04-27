@@ -2,7 +2,7 @@
 Shiita is open source [Qiita](http://qiita.com/) clone, especially for private gourps such as enterprise.
 
 ## Why Shiita?
-Qiita is fantastic service for most of us. Besides, Qiita started [Qiita:Team](https://teams.qiita.com/) for private use.
+Qiita is fantastic service for most of us. Besides, Qiita started [Qiita:Team](https://teams.qiita.com/) for private uses.
 
 But we are good to have a choice, which is fee-free and of course open-source.
 We can try private Qiita like service easily. If the service brings much good to you, you can start Qiita:Team.
@@ -32,7 +32,7 @@ We can try private Qiita like service easily. If the service brings much good to
 ## Setup for development
 * Create your setting environment script or Set ENV key. `env_sample.sh` is sample.
 * See more detail to get API key in [omniauth-google-oauth2](https://github.com/zquestz/omniauth-google-oauth2).
-* Do `rake db:mongoid:create_indexes` to create indexed on DB.
+* Run `rake db:mongoid:create_indexes` to create indexed on DB.
 
 ## License
 Copyright (c) 2013 Taiki ONO
