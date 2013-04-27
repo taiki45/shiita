@@ -10,6 +10,4 @@ branches:
 script:
   - RAILS_ENV=test bundle exec rake spec
 notifications:
-  emails:
-    on_success: never
-    on_failure: never
+  email: false
