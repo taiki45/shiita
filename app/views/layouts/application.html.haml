@@ -41,7 +41,7 @@
 
       .row-fluid
 
-        - unless params[:controller] == "home"
+        - unless @no_sidebar
           .span9
             = bootstrap_flash
             .content-wrapper

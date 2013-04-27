@@ -1,0 +1,12 @@
+- content_for :sidebar do
+  .span3
+    .well.sidebar-nav
+      %ul.nav.nav-list
+        %li.nav-header Following tags
+        - @following_tags.each do |tag|
+          = link_to tag do
+            %li= tag.name
+        %li.divider
+        %li= link_to "New Item", new_item_path, class: "btn"
+
+= render partial: "share/item", collection: @items

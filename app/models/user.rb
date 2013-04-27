@@ -48,6 +48,11 @@ class User
     email.split("@").first
   end
 
+  def following_items
+    item_ids = tags.map {|tag| tag.item_ids }.flatten.uniq
+    Item.order_by(updated_at: -1).find(*item_ids)
+  end
+
   private
 
   def uniqueness_of_uid
