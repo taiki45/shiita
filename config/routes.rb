@@ -4,16 +4,22 @@ Shiita::Application.routes.draw do
 
   resources :items
 
-  get "/tags/:name" => "tags#show", as: :tag
-  get "tags/:name/follow" => "tags#follow", as: :tag_follow
+  controller :tags do
+    get "/tags/:name" => :show, as: :tag
+    get "tags/:name/follow" => :follow, as: :tag_follow
+  end
 
-  get "/users/:email" => "users#show", as: :user, constraints: email_constraints
-  get "users/:email/follow" => "users#follow", as: :user_follow, constraints: email_constraints
+  controller :users do
+    get "/users/:email" => :show, as: :user, constraints: email_constraints
+    get "users/:email/follow" => :follow, as: :user_follow, constraints: email_constraints
+  end
 
-  get "/login" => redirect("/auth/google_oauth2"), as: :login
-  get '/auth/:provider/callback', to: 'sessions#callback'
-  get '/logout', to: "sessions#destroy"
-  get '/local_login', to: "sessions#local_login"
+  controller :sessions do
+    get "/login" => redirect("/auth/google_oauth2"), as: :login
+    get '/auth/:provider/callback' => :callback
+    get '/logout' => :destroy, as: :logout
+    get '/local_login' => :local_login
+  end
 
   root to: "home#index"
 
