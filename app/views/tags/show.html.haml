@@ -8,10 +8,12 @@
         %li= "#{@tag.items.count} items"
         %li= "#{@tag.users.count} followers"
 
-        - if current_user.tags.map {|t| t.name }.include?(@tag.name)
+        - unless @tag.users.include?(current_user)
           %li.divider
-          %li= link_to "Follow", :tag_follow, class: "btn"
+          %li= link_to "Follow", :tag_follow, remote: true, class: "btn", id: "follow-btn"
 
+.alert.fade.in#notice-area{style: "display: none"}
+  %button.close{data: {dismiss: "alert"}} x
 
 %h1= @tag.name
 %hr
