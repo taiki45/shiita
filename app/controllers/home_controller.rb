@@ -6,6 +6,7 @@ class HomeController < ApplicationController
     @no_sidebar = false
     @following_tags = current_user.tags
     @items = current_user.following_items
+    @items = Item.order_by(updated_at: -1).limit(10).all if @items.empty?
     render :home
   end
 end
