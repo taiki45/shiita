@@ -13,10 +13,10 @@ We can try private Qiita like service easily. If the service brings much good to
 - Authentication with google account
 - Github flavored markdown
 - Syntax highlight
-
-### Not yet
 - Tag following
 - User following
+
+### Not yet
 - UI with Ajax, Pjax
 - Tag limitation system with suggestion
 - json-based API
