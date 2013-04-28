@@ -1,48 +1,43 @@
-<!doctype html>
-<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
-<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
+<!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen"/>
-  <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script type="text/javascript" src="javascripts/script.js"></script>
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Shiita : Open source Qiita clone" />
 
-  <title>Shiita</title>
-  <meta name="description" content="Open source Qiita clone">
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Shiita</title>
+  </head>
 
-</head>
+  <body>
 
-<body>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/taiki45/shiita">View on GitHub</a>
 
-  <div class="wrapper">
-    <header>
-      <h1 class="title">Shiita</h1>
-    </header>
-    <div id="container">
-      <p class="tagline">Open source Qiita clone</p>
-      <div id="main" role="main">
-        <div class="download-bar">
-        <div class="inner">
-          <a href="https://github.com/taiki45/shiita/tarball/master" class="download-button tar"><span>Download</span></a>
-          <a href="https://github.com/taiki45/shiita/zipball/master" class="download-button zip"><span>Download</span></a>
-          <a href="https://github.com/taiki45/shiita" class="code">View Shiita on GitHub</a>
-        </div>
-        <span class="blc"></span><span class="trc"></span>
-        </div>
-        <article class="markdown-body">
-          <h1>Shiita</h1>
+          <h1 id="project_title">Shiita</h1>
+          <h2 id="project_tagline">Open source Qiita clone</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/taiki45/shiita/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/taiki45/shiita/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>Shiita</h1>
 
 <p>Shiita is open source <a href="http://qiita.com/">Qiita</a> clone, especially for private gourps such as enterprise.</p>
 
 <h2>Why Shiita?</h2>
 
-<p>Qiita is fantastic service for most of us. Besides, Qiita started <a href="https://teams.qiita.com/">Qiita:Team</a> for private use.</p>
+<p>Qiita is fantastic service for most of us. Besides, Qiita started <a href="https://teams.qiita.com/">Qiita:Team</a> for private uses.</p>
 
 <p>But we are good to have a choice, which is fee-free and of course open-source.
 We can try private Qiita like service easily. If the service brings much good to you, you can start Qiita:Team.</p>
@@ -78,6 +73,7 @@ We can try private Qiita like service easily. If the service brings much good to
 <ul>
 <li>Create your setting environment script or Set ENV key. <code>env_sample.sh</code> is sample.</li>
 <li>See more detail to get API key in <a href="https://github.com/zquestz/omniauth-google-oauth2">omniauth-google-oauth2</a>.</li>
+<li>Run <code>rake db:mongoid:create_indexes</code> to create indexed on DB.</li>
 </ul><h2>License</h2>
 
 <p>Copyright (c) 2013 Taiki ONO</p>
@@ -102,26 +98,18 @@ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
 LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
-        </article>
-      </div>
+      </section>
     </div>
-    <footer>
-      <div class="owner">
-      <p><a href="https://github.com/taiki45" class="avatar"><img src="https://secure.gravatar.com/avatar/44e6e0e9bcc3d8279020aad563f16f34?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png" width="48" height="48"/></a> <a href="https://github.com/taiki45">taiki45</a> maintains <a href="https://github.com/taiki45/shiita">Shiita</a></p>
 
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Shiita maintained by <a href="https://github.com/taiki45">taiki45</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
 
-      </div>
-      <div class="creds">
-        <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br/>theme by <a href="http://twitter.com/jonrohan/">Jon Rohan</a></small>
-      </div>
-    </footer>
-  </div>
-  <div class="current-section">
-    <a href="#top">Scroll to top</a>
-    <a href="https://github.com/taiki45/shiita/tarball/master" class="tar">tar</a><a href="https://github.com/taiki45/shiita/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
-    <p class="name"></p>
-  </div>
+    
 
-  
-</body>
+  </body>
 </html>
