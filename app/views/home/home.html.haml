@@ -9,4 +9,4 @@
         %li.divider
         %li= link_to "New Item", new_item_path, class: "btn"
 
-= render partial: "share/item", collection: @items
+= render partial: "share/item", collection: @items, spacer_template: "share/item_spacer"

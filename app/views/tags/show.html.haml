@@ -1,4 +1,19 @@
+- content_for :sidebar do
+  .span3
+    .well.sidebar-nav
+      %ul.nav.nav-list
+        %li.nav-header Tag Info
+        %li.divider
+        %li= @tag.name
+        %li= "#{@tag.items.count} items"
+        %li= "#{@tag.users.count} followers"
+
+        - if current_user.tags.map {|t| t.name }.include?(@tag.name)
+          %li.divider
+          %li= link_to "Follow", :tag_follow, class: "btn"
+
+
 %h1= @tag.name
 %hr
 
-= render partial: "share/item", collection: @tag.items
+= render partial: "share/item", collection: @tag.items, spacer_template: "share/item_spacer"
