@@ -7,10 +7,11 @@ class User
   field :uid, type: Bignum
   field :name, type: String
   field :email, type: String
+  field :following_ids, type: Array
+  field :follower_ids, type: Array
 
   has_many :items
   has_and_belongs_to_many :tags, index: true
-  has_and_belongs_to_many :users, index: true
 
   index uid: 1
   index email: 1
@@ -39,7 +40,9 @@ class User
     def create_from_auth(auth)
       addition = {
         email: auth[:info][:email],
-        name: auth[:info][:name]
+        name: auth[:info][:name],
+        following_ids: [],
+        follower_ids: []
       }
       create(auth.merge(addition))
     end
@@ -50,15 +53,45 @@ class User
   end
 
   def following_items
-    item_ids = [tags, users].map {|e| e.map {|ee| ee.item_ids } }.flatten.uniq
+    item_ids = [tags, followings].map {|e| e.map {|ee| ee.item_ids } }.flatten.uniq
     result = Item.order_by(updated_at: -1).find(*item_ids)
-    Array === result ? result : [result]
+    Array === result ? result : result ? [result] : []
+  end
+
+  def follow(user)
+    push(:following_ids, user.id) unless following_ids.include? user.id
+    user.push(:follower_ids, id) unless user.follower_ids.include? id
+  end
+
+  def followings
+    if following_ids.empty?
+      []
+    elsif @followings == nil
+      @followings = wrap_array(User.find(*following_ids))
+    else
+      @followings
+    end
+  end
+
+  def followers
+    if follower_ids.empty?
+      []
+    elsif @followers == nil
+      @followers = wrap_array(User.find(*follower_ids))
+    else
+      @followers
+    end
   end
 
   private
 
   def uniqueness_of_uid
-    errors.add(:unique_uid, "uid: #{uid} is not unique.") if self.class.where(uid: uid).count > 0
+    errors.add(:unique_uid, "uid: #{uid} is not unique.") if self.class.where(uid: uid).count > 1
+  end
+
+  def wrap_array(result)
+    result = [result] unless Array === result
+    result
   end
 
 end

@@ -17,7 +17,7 @@ class Item
 
   def tag_names=(names_string)
     self.tags = names_string.split(" ").map do |name|
-      Tag.find_or_initialize_by(name: name)
+      Tag.find_or_create_by(name: name)
     end
   end
 
