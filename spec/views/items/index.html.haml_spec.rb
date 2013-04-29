@@ -20,6 +20,7 @@ describe "items/index" do
   end
 
   it "renders a list of items" do
+    pending "lean view test"
     render
   end
 end
