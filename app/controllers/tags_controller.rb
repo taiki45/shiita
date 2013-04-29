@@ -6,9 +6,12 @@ class TagsController < ApplicationController
   end
 
   def follow
-    @tag = Tag.find_by(name: params[:name])
-    current_user.tags.push(@tag)
-    flash[:notice] = "success to follow #{params[:name]}."
-    render :show
+    @obj = Tag.find_by(name: params[:name])
+    current_user.tags.push(@obj)
+    if current_user.save
+      render "share/follow"
+    else
+      render "share/follow_error"
+    end
   end
 end

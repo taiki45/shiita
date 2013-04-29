@@ -1,0 +1,6 @@
+(function($) {
+  $("#notice-area")
+  .addClass("alert-error")
+  .append("<span>Faild to follow <%= @obj.name %></span>")
+  .show(300);
+})(jQuery);

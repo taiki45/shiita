@@ -1,0 +1,7 @@
+(function($) {
+  $("#notice-area")
+  .addClass("alert-success")
+  .append("<span>Success to follow <%= @obj.name %></span>")
+  .show(300);
+  $("#follow-btn").hide(300);
+})(jQuery);

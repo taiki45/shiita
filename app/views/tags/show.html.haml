@@ -1,4 +1,23 @@
+- content_for :sidebar do
+  .span3
+    .well.sidebar-nav
+      %ul.nav.nav-list
+        %li.nav-header Tag Info
+        %li.divider
+        %li= @tag.name
+        %li= "#{@tag.items.count} items"
+        %li= "#{@tag.users.count} followers"
+
+        %li.divider
+        - if @tag.users.include? current_user
+          %li= link_to "Following", "#", class: "btn disabled btn-success"
+        - else
+          %li= link_to "Follow", :tag_follow, remote: true, class: "btn", id: "follow-btn"
+
+.alert.fade.in#notice-area{style: "display: none"}
+  %button.close{data: {dismiss: "alert"}} x
+
 %h1= @tag.name
 %hr
 
-= render partial: "share/item", collection: @tag.items
+= render partial: "share/item", collection: @tag.items, spacer_template: "share/item_spacer"
