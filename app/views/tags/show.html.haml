@@ -8,8 +8,10 @@
         %li= "#{@tag.items.count} items"
         %li= "#{@tag.users.count} followers"
 
-        - unless @tag.users.include?(current_user)
-          %li.divider
+        %li.divider
+        - if @tag.users.include? current_user
+          %li= link_to "Following", "#", class: "btn disabled btn-success"
+        - else
           %li= link_to "Follow", :tag_follow, remote: true, class: "btn", id: "follow-btn"
 
 .alert.fade.in#notice-area{style: "display: none"}
