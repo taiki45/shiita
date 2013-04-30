@@ -51,7 +51,7 @@
           .index-wrapper
             = yield
 
-        = content_for?(:sidebar) ? yield(:sidebar) : render('layouts/sidebar')
+        = content_for?(:sidebar) ? yield(:sidebar) : render("layouts/sidebar")
 
     %footer
       %p

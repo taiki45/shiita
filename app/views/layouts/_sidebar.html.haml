@@ -1,5 +1,39 @@
 .span3
   .well.sidebar-nav
     %ul.nav.nav-list
-      %li.nav-header Sidebar
-      %li= link_to "Link 1", "/path1"
+      - if login?
+        %li= link_to "Post new item", new_item_path, class: "btn"
+        %li.divider
+
+        %li.nav-header Following users
+        - current_user.followings.each do |user|
+          = link_to user do
+            %li= user.email
+        %li.divider
+
+        %li.nav-header Following tags
+        - current_user.tags.each do |tag|
+          = link_to tag do
+            %li= tag.name
+        %li.divider
+
+        %li.nav-header Followers
+        - current_user.followers.each do |user|
+          = link_to user do
+            %li= user.email
+        %li.divider
+        %li= link_to "All users", users_path
+        %li= link_to "All tags", tags_path
+        %li.divider
+
+      - else
+        %li.nav-header User counts
+        %li= link_to "#{User.count} users", users_path
+        %li.divider
+        %li.nav-header Item counts
+        %li= link_to " #{Item.count} items", items_path
+        %li.divider
+        %li.nav-header Tags
+        - Tag.all.each do |tag|
+          %li= link_to tag.name, tag
+        %li.divider
