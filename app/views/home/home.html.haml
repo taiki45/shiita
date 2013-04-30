@@ -1,26 +1,4 @@
 - content_for :sidebar do
-  .span3
-    .well.sidebar-nav
-      %ul.nav.nav-list
-        %li= link_to "Post new item", new_item_path, class: "btn"
-
-        %li.nav-header Following users
-        - current_user.followings.each do |user|
-          = link_to user do
-            %li= user.email
-        %li.divider
-
-        %li.nav-header Following tags
-        - current_user.tags.each do |tag|
-          = link_to tag do
-            %li= tag.name
-        %li.divider
-
-        %li.nav-header Followers
-        - current_user.followers.each do |user|
-          = link_to user do
-            %li= user.email
-        %li.divider
-
+  = render partial: "share/normal_sidebar"
 
 = render partial: "share/item", collection: @items, spacer_template: "share/item_spacer"
