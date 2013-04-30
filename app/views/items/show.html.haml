@@ -4,6 +4,4 @@
 = render partial: "share/item", object: @item
 
 - if @item.user == current_user
-  = link_to 'Edit', edit_item_path(@item)
-
-= link_to 'Back', items_path
+  = link_to 'Edit', edit_item_path(@item), class: "btn btn-primary"
