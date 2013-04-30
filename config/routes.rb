@@ -10,6 +10,7 @@ Shiita::Application.routes.draw do
   end
 
   controller :users do
+    get "/users" => :index, as: :users
     get "/users/:email" => :show, as: :user, constraints: email_constraints
     get "users/:email/follow" => :follow, as: :user_follow, constraints: email_constraints
   end
@@ -19,6 +20,10 @@ Shiita::Application.routes.draw do
     get '/auth/:provider/callback' => :callback
     get '/logout' => :destroy, as: :logout
     get '/local_login' => :local_login
+  end
+
+  %w(about help).each do |name|
+    get "/#{name}" => "home#help"
   end
 
   root to: "home#index"

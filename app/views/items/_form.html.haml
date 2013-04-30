@@ -7,4 +7,5 @@
     = f.input :tag_names, input_html:  {class: 'input-block-level'}
 
   .form-actions
-    = f.button :submit
+    = f.button :submit, class: "btn btn-primary"
+    = link_to 'Cancel', :back, class: "btn"

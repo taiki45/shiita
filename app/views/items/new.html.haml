@@ -1,5 +1,6 @@
+- content_for :sidebar do
+  = render partial: "share/normal_sidebar"
+
 %h1 New item
 
 = render 'form'
-
-= link_to 'Back', items_path

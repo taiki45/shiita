@@ -1,6 +1,7 @@
-%h1 Listing items
+- content_for :sidebar do
+  = render partial: "share/normal_sidebar"
+
+%h1 All items
 %hr
 
 = render partial: "share/item", collection: @items
-
-= link_to 'New Item', new_item_path, class: "btn"

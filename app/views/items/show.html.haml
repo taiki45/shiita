@@ -1,5 +1,7 @@
+- content_for :sidebar do
+  = render partial: "share/normal_sidebar"
+
 = render partial: "share/item", object: @item
 
-= link_to 'Edit', edit_item_path(@item)
-\|
-= link_to 'Back', items_path
+- if @item.user == current_user
+  = link_to 'Edit', edit_item_path(@item), class: "btn btn-primary"

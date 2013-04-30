@@ -52,9 +52,9 @@ class User
     email.split("@").first
   end
 
-  def following_items
+  def following_items(limit = 20)
     item_ids = [tags, followings].map {|e| e.map {|ee| ee.item_ids } }.flatten.uniq
-    result = Item.order_by(updated_at: -1).find(*item_ids)
+    result = Item.order_by(updated_at: -1).limit(limit).find(*item_ids)
     Array === result ? result : result ? [result] : []
   end
 

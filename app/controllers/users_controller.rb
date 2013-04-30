@@ -12,4 +12,8 @@ class UsersController < ApplicationController
       render "share/follow_error"
     end
   end
+
+  def index
+    @users = User.all.to_a
+  end
 end

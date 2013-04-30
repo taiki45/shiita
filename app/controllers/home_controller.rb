@@ -4,9 +4,12 @@ class HomeController < ApplicationController
     render :index and return unless login?
 
     @no_sidebar = false
-    @following_tags = current_user.tags
-    @items = current_user.following_items
+    @items = current_user.following_items(20)
     @items = Item.order_by(updated_at: -1).limit(10).all if @items.empty?
     render :home
+  end
+
+  def help
+    @no_sidebar = true
   end
 end
