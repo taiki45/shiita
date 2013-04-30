@@ -11,7 +11,7 @@
         %li.divider
 
         %li.nav-header Following tags
-        - @following_tags.each do |tag|
+        - current_user.tags.each do |tag|
           = link_to tag do
             %li= tag.name
         %li.divider
