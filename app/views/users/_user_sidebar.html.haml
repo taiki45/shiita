@@ -1,0 +1,14 @@
+.span3
+  .well.sidebar-nav
+    %ul.nav.nav-list
+      %li.nav-header User Info
+      %li.divider
+      %li= user.email
+      %li= user.name
+      %li= "#{user.items.count} items"
+      %li= "#{user.followings.count} followings"
+      %li= "#{user.followers.count} followers"
+
+      - if login? && current_user != user && !(current_user.followings.include?(user))
+        %li.divider
+        %li= link_to "Follow", :user_follow, remote: true, class: "btn", id: "follow-btn"
