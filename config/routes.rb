@@ -5,6 +5,7 @@ Shiita::Application.routes.draw do
   resources :items
 
   controller :tags do
+    get "/tags" => :index, as: :tags
     get "/tags/:name" => :show, as: :tag
     get "tags/:name/follow" => :follow, as: :tag_follow
   end

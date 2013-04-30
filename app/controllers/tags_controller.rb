@@ -14,4 +14,8 @@ class TagsController < ApplicationController
       render "share/follow_error"
     end
   end
+
+  def index
+    @tags = Tag.all.to_a
+  end
 end

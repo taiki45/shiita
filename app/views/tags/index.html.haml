@@ -1,0 +1,12 @@
+- content_for :sidebar do
+  = render partial: "share/normal_sidebar"
+
+%h1 All tags
+%hr
+
+%ul
+  - @tags.each do |tag|
+    = link_to tag do
+      %li
+        %span= tag.name
+        %span #{tag.items.count} items
