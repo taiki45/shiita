@@ -1,0 +1,15 @@
+- content_for :sidebar do
+  = render partial: "share/normal_sidebar"
+
+%h1 All users
+%hr
+%table.table.table-striped
+  %tr
+    %th #
+    %th name
+    %th email
+  - @users.each_with_index do |user, idx|
+    %tr
+      %td= idx
+      %td= link_to user.name, user
+      %td= link_to user.email, user
