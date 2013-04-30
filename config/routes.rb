@@ -7,13 +7,13 @@ Shiita::Application.routes.draw do
   controller :tags do
     get "/tags" => :index, as: :tags
     get "/tags/:name" => :show, as: :tag
-    get "tags/:name/follow" => :follow, as: :tag_follow
+    get "/tags/:name/follow" => :follow, as: :tag_follow
   end
 
   controller :users do
     get "/users" => :index, as: :users
     get "/users/:email" => :show, as: :user, constraints: email_constraints
-    get "users/:email/follow" => :follow, as: :user_follow, constraints: email_constraints
+    get "/users/:email/follow" => :follow, as: :user_follow, constraints: email_constraints
   end
 
   controller :sessions do
