@@ -21,6 +21,10 @@ Shiita::Application.routes.draw do
     get '/local_login' => :local_login
   end
 
+  %w(about help).each do |name|
+    get "/#{name}" => "home#help"
+  end
+
   root to: "home#index"
 
 end
