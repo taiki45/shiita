@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   before_filter :require_login, only: :follow
 
   def show

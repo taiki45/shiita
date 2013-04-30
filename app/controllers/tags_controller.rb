@@ -1,4 +1,5 @@
 class TagsController < ApplicationController
+
   before_filter :require_login, only: :follow
 
   def show
