@@ -8,7 +8,7 @@
       %li= "#{user.items.count} items"
       %li= "#{user.followings.count} followings"
       %li= "#{user.followers.count} followers"
+      %li.divider
 
       - if login? && current_user != user && !(current_user.followings.include?(user))
-        %li.divider
         %li= link_to "Follow", :user_follow, remote: true, class: "btn", id: "follow-btn"
