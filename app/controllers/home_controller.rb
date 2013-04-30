@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+
   def index
     @no_sidebar = true
     render :index and return unless login?
@@ -12,4 +13,5 @@ class HomeController < ApplicationController
   def help
     @no_sidebar = true
   end
+
 end
