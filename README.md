@@ -17,6 +17,8 @@ We can try private Qiita like service easily. If the service brings much good to
 - User following
 
 ### Not yet
+- Stocks like Qiita
+- Comments in each Article
 - UI with Ajax, Pjax
 - Tag limitation system with suggestion
 - json-based API
