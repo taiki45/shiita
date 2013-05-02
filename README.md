@@ -15,9 +15,9 @@ We can try private Qiita like service easily. If the service brings much good to
 - Syntax highlight
 - Tag following
 - User following
+- Stocks like Qiita
 
 ### Not yet
-- Stocks like Qiita
 - Comments in each Article
 - UI with Ajax, Pjax
 - Tag limitation system with suggestion
@@ -28,7 +28,7 @@ We can try private Qiita like service easily. If the service brings much good to
 - Mac app client
 
 ## Requirements
-- Ruby >= 1.9.3
+- Ruby >= 1.9.3(only MRI support)
 - MongoDB
 
 ## Setup for development
