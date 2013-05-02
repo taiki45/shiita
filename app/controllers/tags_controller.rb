@@ -7,12 +7,14 @@ class TagsController < ApplicationController
   end
 
   def follow
-    @obj = Tag.find_by(name: params[:name])
-    current_user.tags.push(@obj)
+    tag = Tag.find_by(name: params[:name])
+    current_user.follow_tag(tag)
+
+    @target = tag.name
     if current_user.save
-      render "share/follow"
+      render "share/action"
     else
-      render "share/follow_error"
+      render "share/action_error"
     end
   end
 

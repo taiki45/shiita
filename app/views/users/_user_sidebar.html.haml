@@ -11,4 +11,4 @@
       %li.divider
 
       - if login? && current_user != user && !(current_user.followings.include?(user))
-        %li= link_to "Follow", :user_follow, remote: true, class: "btn", id: "follow-btn"
+        %li= link_to "Follow", :user_follow, remote: true, class: "btn", id: "action-btn"

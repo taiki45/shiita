@@ -1,0 +1,10 @@
+- content_for :sidebar do
+  = render partial: "user_sidebar", locals: {user: @user}
+
+.alert.fade.in#notice-area{style: "display: none"}
+  %button.close{data: {dismiss: "alert"}} &times;
+
+%h1 Stocks of #{@user.name}
+%hr
+
+= render partial: "share/item", collection: @user.stocks, spacer_template: "share/item_spacer"

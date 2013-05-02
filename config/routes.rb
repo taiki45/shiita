@@ -3,6 +3,9 @@ Shiita::Application.routes.draw do
   email_constraints = { email: /[^\/]+/ }
 
   resources :items
+  controller :items do
+    get "/items/:id/stock" => :stock, as: :item_stock
+  end
 
   controller :tags do
     get "/tags" => :index, as: :tags
@@ -14,6 +17,7 @@ Shiita::Application.routes.draw do
     get "/users" => :index, as: :users
     get "/users/:email" => :show, as: :user, constraints: email_constraints
     get "/users/:email/follow" => :follow, as: :user_follow, constraints: email_constraints
+    get "/users/:email/stocks" => :stocks, as: :user_stocks, constraints: email_constraints
   end
 
   controller :sessions do

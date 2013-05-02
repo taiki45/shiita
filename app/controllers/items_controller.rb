@@ -72,4 +72,16 @@ class ItemsController < ApplicationController
     end
   end
 
+  def stock
+    item = Item.find(params[:id])
+    current_user.stock(item)
+
+    @target = item.title
+    if current_user.save
+      render "share/action"
+    else
+      render "share/action_error"
+    end
+  end
+
 end
