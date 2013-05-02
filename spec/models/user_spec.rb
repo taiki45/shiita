@@ -16,6 +16,8 @@ describe User do
   it { should have_index_for(uid: 1) }
   it { should have_index_for(email: 1) }
   it { should have_index_for(tag_ids: 1).with_options(background: true) }
+  it { should have_index_for(following_ids: 1).with_options(background: true) }
+  it { should have_index_for(follower_ids: 1).with_options(background: true) }
 
   it { should_not allow_mass_assignment_of(:_id) }
   it { should_not allow_mass_assignment_of(:id) }
