@@ -84,6 +84,14 @@ class User
     end
   end
 
+  def stock(item)
+    if stocks.include? item
+      errors.add(:duplicate_stocking, "duplicate stocking occured")
+    else
+      stocks.push item
+    end
+  end
+
   private
 
   def uniqueness_of_uid
