@@ -10,8 +10,9 @@ class User
   field :following_ids, type: Array
   field :follower_ids, type: Array
 
-  has_many :items
+  has_many :items, inverse_of: :user
   has_and_belongs_to_many :tags, index: true
+  has_and_belongs_to_many :stocks, class_name: "Item", inverse_of: :stocked_users
 
   index uid: 1
   index email: 1
