@@ -13,8 +13,8 @@ class User
   has_many :items, inverse_of: :user
   has_and_belongs_to_many :tags, index: true
   has_and_belongs_to_many :stocks, class_name: "Item", inverse_of: :stocked_users
-  has_and_belongs_to_many :followings, class_name: "User", inverse_of: :followers
-  has_and_belongs_to_many :followers, class_name: "User", inverse_of: :followings
+  has_and_belongs_to_many :followings, class_name: "User", inverse_of: :followers, index: true
+  has_and_belongs_to_many :followers, class_name: "User", inverse_of: :followings, index: true
 
   index uid: 1
   index email: 1
