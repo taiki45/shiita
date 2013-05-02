@@ -8,7 +8,7 @@ class TagsController < ApplicationController
 
   def follow
     tag = Tag.find_by(name: params[:name])
-    current_user.tags.push(tag)
+    current_user.follow_tag(tag)
 
     @target = tag.name
     if current_user.save
