@@ -13,6 +13,8 @@ class User
   has_many :items, inverse_of: :user
   has_and_belongs_to_many :tags, index: true
   has_and_belongs_to_many :stocks, class_name: "Item", inverse_of: :stocked_users
+  has_and_belongs_to_many :followings, class_name: "User", inverse_of: :followers
+  has_and_belongs_to_many :followers, class_name: "User", inverse_of: :followings
 
   index uid: 1
   index email: 1
@@ -21,6 +23,7 @@ class User
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
   validate :uniqueness_of_uid
+
 
   class << self
     def find_or_create_from_auth(auth)
@@ -42,16 +45,11 @@ class User
       addition = {
         email: auth[:info][:email],
         name: auth[:info][:name],
-        following_ids: [],
-        follower_ids: []
       }
       create(auth.merge(addition))
     end
   end
 
-  def to_param
-    email.split("@").first
-  end
 
   def following_items(limit = 20)
     item_ids = [tags, followings].map {|e| e.map {|ee| ee.item_ids } }.flatten.uniq
@@ -59,48 +57,26 @@ class User
     Array === result ? result : result ? [result] : []
   end
 
-  def follow(user)
-    push(:following_ids, user.id) unless following_ids.include? user.id
-    user.push(:follower_ids, id) unless user.follower_ids.include? id
+  def follow_user(user)
+    followings.push user unless followings.include? user
   end
 
-  def followings
-    if following_ids.empty?
-      []
-    elsif @followings == nil
-      @followings = wrap_array(User.find(*following_ids))
-    else
-      @followings
-    end
-  end
-
-  def followers
-    if follower_ids.empty?
-      []
-    elsif @followers == nil
-      @followers = wrap_array(User.find(*follower_ids))
-    else
-      @followers
-    end
+  def follow_tag(tag)
+    tags.push tag unless tags.include? tag
   end
 
   def stock(item)
-    if stocks.include? item
-      errors.add(:duplicate_stocking, "duplicate stocking occured")
-    else
-      stocks.push item
-    end
+    stocks.push item unless stocks.include? item
+  end
+
+  def to_param
+    email.split("@").first
   end
 
   private
 
   def uniqueness_of_uid
     errors.add(:unique_uid, "uid: #{uid} is not unique.") if self.class.where(uid: uid).count > 1
-  end
-
-  def wrap_array(result)
-    result = [result] unless Array === result
-    result
   end
 
 end

@@ -8,10 +8,10 @@ class UsersController < ApplicationController
 
   def follow
     user = User.find_by_part_of(params[:email])
-    current_user.follow(user)
+    current_user.follow_user(user)
 
     @target = user.email
-    if current_user.save && user.save
+    if current_user.save
       render "share/action"
     else
       render "share/action_error"
