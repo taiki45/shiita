@@ -10,6 +10,8 @@ describe User do
   it { should have_many(:items).with_foreign_key(:user_id).of_type(Item) }
   it { should have_and_belong_to_many(:tags).with_foreign_key(:tag_ids).of_type(Tag) }
   it { should have_and_belong_to_many(:stocks).with_foreign_key(:stock_ids).of_type(Item) }
+  it { should have_and_belong_to_many(:followings).with_foreign_key(:following_ids).of_type(User) }
+  it { should have_and_belong_to_many(:followers).with_foreign_key(:follower_ids).of_type(User) }
 
   it { should have_index_for(uid: 1) }
   it { should have_index_for(email: 1) }
