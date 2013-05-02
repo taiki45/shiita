@@ -2,7 +2,7 @@
   $("#notice-area")
   .addClass("alert-success")
   .empty()
-  .append("<span>Success to <%= @action %> \"<%= @target %>\"</span>")
+  .append("<span>Success to <%= params[:action] %> \"<%= @target %>\"</span>")
   .show(300);
   $("#action-btn").hide(300);
 })(jQuery);

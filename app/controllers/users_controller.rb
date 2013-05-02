@@ -7,12 +7,14 @@ class UsersController < ApplicationController
   end
 
   def follow
-    @obj = User.find_by_part_of(params[:email])
-    current_user.follow(@obj)
-    if current_user.save && @obj.save
-      render "share/follow"
+    user = User.find_by_part_of(params[:email])
+    current_user.follow(user)
+
+    @target = user.email
+    if current_user.save && user.save
+      render "share/action"
     else
-      render "share/follow_error"
+      render "share/action_error"
     end
   end
 

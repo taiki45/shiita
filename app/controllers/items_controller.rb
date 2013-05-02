@@ -76,7 +76,6 @@ class ItemsController < ApplicationController
     item = Item.find(params[:id])
     current_user.stock(item)
 
-    @action = "stock"
     @target = item.title
     if current_user.save
       render "share/action"

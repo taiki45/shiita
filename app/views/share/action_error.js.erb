@@ -2,6 +2,6 @@
   $("#notice-area")
   .addClass("alert-error")
   .empty()
-  .append("<span>Faild to <%= @action %> \"<%= @target %>\"</span>")
+  .append("<span>Faild to <%= params[:action] %> \"<%= @target %>\"</span>")
   .show(300);
 })(jQuery);
