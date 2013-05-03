@@ -8,7 +8,12 @@ describe Item do
 
   it { should belong_to(:user).with_foreign_key(:user_id).of_type(User) }
   it { should have_and_belong_to_many(:tags).with_foreign_key(:tag_ids).of_type(Tag) }
-  it { should have_and_belong_to_many(:stocked_users).with_foreign_key(:stocked_user_ids).of_type(User) }
+
+  it { should have_and_belong_to_many(:stocked_users)
+       .with_foreign_key(:stocked_user_ids)
+       .of_type(User)
+       .as_inverse_of(:stocks)
+  }
 
   it { should have_index_for(updated_at: -1) }
   it { should have_index_for(user_id: 1).with_options(background: true) }
