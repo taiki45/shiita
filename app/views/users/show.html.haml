@@ -7,4 +7,4 @@
 %h1= @user.email
 %hr
 
-= render partial: "share/item", collection: @user.items, spacer_template: "share/item_spacer"
+= render partial: "share/item_header", collection: @user.items, spacer_template: "share/item_spacer"

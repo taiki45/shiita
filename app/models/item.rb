@@ -7,6 +7,7 @@ class Item
   field :title, type: String
 
   belongs_to :user, index: true, inverse_of: :items
+  embeds_many :comments
   has_and_belongs_to_many :tags, index: true
   has_and_belongs_to_many :stocked_users, class_name: "User", inverse_of: :stocks
 

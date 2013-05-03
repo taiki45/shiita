@@ -1,7 +1,4 @@
-- if params[:action] == "show" && params[:controller] == "items"
-  %h1= item.title
-- else
-  %h1= link_to item.title, item
+%h1= item.title
 
 %p
   %strong tags:
@@ -22,3 +19,13 @@
 
 .wrap
   .content~ markdown item.source
+
+%hr
+.comments
+  =render partial: "share/comment", collection: item.comments
+
+  %hr
+  = simple_form_for Comment.new, url: {action: :comment} do |f|
+    = f.input :content, as: :text, label: "Comment", input_html: {class: 'input-block-level', rows: 3}
+    = f.button :submit, class: "btn btn-success"
+%hr
