@@ -18,4 +18,8 @@ class Comment
     end
   end
 
+  def user
+    User.find(user_id)
+  end
+
 end
