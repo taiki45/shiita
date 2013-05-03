@@ -29,5 +29,6 @@
 
   %hr
   = simple_form_for Comment.new, url: {action: :comment} do |f|
-    = f.input :content, as: :text, input_html: {class: 'input-block-level', rows: 3}
+    = f.input :content, as: :text, label: "Comment", input_html: {class: 'input-block-level', rows: 3}
     = f.button :submit, class: "btn btn-success"
+%hr
