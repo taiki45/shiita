@@ -15,4 +15,8 @@ class Comment
     User.find(user_id)
   end
 
+  def user=(commenter)
+    self.user_id = commenter.id
+  end
+
 end

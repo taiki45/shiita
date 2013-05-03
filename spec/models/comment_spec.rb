@@ -19,4 +19,13 @@ describe Comment do
     it { should eq user }
   end
 
+  describe "#user=" do
+    let(:user) { create :user }
+    let(:valid_attrs) { {content: "test"} }
+
+    subject { described_class.new(valid_attrs).tap {|o| o.user = user } }
+    its(:user) { should eq user }
+    its(:user_id) { should eq user.id.to_s }
+  end
+
 end
