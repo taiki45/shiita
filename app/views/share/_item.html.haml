@@ -22,3 +22,12 @@
 
 .wrap
   .content~ markdown item.source
+
+%hr
+.comments
+  =render partial: "share/comment", collection: item.comments
+
+  %hr
+  = simple_form_for Comment.new, url: {action: :comment} do |f|
+    = f.input :content, as: :text, input_html: {class: 'input-block-level', rows: 3}
+    = f.button :submit, class: "btn btn-success"

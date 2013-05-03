@@ -84,4 +84,15 @@ class ItemsController < ApplicationController
     end
   end
 
+  def comment
+    comment = Comment.new_with_user(params[:comment].merge(user: current_user))
+    Item.find(params[:id]).comments.push comment
+
+    if comment.save
+      render partial: "share/comment", object: comment
+    else
+      render :nothing
+    end
+  end
+
 end
