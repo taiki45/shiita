@@ -22,7 +22,7 @@ class User
   validates :uid, presence: true
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
-  validate :uniqueness_of_uid
+  validate :uniqueness_of_uid, if: :new_record?
 
 
   class << self
@@ -76,7 +76,7 @@ class User
   private
 
   def uniqueness_of_uid
-    errors.add(:unique_uid, "uid: #{uid} is not unique.") if self.class.where(uid: uid).count > 1
+    errors.add(:unique_uid, "uid: #{uid} is not unique.") if self.class.where(uid: uid).count > 0
   end
 
 end

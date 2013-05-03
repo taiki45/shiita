@@ -31,18 +31,28 @@ describe User do
 
   describe "#uniqueness_of_uid" do
     context "when duplicated" do
-      pending "implement correct validation" do
-        let(:already) { create :user }
-        let(:duplicated) { build :user, email: "duplicated@test.com" }
+      before { create :user }
+      let(:duplicated) { build :user, email: "duplicated@test.com" }
 
-        subject { duplicated.tap(&:invalid?) }
-        it { should be_invalid }
-        it { should have(1).error_on(:unique_uid) }
-      end
+      subject { duplicated.tap(&:invalid?) }
+      it { should be_invalid }
+      it { should have(1).error_on(:unique_uid) }
     end
 
     context "when not duplicated" do
       subject { build(:user).tap(&:valid?) }
+      it { should be_valid }
+      its(:errors) { should have(:no).error }
+      it { should have(:no).error_on(:unique_uid) }
+    end
+
+    context "when update non duplicated user" do
+      let(:user) { create :user }
+      before do
+        user.name = "john"
+      end
+
+      subject { user.tap(&:save) }
       it { should be_valid }
       its(:errors) { should have(:no).error }
       it { should have(:no).error_on(:unique_uid) }
