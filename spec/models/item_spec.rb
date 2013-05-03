@@ -7,6 +7,7 @@ describe Item do
   it { should be_timestamped_document }
 
   it { should belong_to(:user).with_foreign_key(:user_id).of_type(User) }
+  it { should embed_many(:comments).of_type(Comment) }
   it { should have_and_belong_to_many(:tags).with_foreign_key(:tag_ids).of_type(Tag) }
 
   it { should have_and_belong_to_many(:stocked_users)
