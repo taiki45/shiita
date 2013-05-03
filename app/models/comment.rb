@@ -11,4 +11,11 @@ class Comment
   validates :content, presence: true
   validates :user_id, presence: true
 
+  class << self
+    def new_with_user(attrs)
+      attrs[:user_id] = attrs.delete(:user).id
+      new(attrs)
+    end
+  end
+
 end
