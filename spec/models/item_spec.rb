@@ -14,6 +14,11 @@ describe Item do
   it { should have_index_for(user_id: 1).with_options(background: true) }
   it { should have_index_for(tag_ids: 1).with_options(background: true) }
 
+  it { should validate_presence_of(:source) }
+  it { should validate_presence_of(:title) }
+  it { should validate_associated(:tags) }
+
+
   describe "#user" do
     subject { create :item }
 

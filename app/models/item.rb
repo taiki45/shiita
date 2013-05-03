@@ -12,6 +12,9 @@ class Item
 
   index updated_at: -1
 
+  validates :source, :title, presence: true
+  validates_associated :tags
+
   def tag_names
     tags.map {|e| e.name }.join(" ")
   end
