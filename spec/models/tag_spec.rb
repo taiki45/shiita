@@ -11,6 +11,9 @@ describe Tag do
   it { should have_index_for(item_ids: 1).with_options(background: true) }
   it { should have_index_for(user_ids: 1).with_options(background: true) }
 
+  it { should validate_presence_of :name }
+  it { should validate_uniqueness_of :name }
+
   describe "#to_param" do
     subject { create :tag }
     its(:to_param) { should eq subject.name }
