@@ -6,6 +6,12 @@
           %li= link_to "Post new item", new_item_path, class: "btn"
           %li.divider
 
+          %li #{@item.stocked_users.count} users stocked
+          %li.nav-header Stocked users
+          - @item.stocked_users.each do |user|
+            %li= link_to user.email, user
+          %li.divider
+
           - unless current_user.stocks.include? @item
             %li= link_to "Stock", :item_stock, remote: true, class: "btn", id: "action-btn"
 
