@@ -17,15 +17,16 @@ We can try private Qiita like service easily. If the service brings much good to
 - User following
 - Stocks like Qiita
 - Comments in each Article
+- UI with Ajax
 
 ### Not yet
-- UI with Ajax, Pjax
+- UI with Pjax
 - Tag limitation system with suggestion
 - json-based API
 - Full text search
 
 ### Maybe
-- Mac app client
+- Client app as Mac app
 
 ## Requirements
 - Ruby >= 1.9.3(only MRI support)
