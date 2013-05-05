@@ -5,7 +5,7 @@ Shiita::Application.routes.draw do
   resources :items
   controller :items do
     get "/items/:id/stock" => :stock, as: :item_stock
-    post "/items/:id/comment" => :comment
+    post "/items/:id/comment" => :comment, as: :comment_post
   end
 
   controller :tags do

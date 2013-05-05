@@ -65,9 +65,10 @@ class ItemsController < ApplicationController
   def destroy
     @item = Item.find(params[:id])
     @item.destroy
+    flash[:notice] = %(Success to delete "#{@item.title}".)
 
     respond_to do |format|
-      format.html { redirect_to items_url }
+      format.html { redirect_to user_url(@item.user) }
       format.json { head :no_content }
     end
   end
