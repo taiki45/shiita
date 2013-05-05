@@ -29,7 +29,7 @@ We can try private Qiita like service easily. If the service brings much good to
 - Client app as Mac app
 
 ## Requirements
-- Ruby >= 1.9.3(only MRI support)
+- Ruby >= 1.9.3 (only MRI support)
 - MongoDB
 
 ## Setup for development
