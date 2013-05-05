@@ -1,2 +1,3 @@
 .wrap
-  ~ markdown comment.content
+  .content~ markdown comment.content
+%span commented by: #{link_to comment.user.email, comment.user}, commented at: #{comment.created_at}
