@@ -31,7 +31,6 @@
               %li
                 = form_tag "/users", method: :get, class: "navbar-form", id: "top-search" do
                   = text_field_tag :user_email, nil, {class: "search-query", placeholder: "search by email"}
-              %li= link_to "Help", "/help"
             %ul.nav.pull-right
               = render 'layouts/top_status'
 
