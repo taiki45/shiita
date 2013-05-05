@@ -19,7 +19,9 @@
 .alert.fade.in#notice-area{style: "display: none"}
   %button.close{data: {dismiss: "alert"}} &times;
 
-= render partial: "share/item", object: @item
-
 - if @item.user == current_user
-  = link_to 'Edit', edit_item_path(@item), class: "btn btn-success"
+  = link_to "Edit", edit_item_path(@item), class: "btn btn-success"
+  = link_to "Delete", item_path(@item), method: :delete, class: "btn btn-danger", confirm: "Delete item?"
+  %hr
+
+= render partial: "share/item", object: @item
