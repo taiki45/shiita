@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 (($) ->
-  $("#new_comment").on("ajax:success", (eevt, data, status) ->
+  $("#new_comment").on("ajax:success", (evt, data, status) ->
     $("#notice-area")
       .addClass("alert-success")
       .empty()
