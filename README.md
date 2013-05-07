@@ -8,8 +8,6 @@ But we are good to have a choice, which is fee-free and of course open-source.
 We can try private Qiita like service easily. If the service brings much good to you, you can start Qiita:Team.
 
 ## Features
-### Already
-
 - Authentication with google account
 - Github flavored markdown
 - Syntax highlight
