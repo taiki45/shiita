@@ -4,7 +4,7 @@
   .form-inputs
     = f.input :title, input_html: {class: 'input-block-level'}
     = f.input :source, as: :text, input_html: {class: 'input-block-level'}
-    = f.input :tag_names, input_html:  {class: 'input-block-level'}
+    = f.input :tag_names, hint: "Split each tag name by single space", input_html:  {class: 'input-block-level'}
 
   .form-actions
     = f.button :submit, class: "btn btn-success"
