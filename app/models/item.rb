@@ -5,6 +5,7 @@ class Item
 
   field :source, type: String
   field :title, type: String
+  field :tokens, type: Array
 
   belongs_to :user, index: true, inverse_of: :items
   embeds_many :comments
