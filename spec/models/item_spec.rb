@@ -4,7 +4,6 @@ describe Item do
 
   it { should have_field(:title).of_type(String) }
   it { should have_field(:source).of_type(String) }
-  it { should have_field(:tokens).of_type(Array) }
   it { should be_timestamped_document }
 
   it { should belong_to(:user).with_foreign_key(:user_id).of_type(User) }
