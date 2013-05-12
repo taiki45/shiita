@@ -30,7 +30,9 @@
 // Example:
 // @linkColor: #ff0000;
 
-// Cerulean 2.3.1
+
+
+// Spacelab 2.3.1
 // Bootswatch
 // -----------------------------------------------------
 
@@ -38,7 +40,7 @@
 // TYPOGRAPHY
 // -----------------------------------------------------
 
-@import url(//fonts.googleapis.com/css?family=Telex);
+@import url('//fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700');
 
 // SCAFFOLDING
 // -----------------------------------------------------
@@ -49,37 +51,72 @@
 .navbar {
 
   .brand {
-    padding: 14px 20px 16px;
-    font-family: @headingsFontFamily;
-    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
-}
 
-li {
-  line-height: 20px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+    .transition(color ease-in-out .2s);
+
+    &:hover {
+      color: @navbarLinkColorHover;
+      .transition(color ease-in-out .2s);
+  }
 }
 
 .nav > li > a {
-  padding: 16px 10px 14px;
-  font-family: @headingsFontFamily;
-  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
-}
+  padding: 11px 10px 8px;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+  .transition(color ease-in-out .2s);
 
-.search-query {
-  border: 1px solid darken(@linkColor, 10%);
-  line-height: normal;
+  &:hover {
+    .transition(color ease-in-out .2s);
+  }
 }
 
 .navbar-text {
-  padding: 19px 10px 18px;
-  line-height: 13px;
-  color: rgba(0, 0, 0, 0.5);
-  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.3);
+  padding: 11px 10px 8px;
+  line-height: inherit;
+}
+
+.navbar-search .search-query,
+.navbar-search .search-query:hover {
+  margin-bottom: 0;
+  line-height: normal;
+  color: @grayLight;
+  .placeholder(@grayLight);
+  .box-shadow(inset 0 1px 2px rgba(0, 0, 0, 0.5));
+
+  &:focus,
+  &.focused {
+    .box-shadow(inset 0 1px 2px rgba(0, 0, 0, 0.5));
+    color: @textColor;
+  }
 }
 
 &-inverse {
 
-  .navbar-search .search-query {
-    color: @textColor;
+  .brand {
+    text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3);
+
+    &:hover {
+      color: @white;
+    }
+  }
+
+  .nav > li > a {
+    text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3);
+  }
+
+  .nav li.dropdown.open > .dropdown-toggle .caret,
+  .nav li.dropdown:hover > .dropdown-toggle .caret,
+  .nav li.dropdown.open:hover > .dropdown-toggle .caret {
+    border-top-color: @white;
+  }
+
+  .navbar-search .search-query,
+  .navbar-search .search-query:hover {
+
+    color: @white;
+
+    .placeholder(@grayLighter);
   }
 }
 }
@@ -88,112 +125,141 @@ li {
 
   .navbar .nav-collapse {
 
-    .nav li > a {
-
-      font-family: @headingsFontFamily;
-      font-weight: normal;
+    .nav li > a:hover {
+      background-color: @linkColor;
       color: @white;
-      text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
-
-      &:hover {
-        background-color: #2B7CAC;
-    }
+      text-shadow: none;
   }
 
-  .nav .active > a {
-    .box-shadow(none);
-    background-color: #2B7CAC;
-  }
-
-  .dropdown-menu li > a:hover,
-  .dropdown-menu li > a:focus,
-  .dropdown-submenu:hover > a {
-    background-image: none;
-  }
-
-  .navbar-form,
   .navbar-search {
-    border: none;
-  }
-
-  .nav-header {
-    color: #2B7CAC;
+    border-top: none;
+    border-bottom: none;
   }
 }
 
 .navbar-inverse .nav-collapse {
 
   .nav li > a {
-    color: @navbarInverseLinkColor;
+    color: @grayLight !important;
 
     &:hover {
-      background-color: rgba(0, 0, 0, 0.1);
+      background-color: @linkColor !important;
     }
   }
 
-  .nav .active > a,
-  .nav > li > a:hover,
-  .dropdown-menu a:hover {
-    background-color: rgba(0, 0, 0, 0.1) !important;
+  .nav-header {
+    color: @grayLighter;
   }
 }
 }
 
 div.subnav {
 
-  font-family: @headingsFontFamily;
-  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.2);
+  .nav > li > a {
 
-  &-fixed {
-    top: @navbarHeight + 1;
+    color: @navbarLinkColor;
+    .transition(color ease-in-out .2s);
+
+    &:hover {
+      border-left-color: @grayLight;
+      color: @navbarLinkColorHover;
+      .transition(color ease-in-out .2s);
+  }
+}
+
+.nav > li.active > a {
+
+  color: @textColor;
+
+  &:hover {
+    color: @textColor;
+  }
+}
+
+.nav > li.dropdown > .dropdown-toggle {
+  background-color: transparent;
+}
+
+.nav > li.dropdown.open > .dropdown-toggle {
+
+  border-left: 1px solid whiteSmoke;
+  border-right: 1px solid #E5E5E5;
+  color: @textColor;
+
+  &:hover {
+    color: @linkColor;
+  }
+}
+
+&-fixed {
+  top: @navbarHeight + 1;
 }
 }
 
 // NAV
 // -----------------------------------------------------
 
+.nav > li > a:hover,
+.nav > li > a:focus {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.nav > li.dropdown > .dropdown-toggle,
+.nav > li.dropdown.active > .dropdown-toggle,
+.nav > li.dropdown.open > .dropdown-toggle,
+.nav > li.dropdown.open.active > .dropdown-toggle  {
+
+  .caret {
+    border-top: 4px solid @textColor;
+    border-top-color: @textColor;
+    opacity: 1;
+}
+
+&:hover .caret {
+  border-top: 4px solid @linkColorHover;
+  border-top-color: @linkColorHover;
+}
+}
+
+.nav-list .divider {
+  background-color: @dropdownDividerTop;
+  border-bottom-color: @dropdownDividerBottom;
+}
+
 // BUTTONS
 // -----------------------------------------------------
-
-.btn {
-  #gradient > .vertical-three-colors(@white, @white, 5%, darken(@white, 0%));
-  @shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
-  .box-shadow(@shadow);
-
-  &:hover {
-    background-position: 0 0;
-}
-}
-
-.btn-primary {
-  .buttonBackground(lighten(@btnPrimaryBackground, 5%), @btnPrimaryBackground);
-}
-
-.btn-info {
-  .buttonBackground(lighten(@btnInfoBackground, 5%), @btnInfoBackground);
-}
-
-.btn-success {
-  .buttonBackground(lighten(@btnSuccessBackground, 5%), @btnSuccessBackground);
-}
-
-.btn-warning {
-  .buttonBackground(lighten(@btnWarningBackground, 5%), @btnWarningBackground);
-}
-
-.btn-danger {
-  .buttonBackground(lighten(@btnDangerBackground, 5%), @btnDangerBackground);
-}
-
-.btn-inverse {
-  .buttonBackground(lighten(@btnInverseBackground, 5%), @btnInverseBackground);
-}
 
 // TABLES
 // -----------------------------------------------------
 
+.table {
+
+  tbody tr.success > td,
+  tbody tr.error > td,
+  tbody tr.info > td {
+    color: @white;
+}
+
+}
+
 // FORMS
 // -----------------------------------------------------
+
+.control-group.warning {
+  .formFieldState(#E29235, #E29235, @warningBackground);
+}
+
+.control-group.error {
+  .formFieldState(#C00, #C00, @errorBackground);
+}
+
+.control-group.success {
+  .formFieldState(#2BA949, #2BA949, @successBackground);
+}
+
+.control-group.info {
+  .formFieldState(@blue, @blue, @infoBackground);
+}
 
 // DROPDOWNS
 // -----------------------------------------------------
@@ -201,48 +267,81 @@ div.subnav {
 // ALERTS, LABELS, BADGES
 // -----------------------------------------------------
 
+.alert {
+
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+
+  h1, h2, h3, h4, h5, h6 {
+    color: @white;
+    font-weight: bold;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+}
+
+.label, .badge {
+
+  &-important {
+    background-color: @red;
+}
+
+&-warning {
+  background-color: @orange;
+}
+
+&-success {
+  background-color: @green;
+}
+
+&-info {
+  background-color: @blue;
+}
+}
+
 // MISC
 // -----------------------------------------------------
 
-i[class^="icon-"]{
-  opacity: 0.8;
+.well {
+  // .box-shadow(inset 1px 1px 0 rgba(0,0,0,.1));
+}
+
+.hero-unit {
+  // .box-shadow(inset 1px 1px 0 rgba(0,0,0,.1));
+  border: 1px solid rgba(0,0,0,.1);
 }
 
 // MEDIA QUERIES
 // -----------------------------------------------------
 
-
-
-// Cerulean 2.3.1
+// Spacelab 2.3.1
 // Variables
 // --------------------------------------------------
 
 
-// GLOBAL VALUES
+// Global values
 // --------------------------------------------------
 
 
 // Grays
 // -------------------------
 @black:                 #000;
-@grayDarker:            #222;
-@grayDark:              #333;
-@gray:                  #555;
-@grayLight:             #999;
-@grayLighter:           #F5F5F5;
+@grayDarker:            #2D2D2D;
+@grayDark:              #434848;
+@gray:                  #666;
+@grayLight:             #ccc;
+@grayLighter:           #eee;
 @white:                 #fff;
 
 
 // Accent colors
 // -------------------------
-@blue:                  #2FA4E7;
-@blueDark:              #033C73;
-@green:                 #73A839;
-@red:                   #C71C22;
-@yellow:                #F7B42C;
-@orange:                #DD5600;
-@pink:                  #F49AC1;
-@purple:                #9760B3;
+@blue:                  #3399F3;
+@blueDark:              #405A6A;
+@green:                 #3CB521;
+@red:                   #CD0200;
+@yellow:                #F4CA00;
+@orange:                #D47500;
+@pink:                  #F44B8C;
+@purple:                #405A6A;
 
 
 // Scaffolding
@@ -253,24 +352,24 @@ i[class^="icon-"]{
 
 // Links
 // -------------------------
-@linkColor:             @blue;
-@linkColorHover:        darken(@linkColor, 15%);
+@linkColor:             #09d;
+@linkColorHover:        @linkColor;
 
 
 // Typography
 // -------------------------
-@sansFontFamily:        "Helvetica Neue", Helvetica, Arial, sans-serif;
+@sansFontFamily:        "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 @serifFontFamily:       Georgia, "Times New Roman", Times, serif;
 @monoFontFamily:        Menlo, Monaco, Consolas, "Courier New", monospace;
 
-@baseFontSize:          14px;
+@baseFontSize:          15px;
 @baseFontFamily:        @sansFontFamily;
-@baseLineHeight:        20px;
-@altFontFamily:         @monoFontFamily;
+@baseLineHeight:        21px;
+@altFontFamily:         @serifFontFamily;
 
-@headingsFontFamily:    'Telex', sans-serif; // empty to use BS default, @baseFontFamily
-@headingsFontWeight:    bold;    // instead of browser default, bold
-@headingsColor:         #317EAC; // empty to use BS default, @textColor
+@headingsFontFamily:    inherit; // empty to use BS default, @baseFontFamily
+@headingsFontWeight:    normal;    // instead of browser default, bold
+@headingsColor:         @grayDarker; // empty to use BS default, @textColor
 
 
 // Component sizing
@@ -300,26 +399,26 @@ i[class^="icon-"]{
 // Buttons
 // -------------------------
 @btnBackground:                     @white;
-@btnBackgroundHighlight:            darken(@white, 10%);
-@btnBorder:                         darken(@white, 20%);
+@btnBackgroundHighlight:            @grayLighter;
+@btnBorder:                         darken(@btnBackground, 20%);
 
-@btnPrimaryBackground:              @linkColor;
-@btnPrimaryBackgroundHighlight:     spin(@btnPrimaryBackground, 15%);
+@btnPrimaryBackground:              lighten(@linkColor, 10%);
+@btnPrimaryBackgroundHighlight:     @linkColor;
 
-@btnInfoBackground:                 @purple;
-@btnInfoBackgroundHighlight:        #2f96b4;
+@btnInfoBackground:                 lighten(#3A5D83, 10%);
+@btnInfoBackgroundHighlight:        #3A5D83;
 
-@btnSuccessBackground:              @green;
-@btnSuccessBackgroundHighlight:     #51a351;
+@btnSuccessBackground:              lighten(@green, 10%);
+@btnSuccessBackgroundHighlight:     @green;
 
-@btnWarningBackground:              @orange;
+@btnWarningBackground:              lighten(@orange, 10%);
 @btnWarningBackgroundHighlight:     @orange;
 
-@btnDangerBackground:               @red;
-@btnDangerBackgroundHighlight:      #bd362f;
+@btnDangerBackground:               lighten(@red, 10%);
+@btnDangerBackgroundHighlight:      @red;
 
-@btnInverseBackground:              @blueDark;
-@btnInverseBackgroundHighlight:     @grayDarker;
+@btnInverseBackground:              lighten(@navbarInverseBackground, 15%);
+@btnInverseBackgroundHighlight:     @navbarInverseBackground;
 
 
 // Forms
@@ -336,10 +435,10 @@ i[class^="icon-"]{
 // -------------------------
 @dropdownBackground:            @white;
 @dropdownBorder:                rgba(0,0,0,.2);
-@dropdownDividerTop:            #e5e5e5;
-@dropdownDividerBottom:         @white;
+@dropdownDividerTop:            rgba(0, 0, 0, 0.1);
+@dropdownDividerBottom:         rgba(255, 255, 255, 0.5);
 
-@dropdownLinkColor:             @grayDark;
+@dropdownLinkColor:             @textColor;
 @dropdownLinkColorHover:        @white;
 @dropdownLinkColorActive:       @white;
 
@@ -358,7 +457,7 @@ i[class^="icon-"]{
 // Try to avoid customizing these :)
 @zindexDropdown:          1000;
 @zindexPopover:           1010;
-@zindexTooltip:           1020;
+@zindexTooltip:           1030;
 @zindexFixedNavbar:       1030;
 @zindexModalBackdrop:     1040;
 @zindexModal:             1050;
@@ -387,7 +486,7 @@ i[class^="icon-"]{
 
 // Wells
 // -------------------------
-@wellBackground:                  #f5f5f5;
+@wellBackground:                  @grayLighter;
 
 
 // Navbar
@@ -395,36 +494,36 @@ i[class^="icon-"]{
 @navbarCollapseWidth:             979px;
 @navbarCollapseDesktopWidth:      @navbarCollapseWidth + 1;
 
-@navbarHeight:                    50px;
-@navbarBackgroundHighlight:       lighten(@navbarBackground, 8%);
-@navbarBackground:                @blue;
-@navbarBorder:                    darken(@navbarBackground, 8%);
+@navbarHeight:                    40px;
+@navbarBackgroundHighlight:       @grayLighter;
+@navbarBackground:                darken(@grayLighter, 5%);
+@navbarBorder:                    @grayLight;
 
-@navbarText:                      @grayLighter;
-@navbarLinkColor:                 @white;
-@navbarLinkColorHover:            @white;
-@navbarLinkColorActive:           @navbarLinkColorHover;
-@navbarLinkBackgroundHover:       darken(@navbarBackground, 12%);
-@navbarLinkBackgroundActive:      darken(@navbarBackground, 12%);
+@navbarText:                      @textColor;
+@navbarLinkColor:                 @textColor;
+@navbarLinkColorHover:            @linkColor;
+@navbarLinkColorActive:           @linkColor;
+@navbarLinkBackgroundHover:       transparent;
+@navbarLinkBackgroundActive:      transparent;
 
 @navbarBrandColor:                @navbarLinkColor;
 
 // Inverted navbar
-@navbarInverseBackground:                @blueDark;
-@navbarInverseBackgroundHighlight:       lighten(@navbarInverseBackground, 5%);
+@navbarInverseBackground:                #6C737E;
+@navbarInverseBackgroundHighlight:       lighten(@navbarInverseBackground, 10%);
 @navbarInverseBorder:                    darken(@navbarInverseBackground, 3%);
 
-@navbarInverseText:                      @white;
-@navbarInverseLinkColor:                 @white;
+@navbarInverseText:                      @grayLight;
+@navbarInverseLinkColor:                 @grayLight;
 @navbarInverseLinkColorHover:            @white;
 @navbarInverseLinkColorActive:           @white;
-@navbarInverseLinkBackgroundHover:       darken(@navbarInverseBackground, 6%);
-@navbarInverseLinkBackgroundActive:      darken(@navbarInverseBackground, 6%);
+@navbarInverseLinkBackgroundHover:       transparent;
+@navbarInverseLinkBackgroundActive:      @navbarInverseBackground;
 
-@navbarInverseSearchBackground:          @white;
+@navbarInverseSearchBackground:          lighten(@navbarInverseBackground, 25%);
 @navbarInverseSearchBackgroundFocus:     @white;
 @navbarInverseSearchBorder:              @navbarInverseBackground;
-@navbarInverseSearchPlaceholderColor:    @grayLight;
+@navbarInverseSearchPlaceholderColor:    @grayLighter;
 
 @navbarInverseBrandColor:                @navbarInverseLinkColor;
 
@@ -439,26 +538,26 @@ i[class^="icon-"]{
 // Hero unit
 // -------------------------
 @heroUnitBackground:              @grayLighter;
-@heroUnitHeadingColor:            inherit;
+@heroUnitHeadingColor:            @headingsColor;
 @heroUnitLeadColor:               inherit;
 
 
 // Form states and alerts
 // -------------------------
-@warningText:             @orange;
-@warningBackground:       #F1CEAB;
+@warningText:             @white;
+@warningBackground:       @orange;
 @warningBorder:           darken(spin(@warningBackground, -10), 3%);
 
-@errorText:               darken(#C45559, 5%);
-@errorBackground:         #F2BDB1;
+@errorText:               @white;
+@errorBackground:         @red;
 @errorBorder:             darken(spin(@errorBackground, -10), 3%);
 
-@successText:             darken(@green, 5%);
-@successBackground:       #D5ECBF;
+@successText:             @white;
+@successBackground:       @green;
 @successBorder:           darken(spin(@successBackground, -10), 5%);
 
-@infoText:                darken(@blue, 10%);
-@infoBackground:          #A7DFF1;
+@infoText:                @white;
+@infoBackground:          @blue;
 @infoBorder:              darken(spin(@infoBackground, -10), 7%);
 
 
