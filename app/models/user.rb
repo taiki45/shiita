@@ -65,6 +65,10 @@ class User
     tags.push tag unless tags.include? tag
   end
 
+  def following?(other)
+    followings.include? other
+  end
+
   def stock(item)
     stocks.push item unless stocks.include? item
   end

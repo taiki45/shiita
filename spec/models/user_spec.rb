@@ -100,6 +100,21 @@ describe User do
     end
   end
 
+  describe "#following?" do
+    let(:user) { create :user }
+    let(:other) { create :user, uid: 2, email: "other@example.com" }
+    subject { user.following? other }
+
+    context "when not following other" do
+      it { should be_false }
+    end
+
+    context "when following other" do
+      before { user.follow_user(other) }
+      it { should be_true }
+    end
+  end
+
 
   let(:auth) do
     {
