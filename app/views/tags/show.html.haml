@@ -1,22 +1,5 @@
 - content_for :sidebar do
-  .span3
-    .well.sidebar-nav
-      %ul.nav.nav-list
-      - if login?
-        %li= link_to "Post new item", new_item_path, class: "btn"
-        %li.divider
-
-        %li.nav-header Tag Info
-        %li.divider
-        %li= @tag.name
-        %li= "#{@tag.items.count} items"
-        %li= "#{@tag.users.count} followers"
-        %li.divider
-        - if login?
-          - if @tag.users.include? current_user
-            %li= link_to "Following", "#", class: "btn disabled btn-success"
-          - else
-            %li= link_to "Follow", :tag_follow, remote: true, class: "btn", id: "action-btn"
+  = render partial: "sidebar"
 
 .alert.fade.in#notice-area{style: "display: none"}
   %button.close{data: {dismiss: "alert"}} &times;

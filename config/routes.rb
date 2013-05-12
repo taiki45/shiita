@@ -12,6 +12,7 @@ Shiita::Application.routes.draw do
     get "/tags" => :index, as: :tags
     get "/tags/:name" => :show, as: :tag
     get "/tags/:name/follow" => :follow, as: :tag_follow
+    get "/tags/:name/followers" => :followers, as: :tag_followers
   end
 
   controller :users do

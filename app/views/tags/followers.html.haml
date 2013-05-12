@@ -1,0 +1,6 @@
+- content_for :sidebar do
+  = render partial: "sidebar"
+
+%h1 followers of #{@tag.name}
+%hr
+= render partial: "users/table", locals: {users: @tag.users}
