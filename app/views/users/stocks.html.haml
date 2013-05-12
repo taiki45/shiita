@@ -4,7 +4,7 @@
 .alert.fade.in#notice-area{style: "display: none"}
   %button.close{data: {dismiss: "alert"}} &times;
 
-%h1 Stocks of #{@user.name}
+%h1 Stocks of #{@user.email}
 %hr
 
 = render partial: "share/item_header", collection: @user.stocks, spacer_template: "share/item_spacer"
