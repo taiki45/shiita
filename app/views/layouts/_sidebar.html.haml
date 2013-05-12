@@ -2,7 +2,11 @@
   .well.sidebar-nav
     %ul.nav.nav-list
       - if login?
-        %li= link_to "Post new item", new_item_path, class: "btn"
+        = link_to new_item_path, class: "btn" do
+          %li
+            %i.icon-edit
+            %span Post new one
+
         %li.divider
 
         %li.nav-header Following tags
