@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
   def follow
     user = User.find_by_part_of(params[:email])
-    current_user.follow_user(user)
+    current_user.follow(user)
 
     @target = user.email
     if current_user.save

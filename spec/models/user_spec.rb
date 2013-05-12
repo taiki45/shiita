@@ -110,7 +110,7 @@ describe User do
     end
 
     context "when following other" do
-      before { user.follow_user(other) }
+      before { user.follow(other) }
       it { should be_true }
     end
   end

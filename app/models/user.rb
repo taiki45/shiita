@@ -57,12 +57,13 @@ class User
     Array === result ? result : result ? [result] : []
   end
 
-  def follow_user(user)
-    followings.push user unless followings.include? user
-  end
-
-  def follow_tag(tag)
-    tags.push tag unless tags.include? tag
+  def follow(other)
+    case other
+    when User
+      followings.push other unless followings.include? other
+    when Tag
+      tags.push ohter unless tags.include? other
+    end
   end
 
   def following?(other)
