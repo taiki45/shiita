@@ -153,6 +153,12 @@ describe ItemsController do
       delete :destroy, {:id => item.to_param}, valid_session
       response.should redirect_to(user_url(user))
     end
+
+    it "has success message in flash" do
+      delete :destroy, {:id => item.to_param}, valid_session
+      flash[:notice].should match /delete/
+      flash[:notice].should match /#{item.title}/
+    end
   end
 
 end
