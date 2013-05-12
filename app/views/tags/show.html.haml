@@ -4,7 +4,11 @@
 .alert.fade.in#notice-area{style: "display: none"}
   %button.close{data: {dismiss: "alert"}} &times;
 
-%h1= @tag.name
+%h1
+  %span= @tag.name
+  - if login? && current_user.following?(@tag)
+    %span.label.label-success following
+
 %hr
 
 = render partial: "share/item_header", collection: @tag.items, spacer_template: "share/item_spacer"

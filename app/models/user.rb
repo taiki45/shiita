@@ -67,7 +67,7 @@ class User
   end
 
   def following?(other)
-    followings.include? other
+    followings.include?(other) || tags.include?(other)
   end
 
   def stock(item)

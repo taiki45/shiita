@@ -9,8 +9,5 @@
       %li= link_to "#{@tag.items.count} items", @tag
       %li= link_to "#{@tag.users.count} followers", :tag_followers
       %li.divider
-      - if login?
-        - if @tag.users.include? current_user
-          %li= link_to "Following", "#", class: "btn disabled btn-success"
-        - else
-          %li= link_to "Follow", :tag_follow, remote: true, class: "btn", id: "action-btn"
+      - if login? && !current_user.following?(@tag)
+        %li= link_to "Follow", :tag_follow, remote: true, class: "btn", id: "action-btn"
