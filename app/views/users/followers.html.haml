@@ -3,4 +3,4 @@
 
 %h1 followers of #{@user.email}
 %hr
-= render partial: "table", locals: {users: @user.followings}
+= render partial: "share/user_table", locals: {users: @user.followings}

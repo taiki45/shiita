@@ -3,4 +3,4 @@
 
 %h1 followers of #{@tag.name}
 %hr
-= render partial: "users/table", locals: {users: @tag.users}
+= render partial: "share/user_table", locals: {users: @tag.users}
