@@ -1,16 +1,17 @@
 .span3
   .well.sidebar-nav
     %ul.nav.nav-list
-      %li.nav-header= link_to "User Info", user
-      %li= user.email
-      %li= user.name
-      %li= "#{user.items.count} items"
-      %li= "#{user.followings.count} followings"
-      %li= "#{user.followers.count} followers"
+      %li.nav-header= user.name
+      %li= link_to user.email, user
+      %li= link_to "#{user.items.count} items", user
+
+      %li.nav-header Relations
+      %li= link_to "#{user.followings.count} followings", :user_followings
+      %li= link_to "#{user.followers.count} followers", :user_followers
       %li.divider
 
-      %li.nav-header= link_to "Stocks info", :user_stocks
-      %li #{user.stocks.count} items stocked
+      %li.nav-header Stocks
+      %li= link_to "#{user.stocks.count} items stocked", :user_stocks
       %li.divider
 
       - if login? && current_user != user && !(current_user.followings.include?(user))

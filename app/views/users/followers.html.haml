@@ -1,0 +1,6 @@
+- content_for :sidebar do
+  = render partial: "user_sidebar", locals: {user: @user}
+
+%h1 followers of #{@user.email}
+%hr
+= render partial: "table", locals: {users: @user.followings}
