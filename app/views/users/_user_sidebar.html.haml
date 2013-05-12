@@ -1,6 +1,10 @@
 .span3
   .well.sidebar-nav
     %ul.nav.nav-list
+      - if login?
+        %li= link_to "Post new item", new_item_path, class: "btn"
+        %li.divider
+
       %li.nav-header= user.name
       %li= link_to user.email, user
       %li= link_to "#{user.items.count} items", user
