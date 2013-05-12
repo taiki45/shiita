@@ -12,6 +12,7 @@ describe ItemsController do
   end
 
   let(:item) { Item.create! valid_attributes }
+  let(:redirect_path) { "home#index" }
   let(:valid_session) { {id: 1} }
   let(:valid_attributes) do
     {
@@ -25,36 +26,40 @@ describe ItemsController do
   describe "GET show" do
     it "assigns the requested item as @item" do
       get :show, {:id => item.to_param}, valid_session
-      expect(assigns(:item)).to eq item
+      assigns(:item).should eq item
     end
 
     it "assigns the requested item as @item even if not logged in" do
       get :show, {id: item.to_param}, {}
-      expect(assigns(:item)).to eq item
+      assigns(:item).should eq item
     end
   end
 
   describe "GET new" do
     it "assigns a new item as @item" do
       get :new, {}, valid_session
-      expect(assigns(:item)).to be_a_new Item
+      assigns(:item).should be_a_new Item
     end
 
-    it "redirects root_path unless logged in" do
+    it "redirects home#index unless logged in" do
       subject = get :new, {}, {}
-      expect(subject).to redirect_to "home#index"
+      should redirect_to redirect_path
+    end
+  end
+
+  describe "GET edit" do
+    it "assigns the requested item as @item" do
+      get :edit, {:id => item.to_param}, valid_session
+      assigns(:item).should eq item
+    end
+
+    it "redirects home#index unless logged in" do
+      subject = get :edit, {}, {}
+      should redirect_to redirect_path
     end
   end
 
 pending do
-
-  describe "GET edit" do
-    it "assigns the requested item as @item" do
-      item = Item.create! valid_attributes
-      get :edit, {:id => item.to_param}, valid_session
-      assigns(:item).should eq(item)
-    end
-  end
 
   describe "POST create" do
     describe "with valid params" do
