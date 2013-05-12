@@ -11,28 +11,25 @@ describe ItemsController do
     controller.stub(:current_user) { user }
   end
 
-  # This should return the minimal set of attributes required to create a valid
-  # Item. As you add validations to Item, be sure to
-  # update the return value of this method accordingly.
-  def valid_attributes
+  let(:item) { Item.create! valid_attributes }
+  let(:valid_session) { {id: 1} }
+  let(:valid_attributes) do
     {
       "source" => "MyString",
       "title" => "MyTitle",
-      "tag_names" => "Ruby Test"
+      "tag_names" => "Ruby Test",
     }
   end
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # ItemsController. Be sure to keep this updated too.
-  def valid_session
-    {id: 1}
-  end
 
   describe "GET show" do
     it "assigns the requested item as @item" do
-      item = Item.create! valid_attributes
       get :show, {:id => item.to_param}, valid_session
+      expect(assigns(:item)).to eq item
+    end
+
+    it "assigns the requested item as @item even if not logged in" do
+      get :show, {id: item.to_param}, {}
       expect(assigns(:item)).to eq item
     end
   end
@@ -44,7 +41,8 @@ describe ItemsController do
     end
 
     it "redirects root_path unless logged in" do
-      get :new, {}, {}
+      subject = get :new, {}, {}
+      expect(subject).to redirect_to "home#index"
     end
   end
 
