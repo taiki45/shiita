@@ -1,0 +1,22 @@
+.span3
+  .well.sidebar-nav
+    %ul.nav.nav-list
+      - if login?
+        %li= link_to "Post new item", new_item_path, class: "btn"
+        %li.divider
+
+      %li.nav-header= user.name
+      %li= link_to user.email, user
+      %li= link_to "#{user.items.count} items", user
+
+      %li.nav-header Relations
+      %li= link_to "#{user.followings.count} followings", :user_followings
+      %li= link_to "#{user.followers.count} followers", :user_followers
+      %li.divider
+
+      %li.nav-header Stocks
+      %li= link_to "#{user.stocks.count} items stocked", :user_stocks
+      %li.divider
+
+      - if login? && current_user != user && !(current_user.followings.include?(user))
+        %li= link_to "Follow", :user_follow, remote: true, class: "btn", id: "action-btn"

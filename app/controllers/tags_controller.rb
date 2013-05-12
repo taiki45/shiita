@@ -1,9 +1,9 @@
 class TagsController < ApplicationController
 
   before_filter :require_login, only: :follow
+  before_filter :set_tag, only: [:show, :followers]
 
   def show
-    @tag = Tag.find_by(name: params[:name])
   end
 
   def follow
@@ -20,5 +20,14 @@ class TagsController < ApplicationController
 
   def index
     @tags = Tag.all.to_a
+  end
+
+  def followers
+  end
+
+  private
+
+  def set_tag
+    @tag = Tag.find_by(name: params[:name])
   end
 end

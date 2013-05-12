@@ -24,9 +24,8 @@
         %li.divider
 
         %li.nav-header Global info
-        %li= link_to "#{User.count} users in", users_path
-        %li= link_to "#{Tag.count} tags in", tags_path
-        %li.divider
+        %li= link_to "#{User.count} users in total", users_path
+        %li= link_to "#{Tag.count} tags in total", tags_path
 
       - else
         %li.nav-header User counts

@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
 
   before_filter :require_login, only: :follow
+  before_filter :set_user, except: :index
 
   def index
     @users = User.all.to_a
   end
 
   def show
-    @user = User.find_by_part_of(params[:email])
   end
 
   def follow
@@ -23,6 +23,17 @@ class UsersController < ApplicationController
   end
 
   def stocks
+  end
+
+  def followers
+  end
+
+  def followings
+  end
+
+  private
+
+  def set_user
     @user = User.find_by_part_of(params[:email])
   end
 
