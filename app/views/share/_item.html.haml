@@ -1,17 +1,16 @@
 %h1= item.title
 
 %p
+  %strong author:
+  = link_to item.user do
+    %span= item.user.email
   %strong tags:
   - item.tags.each do |tag|
     = link_to tag do
       %span.badge
         %i.icon-tag
         = tag.name
-
 %p
-  %strong author:
-  = link_to item.user do
-    %span= item.user.name
   %strong created at:
   %span= item.created_at
   %strong update at:
