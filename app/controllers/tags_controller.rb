@@ -19,7 +19,7 @@ class TagsController < ApplicationController
   end
 
   def index
-    @tags = Tag.all.to_a
+    @tags = Tag.by_name.to_a
   end
 
   def followers

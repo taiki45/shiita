@@ -7,6 +7,7 @@ class Tag
   has_and_belongs_to_many :items, index: true, order: :updated_at.desc
 
   index name: 1
+  scope :by_name, order_by(name: 1)
 
   validates :name, presence: true, uniqueness: true
 

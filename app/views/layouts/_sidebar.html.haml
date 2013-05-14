@@ -36,5 +36,5 @@
         %li= link_to " #{Item.count} items", items_path
         %li.divider
         %li.nav-header Tags
-        - Tag.all.each do |tag|
+        - Tag.by_name.each do |tag|
           %li= link_to tag.name, tag
