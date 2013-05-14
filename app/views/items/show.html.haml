@@ -9,13 +9,14 @@
               %span New item
           %li.divider
 
+        %li.nav-header Info
         %li #{@item.stocked_users.count} users stocked
         %li.nav-header Stocked users
         - @item.stocked_users.each do |user|
           %li= link_to user.email, user
-        %li.divider
 
         - if login? && !current_user.stocks.include?(@item)
+          %li.divider
           = link_to :item_stock, remote: true, class: "btn btn-block", id: "action-btn" do
             %li
               %i.icon-bookmark
