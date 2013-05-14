@@ -4,4 +4,9 @@ FactoryGirl.define do
     source "Rails is cool"
     association :user, factory: :user
   end
+
+  factory :item_no_user do
+    title "Test"
+    source "Test Source"
+  end
 end
