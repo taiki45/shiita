@@ -29,11 +29,10 @@
         %li= link_to "#{Tag.count} tags in total", tags_path
 
       - else
-        %li.nav-header User counts
-        %li= link_to "#{User.count} users", users_path
-        %li.divider
-        %li.nav-header Item counts
-        %li= link_to " #{Item.count} items", items_path
+        %li.nav-header Global info
+        %li= link_to "#{User.count} users in total", users_path
+        %li= link_to "#{Item.count} items in total", items_path
+        %li= link_to "#{Tag.count} tags in total", tags_path
         %li.divider
         %li.nav-header Tags
         - Tag.by_name.each do |tag|
