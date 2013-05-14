@@ -269,12 +269,14 @@ div.subnav {
 
 .alert {
 
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  //text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
 
   h1, h2, h3, h4, h5, h6 {
     color: @white;
     font-weight: bold;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    //text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 }
 
@@ -548,21 +550,34 @@ div.subnav {
 
 // Form states and alerts
 // -------------------------
-@warningText:             @white;
-@warningBackground:       @orange;
+//@warningText:             @white;
+//@warningBackground:       @orange;
+//@warningBorder:           darken(spin(@warningBackground, -10), 3%);
+@warningText:             @orange;
+@warningBackground:       lighten(spin(@orange, 0), 40%);;
 @warningBorder:           darken(spin(@warningBackground, -10), 3%);
 
-@errorText:               @white;
-@errorBackground:         @red;
+//@errorText:               @white;
+//@errorBackground:         @red;
+//@errorBorder:             darken(spin(@errorBackground, -10), 3%);
+@errorText:               @red;
+@errorBackground:         lighten(spin(@red, 0), 40%);
 @errorBorder:             darken(spin(@errorBackground, -10), 3%);
 
-@successText:             @white;
-@successBackground:       @green;
+//@successText:             @white;
+//@successBackground:       @green;
+//@successBorder:           darken(spin(@successBackground, -10), 5%);
+@successText:             @green;
+@successBackground:       lighten(spin(@green, 0), 40%);
 @successBorder:           darken(spin(@successBackground, -10), 5%);
 
-@infoText:                @white;
-@infoBackground:          @blue;
+//@infoText:                @white;
+//@infoBackground:          @blue;
+//@infoBorder:              darken(spin(@infoBackground, -10), 7%);
+@infoText:                @blue;
+@infoBackground:          lighten(spin(@blue, 0), 40%);
 @infoBorder:              darken(spin(@infoBackground, -10), 7%);
+
 
 
 // Tooltips and popovers
