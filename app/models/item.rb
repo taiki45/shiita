@@ -8,8 +8,8 @@ class Item
 
   belongs_to :user, index: true, inverse_of: :items
   embeds_many :comments, order: :update_at.desc
-  has_and_belongs_to_many :tags, index: true
-  has_and_belongs_to_many :stocked_users, class_name: "User", inverse_of: :stocks
+  has_and_belongs_to_many :tags, index: true, order: :name.asc
+  has_and_belongs_to_many :stocked_users, class_name: "User", inverse_of: :stocks, order: :email.asc
 
   index updated_at: -1
   scope :recent, order_by(update_at: -1)

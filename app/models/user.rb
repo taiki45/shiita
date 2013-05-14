@@ -9,7 +9,7 @@ class User
   field :email, type: String
 
   has_many :items, inverse_of: :user, order: :updated_at.desc
-  has_and_belongs_to_many :tags, index: true
+  has_and_belongs_to_many :tags, index: true, order: :name.asc
   has_and_belongs_to_many \
     :stocks,
     class_name: "Item",
@@ -20,12 +20,14 @@ class User
     :followings,
     class_name: "User",
     inverse_of: :followers,
-    index: true
+    index: true,
+    order: :email.asc
   has_and_belongs_to_many \
     :followers,
     class_name: "User",
     inverse_of: :followings,
-    index: true
+    index: true,
+    order: :email.asc
 
   index uid: 1
   index email: 1
