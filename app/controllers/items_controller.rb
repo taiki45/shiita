@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_filter :require_login, except: [:index, :show]
 
   def index
-    @items = Item.all.to_a
+    @items = Item.recent.to_a
 
     respond_to do |format|
       format.html # index.html.erb

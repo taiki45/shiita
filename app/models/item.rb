@@ -12,6 +12,7 @@ class Item
   has_and_belongs_to_many :stocked_users, class_name: "User", inverse_of: :stocks
 
   index updated_at: -1
+  scope :recent, order_by(update_at: -1)
 
   validates :source, :title, presence: true
   validates_associated :tags
