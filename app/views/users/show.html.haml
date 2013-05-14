@@ -8,7 +8,7 @@
   %span= @user.email
   - if login? && current_user.following?(@user)
     %span.label.label-success following
-  - else login? && current_user == @user
+  - elsif login? && current_user == @user
     %span.label.label-info you
 
 %hr
