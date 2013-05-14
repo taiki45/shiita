@@ -15,3 +15,6 @@ en:
       save: "Save"
       new: "New"
       delete: "Delete"
+    submit:
+      comment:
+        create: "Comment"
