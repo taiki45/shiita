@@ -3,6 +3,7 @@
   .addClass("alert-success")
   .empty()
   .append("<span>Success to <%= params[:action] %> \"<%= @target %>\"</span>")
+  .append('<button class="close" data-dismiss="alert">&times;</button>')
   .show(300);
   $("#action-btn").hide(300);
 })(jQuery);
