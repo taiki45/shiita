@@ -16,7 +16,10 @@
         %li.divider
 
         - if login? && !current_user.stocks.include?(@item)
-          %li= link_to "Stock", :item_stock, remote: true, class: "btn", id: "action-btn"
+          = link_to :item_stock, remote: true, class: "btn btn-block", id: "action-btn" do
+            %li
+              %i.icon-bookmark
+              %span Stock
 
 
 .alert.fade.in#notice-area{style: "display: none"}

@@ -5,7 +5,7 @@
         = link_to new_item_path, class: "btn btn-block" do
           %li
             %i.icon-edit
-            %span Post new one
+            %span New item
         %li.divider
 
       %li.nav-header= @tag.name
@@ -13,4 +13,7 @@
       %li= link_to "#{@tag.users.count} followers", :tag_followers
       %li.divider
       - if login? && !current_user.following?(@tag)
-        %li= link_to "Follow", :tag_follow, remote: true, class: "btn", id: "action-btn"
+        = link_to :tag_follow, remote: true, class: "btn btn-block", id: "action-btn" do
+          %li
+            %i.icon-plus
+            %span Follow
