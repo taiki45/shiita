@@ -26,8 +26,12 @@
   %button.close{data: {dismiss: "alert"}} &times;
 
 - if @item.user == current_user
-  = link_to "Edit", edit_item_path(@item), class: "btn btn-success"
-  = link_to "Delete", item_path(@item), method: :delete, class: "btn btn-danger", confirm: "Delete item?"
+  = link_to edit_item_path(@item), class: "btn btn-success btn-separate" do
+    %i.icon-edit
+    %span Edit
+  = link_to item_path(@item), method: :delete, class: "btn btn-danger btn-separate", confirm: "Delete item?" do
+    %i.icon-trash
+    %span Delete
   %hr
 
 = render partial: "share/item", object: @item
