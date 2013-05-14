@@ -19,18 +19,21 @@ describe User do
        .with_foreign_key(:stock_ids)
        .of_type(Item)
        .as_inverse_of(:stocked_users)
+       .with_index
   }
 
   it { should have_and_belong_to_many(:followings)
        .with_foreign_key(:following_ids)
        .of_type(described_class)
        .as_inverse_of(:followers)
+       .with_index
   }
 
   it { should have_and_belong_to_many(:followers)
        .with_foreign_key(:follower_ids)
        .of_type(described_class)
        .as_inverse_of(:followings)
+       .with_index
   }
 
   it { should have_index_for(uid: 1) }

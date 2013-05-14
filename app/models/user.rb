@@ -7,14 +7,25 @@ class User
   field :uid, type: Bignum
   field :name, type: String
   field :email, type: String
-  field :following_ids, type: Array
-  field :follower_ids, type: Array
 
-  has_many :items, inverse_of: :user
+  has_many :items, inverse_of: :user, order: :updated_at.desc
   has_and_belongs_to_many :tags, index: true
-  has_and_belongs_to_many :stocks, class_name: "Item", inverse_of: :stocked_users
-  has_and_belongs_to_many :followings, class_name: "User", inverse_of: :followers, index: true
-  has_and_belongs_to_many :followers, class_name: "User", inverse_of: :followings, index: true
+  has_and_belongs_to_many \
+    :stocks,
+    class_name: "Item",
+    inverse_of: :stocked_users,
+    index: true,
+    order: :updated_at.desc
+  has_and_belongs_to_many \
+    :followings,
+    class_name: "User",
+    inverse_of: :followers,
+    index: true
+  has_and_belongs_to_many \
+    :followers,
+    class_name: "User",
+    inverse_of: :followings,
+    index: true
 
   index uid: 1
   index email: 1
