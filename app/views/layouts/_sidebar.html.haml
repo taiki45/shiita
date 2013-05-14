@@ -2,29 +2,25 @@
   .well.sidebar-nav
     %ul.nav.nav-list
       - if login?
-        = link_to new_item_path, class: "btn" do
+        = link_to new_item_path, class: "btn btn-block" do
           %li
             %i.icon-edit
-            %span Post new one
-
+            %span New item
         %li.divider
 
         %li.nav-header Following tags
         - current_user.tags.each do |tag|
-          = link_to tag do
-            %li= tag.name
+          %li= link_to tag.name, tag
         %li.divider
 
         %li.nav-header Following users
         - current_user.followings.each do |user|
-          = link_to user do
-            %li= user.email
+          %li= link_to user.email, user
         %li.divider
 
         %li.nav-header Followers
         - current_user.followers.each do |user|
-          = link_to user do
-            %li= user.email
+          %li= link_to user.email, user
         %li.divider
 
         %li.nav-header Global info
