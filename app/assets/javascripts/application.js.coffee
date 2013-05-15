@@ -21,4 +21,6 @@
     location.href = search_action + "/" +  $("#user_email")[0].value
     false
 
+  $("textarea").autosize()
+
   )(jQuery)
