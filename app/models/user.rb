@@ -75,7 +75,7 @@ class User
     when User
       followings.push other unless followings.include? other
     when Tag
-      tags.push ohter unless tags.include? other
+      tags.push other unless tags.include? other
     end
   end
 
