@@ -19,6 +19,11 @@
 
       %li.nav-header Stocks
       %li= link_to "#{user.stocks.count} items stocked", :user_stocks
+      %li.divider
+
+      %li.nav-header Following tags
+      - user.tags.each do |tag|
+        %li= link_to tag.name, tag
 
       - if login? && current_user != user && !current_user.following?(user)
         %li.divider
