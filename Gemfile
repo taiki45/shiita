@@ -19,6 +19,8 @@ gem 'simple_form'
 gem "omniauth-google-oauth2"
 gem "settingslogic"
 
+gem "capistrano", group: :development
+
 group :development, :test do
   gem "rspec-rails", ">= 2.0.1"
   gem "factory_girl_rails"

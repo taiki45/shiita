@@ -33,6 +33,12 @@ GEM
     bson_ext (1.8.5)
       bson (~> 1.8.5)
     builder (3.0.4)
+    capistrano (2.15.4)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.1.0)
     coderay (1.0.9)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -68,6 +74,7 @@ GEM
       haml (>= 3.1, < 4.1)
       railties (>= 3.1, < 4.1)
     hashie (2.0.3)
+    highline (1.6.19)
     hike (1.2.2)
     hpricot (0.8.6)
     html2haml (1.0.1)
@@ -114,6 +121,13 @@ GEM
     moped (1.4.5)
     multi_json (1.0.4)
     multipart-post (1.2.0)
+    net-scp (1.1.1)
+      net-ssh (>= 2.6.5)
+    net-sftp (2.1.2)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.6.7)
+    net-ssh-gateway (1.2.0)
+      net-ssh (>= 2.6.5)
     oauth2 (0.8.1)
       faraday (~> 0.8)
       httpauth (~> 0.1)
@@ -228,6 +242,7 @@ PLATFORMS
 
 DEPENDENCIES
   bson_ext
+  capistrano
   coderay
   coffee-rails (~> 3.2.1)
   database_cleaner
