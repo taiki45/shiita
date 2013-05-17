@@ -1,9 +1,16 @@
 class TagsController < ApplicationController
 
-  before_filter :require_login, only: [:follow, :unfollow]
+  before_filter :require_login, except: [:show, :index, :followers]
   before_filter :set_tag, except: :index
 
   def show
+  end
+
+  def index
+    @tags = Tag.by_name.to_a
+  end
+
+  def followers
   end
 
   def follow
@@ -24,13 +31,6 @@ class TagsController < ApplicationController
     else
       render "share/action_error"
     end
-  end
-
-  def index
-    @tags = Tag.by_name.to_a
-  end
-
-  def followers
   end
 
   private

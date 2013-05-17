@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :require_login, only: [:follow, :unfollow]
+  before_filter :require_login, except: [:index, :show, :stocks, :followers, :followings]
   before_filter :set_user, except: :index
 
   def index
@@ -8,6 +8,15 @@ class UsersController < ApplicationController
   end
 
   def show
+  end
+
+  def stocks
+  end
+
+  def followers
+  end
+
+  def followings
   end
 
   def follow
@@ -28,15 +37,6 @@ class UsersController < ApplicationController
     else
       render "share/action_error"
     end
-  end
-
-  def stocks
-  end
-
-  def followers
-  end
-
-  def followings
   end
 
   private
