@@ -12,9 +12,33 @@
       %li= link_to "#{@tag.items.count} items", @tag
       %li= link_to "#{@tag.users.count} followers", :tag_followers
 
-      - if login? && !current_user.following?(@tag)
+      - if login?
         %li.divider
-        = link_to :tag_follow, remote: true, class: "btn btn-block", id: "action-btn" do
-          %li
-            %i.icon-plus
-            %span Follow
+
+        - if current_user.following? @tag
+          .btn-group.full-width
+            = link_to "#",
+              class: "btn dropdown-toggle btn-info btn-block",
+              "data-toggle" => "dropdown" do
+              %i.icon-heart
+              %span Following &raquo;
+
+            %ul.dropdown-menu
+              %li
+                =link_to "Unfollow",
+                  :tag_follow,
+                  method: :delete,
+                  disable_with: "Wait..",
+                  remote: true,
+                  id: "action-btn"
+
+        - else
+          =link_to :tag_follow,
+            method: :post,
+            disable_with: "Wait..",
+            remote: true,
+            class: "btn btn-block",
+            id: "action-btn" do
+            %li
+              %i.icon-plus
+              %span Follow

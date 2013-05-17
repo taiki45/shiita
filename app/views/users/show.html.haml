@@ -6,9 +6,7 @@
 
 .page-header
   %h1
-    - if login? && current_user.following?(@user)
-      %span.label.label-success following
-    - elsif login? && current_user == @user
+    - if login? && current_user == @user
       %span.label.label-info you
     %span= @user.name
     %small= @user.email

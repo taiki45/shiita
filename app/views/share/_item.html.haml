@@ -28,4 +28,4 @@
   %hr
   = simple_form_for Comment.new, url: :comment_post, remote: true, "data-type" => :html do |f|
     = f.input :content, as: :text, label: "Comment", input_html: {class: 'input-block-level', rows: 3}
-    = f.button :submit, class: "btn btn-success"
+    = f.button :submit, disable_with: "Sending..", class: "btn btn-success"

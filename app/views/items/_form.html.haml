@@ -7,5 +7,5 @@
     = f.input :tag_names, hint: "Split each tag name by single space", input_html:  {class: 'input-block-level'}
 
   .form-actions
-    = f.button :submit, class: "btn btn-success btn-separate"
+    = f.button :submit, disable_with: "Sending..", class: "btn btn-success btn-separate"
     = link_to 'Cancel', :back, class: "btn btn-separate"

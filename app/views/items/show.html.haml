@@ -15,12 +15,36 @@
         - @item.stocked_users.each do |user|
           %li= link_to user.email, user
 
-        - if login? && !current_user.stocks.include?(@item)
+        - if login?
           %li.divider
-          = link_to :item_stock, remote: true, class: "btn btn-block", id: "action-btn" do
-            %li
-              %i.icon-bookmark
-              %span Stock
+
+          - if current_user.stocks.include? @item
+            .btn-group.full-width
+              = link_to "#",
+                class: "btn dropdown-toggle btn-info btn-block",
+                "data-toggle" => "dropdown" do
+                %i.icon-heart
+                %span Stocked &raquo;
+
+              %ul.dropdown-menu
+                %li
+                  =link_to "Unstock",
+                    :item_stock,
+                    method: :delete,
+                    disable_with: "Wait..",
+                    remote: true,
+                    id: "action-btn"
+
+          - else
+            =link_to :item_stock,
+              method: :post,
+              disable_with: "Wait..",
+              remote: true,
+              class: "btn btn-block",
+              id: "action-btn" do
+              %li
+                %i.icon-bookmark
+                %span Stock
 
 
 .alert.fade.in#notice-area{style: "display: none"}
@@ -30,7 +54,10 @@
   = link_to edit_item_path(@item), class: "btn btn-info btn-separate" do
     %i.icon-edit
     %span Edit
-  = link_to item_path(@item), method: :delete, class: "btn btn-danger btn-separate", confirm: "Delete item?" do
+  = link_to item_path(@item),
+    method: :delete,
+    class: "btn btn-danger btn-separate",
+    confirm: "Delete item?" do
     %i.icon-trash
     %span Delete
   %hr
