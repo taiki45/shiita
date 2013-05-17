@@ -94,7 +94,7 @@ class ItemsController < ApplicationController
     if comment.save
       render partial: "share/comment", object: comment
     else
-      render :nothing
+      render nothing: true, status: 400
     end
   end
 

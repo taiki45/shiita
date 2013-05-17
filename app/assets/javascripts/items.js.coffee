@@ -11,5 +11,12 @@
       .show(300)
     $("div.comments").append(data)
     $("textarea#comment_content").val("")
+  ).on("ajax:error", (evt, xhr, status) ->
+    $("#notice-area")
+      .addClass("alert-danger")
+      .empty()
+      .append("<span>Fail to post your comment</span>")
+      .append('<button class="close" data-dismiss="alert">&times;</button>')
+      .show(300)
   )
 )(jQuery)
