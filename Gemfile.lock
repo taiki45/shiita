@@ -40,6 +40,9 @@ GEM
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.1.0)
     client_side_validations (3.2.5)
+    client_side_validations-mongoid (3.1.0)
+      client_side_validations (~> 3.2.0)
+      mongoid (~> 3.1.0)
     client_side_validations-simple_form (2.1.0)
       client_side_validations (~> 3.2.5)
       simple_form (~> 2.1.0)
@@ -248,6 +251,7 @@ DEPENDENCIES
   bson_ext
   capistrano
   client_side_validations
+  client_side_validations-mongoid
   client_side_validations-simple_form
   coderay
   coffee-rails (~> 3.2.1)

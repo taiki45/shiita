@@ -16,6 +16,7 @@ gem 'therubyracer'
 gem 'jbuilder'
 gem 'simple_form'
 gem 'client_side_validations'
+gem 'client_side_validations-mongoid'
 gem 'client_side_validations-simple_form'
 
 gem "omniauth-google-oauth2"
