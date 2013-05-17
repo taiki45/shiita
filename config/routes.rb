@@ -27,8 +27,7 @@ Shiita::Application.routes.draw do
   controller :sessions do
     get "/login" => redirect("/auth/google_oauth2"), as: :login
     get '/auth/:provider/callback' => :callback
-    get '/logout' => :destroy, as: :logout
-    get '/local_login' => :local_login
+    delete '/logout' => :destroy, as: :logout
   end
 
   %w(about help).each do |name|

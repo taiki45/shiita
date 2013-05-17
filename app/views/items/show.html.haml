@@ -17,7 +17,11 @@
 
         - if login? && !current_user.stocks.include?(@item)
           %li.divider
-          = link_to :item_stock, remote: true, disable_with: "Wait..", class: "btn btn-block btn-info", id: "action-btn" do
+          = link_to :item_stock,
+            remote: true,
+            disable_with: "Wait..",
+            class: "btn btn-block btn-info",
+            id: "action-btn" do
             %li
               %i.icon-bookmark
               %span Stock
@@ -30,7 +34,10 @@
   = link_to edit_item_path(@item), class: "btn btn-info btn-separate" do
     %i.icon-edit
     %span Edit
-  = link_to item_path(@item), method: :delete, class: "btn btn-danger btn-separate", confirm: "Delete item?" do
+  = link_to item_path(@item),
+    method: :delete,
+    class: "btn btn-danger btn-separate",
+    confirm: "Delete item?" do
     %i.icon-trash
     %span Delete
   %hr
