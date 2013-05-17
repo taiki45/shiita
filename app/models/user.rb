@@ -101,6 +101,10 @@ class User
     stocks.push item unless stocks.include? item
   end
 
+  def unstock(item)
+    stocks.delete item if stocks.include? item
+  end
+
   def to_param
     email.split("@").first
   end
