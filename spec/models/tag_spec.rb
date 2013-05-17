@@ -21,23 +21,20 @@ describe Tag do
 
   describe "items default order" do
 
-    pending do
-      let(:ordered_items) do
-        one = create(:item, title: "1")
-        two = create(:item, title: "2", user: one.user)
-        three = create(:item, title: "3", user: one.user)
-        two.tap {|o| o.updated_at = Time.zone.today - 1 }.save
-        three.tap {|o| o.updated_at = Time.zone.today - 2 }.save
-        [three, two, one]
-      end
-      let(:new_one) { create :tag }
-      before { new_one.items.push(*ordered_items.shuffle) }
-
-      subject { new_one.items }
-      it "is ordered by its update_at" do
-      end
+    let(:ordered_items) do
+      one = create(:item, title: "1")
+      two = create(:item, title: "2", user: one.user)
+      three = create(:item, title: "3", user: one.user)
+      two.tap {|o| o.stub(:updated_at) { Time.zone.today - 1 } }
+      three.tap {|o| o.stub(:updated_at) { Time.zone.today - 2 } }
+      [three, two, one]
     end
+    let(:new_one) { create :tag }
+    before { new_one.items.push(*ordered_items.shuffle) }
 
+    subject { new_one.items }
+    it "is ordered by its update_at" do
+    end
   end
 
 end
