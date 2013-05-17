@@ -10,7 +10,7 @@ We can try private Qiita like service easily. If the service brings much good to
 ## Features
 - Authentication with google account
 - Github flavored markdown
-- Syntax highlight
+- Syntax highlighting (Supporting syntaxes depends on [Coderay](http://coderay.rubychan.de/))
 - Tag following
 - User following
 - Stocks like Qiita
@@ -25,6 +25,7 @@ We can try private Qiita like service easily. If the service brings much good to
 
 ### Maybe
 - Client app as Mac app
+- LaTeX, MathML, and AsciiMath supports using [MathJax](https://github.com/mathjax/MathJax/)
 
 ## Requirements
 - Ruby >= 1.9.3 (only MRI support)
