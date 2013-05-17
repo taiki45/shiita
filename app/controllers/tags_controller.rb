@@ -1,16 +1,24 @@
 class TagsController < ApplicationController
 
-  before_filter :require_login, only: :follow
-  before_filter :set_tag, only: [:show, :followers]
+  before_filter :require_login, only: [:follow, :unfollow]
+  before_filter :set_tag, except: :index
 
   def show
   end
 
   def follow
-    tag = Tag.find_by(name: params[:name])
-    current_user.follow(tag)
+    current_user.follow(@tag)
+    @target = @tag.name
+    if current_user.save
+      render "share/action"
+    else
+      render "share/action_error"
+    end
+  end
 
-    @target = tag.name
+  def unfollow
+    current_user.unfollow(@tag)
+    @target = @tag.name
     if current_user.save
       render "share/action"
     else
@@ -30,4 +38,5 @@ class TagsController < ApplicationController
   def set_tag
     @tag = Tag.find_by(name: params[:name])
   end
+
 end

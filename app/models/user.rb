@@ -91,9 +91,9 @@ class User
   def following?(other)
     case other
     when User
-      followings.include?(other)
+      followings.include? other
     when Tag
-      tags.include?(other)
+      tags.include? other
     end
   end
 

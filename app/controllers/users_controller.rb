@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :require_login, only: :follow
+  before_filter :require_login, only: [:follow, :unfollow]
   before_filter :set_user, except: :index
 
   def index
@@ -12,7 +12,6 @@ class UsersController < ApplicationController
 
   def follow
     current_user.follow(@user)
-
     @target = @user.email
     if current_user.save
       render "share/action"
@@ -23,7 +22,6 @@ class UsersController < ApplicationController
 
   def unfollow
     current_user.unfollow(@user)
-
     @target = @user.email
     if current_user.save
       render "share/action"
