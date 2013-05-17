@@ -337,17 +337,20 @@ div.subnav {
 // Accent colors
 // -------------------------
 @blue:                  #3399F3;
-@blueDark:              #3072b3;
+@blueDark:              #3A5D83;
+//@blueDark:              #3072b3;
 //@blueDark:              #405A6A;
 @green:                 #60b044;
 //@green:                 #3CB521;
 //@red:                   #CD0200;
-@red:                   #df3e3e;
+@red:                   #e8383d;
+//@red:                   #df3e3e;
 @yellow:                #e6e1c0;
 //@yellow:                #F4CA00;
 @orange:                #D47500;
 @pink:                  #F44B8C;
-@purple:                #405A6A;
+//@purple:                #405A6A;
+@purple:                #dc6b9a;
 
 
 // Scaffolding
@@ -408,11 +411,15 @@ div.subnav {
 @btnBackgroundHighlight:            @grayLighter;
 @btnBorder:                         darken(@btnBackground, 20%);
 
-@btnPrimaryBackground:              lighten(@linkColor, 10%);
-@btnPrimaryBackgroundHighlight:     @linkColor;
+//@btnPrimaryBackground:              lighten(@linkColor, 10%);
+//@btnPrimaryBackgroundHighlight:     @linkColor;
+@btnPrimaryBackground:              lighten(@purple, 10%);
+@btnPrimaryBackgroundHighlight:     @purple;
 
-@btnInfoBackground:                 lighten(#3A5D83, 10%);
-@btnInfoBackgroundHighlight:        #3A5D83;
+//@btnInfoBackground:                 lighten(#3A5D83, 10%);
+//@btnInfoBackgroundHighlight:        #3A5D83;
+@btnInfoBackground:                 lighten(@blueDark, 10%);
+@btnInfoBackgroundHighlight:        @blueDark;
 
 @btnSuccessBackground:              lighten(@green, 10%);
 @btnSuccessBackgroundHighlight:     @green;

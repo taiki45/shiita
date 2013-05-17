@@ -17,7 +17,7 @@
 
         - if login? && !current_user.stocks.include?(@item)
           %li.divider
-          = link_to :item_stock, remote: true, class: "btn btn-block", id: "action-btn" do
+          = link_to :item_stock, remote: true, class: "btn btn-block btn-info", id: "action-btn" do
             %li
               %i.icon-bookmark
               %span Stock
