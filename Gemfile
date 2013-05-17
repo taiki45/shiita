@@ -1,45 +1,45 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
-gem 'rails', '3.2.13'
+gem "rails", "3.2.13"
 
-gem 'unicorn'
-gem 'thin'
+gem "unicorn", "~> 4.0"
+gem "thin", "~> 1"
 
-gem "mongoid", ">= 2.0.0.beta.19"
-gem "bson_ext"
+gem "mongoid", "~> 3"
+gem "bson_ext", "~> 1.8.6"
 
-gem "haml", ">= 3.0.0"
-gem "haml-rails"
-gem "redcarpet"
-gem "coderay"
-gem 'therubyracer'
-gem 'jbuilder'
-gem 'simple_form'
-gem 'client_side_validations'
-gem 'client_side_validations-mongoid'
-gem 'client_side_validations-simple_form'
+gem "haml", "~> 4"
+gem "haml-rails", "~> 0.4"
+gem "redcarpet", "~> 2"
+gem "coderay", "~> 1"
+gem "therubyracer", "~> 0.11.4"
+gem "jbuilder", "~> 1"
+gem "simple_form", "~> 2"
+gem "client_side_validations", "~> 3"
+gem "client_side_validations-mongoid", "~> 3"
+gem "client_side_validations-simple_form", "~> 2"
 
-gem "omniauth-google-oauth2"
-gem "settingslogic"
+gem "omniauth-google-oauth2", "~> 0.1"
+gem "settingslogic", "~> 2"
 
 gem "capistrano", group: :development
 
 group :development, :test do
-  gem "rspec-rails", ">= 2.0.1"
-  gem "factory_girl_rails"
-  gem "database_cleaner"
-  gem "mongoid-rspec"
-  gem "pry-rails"
-  gem "html2haml"
-  gem "erb2haml"
+  gem "rspec-rails", "~> 2"
+  gem "factory_girl_rails", "~> 4"
+  gem "database_cleaner", "~> 1"
+  gem "mongoid-rspec", "~> 1"
+  gem "pry-rails", "~> 0.3"
+  gem "html2haml", "~> 1"
+  gem "erb2haml", "~> 0"
 end
 
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'less-rails'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
-  gem "jquery-rails"
-  gem 'twitter-bootstrap-rails'
-  gem 'jquery-ui-rails'
+  gem "sass-rails", "~> 3"
+  gem "less-rails", "~> 2"
+  gem "coffee-rails", "~> 3"
+  gem "uglifier", "~> 2"
+  gem "jquery-rails", "~> 2"
+  gem "twitter-bootstrap-rails", "~> 2"
+  gem "jquery-ui-rails", "~> 4"
 end

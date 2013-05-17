@@ -29,9 +29,9 @@ GEM
       i18n (= 0.6.1)
       multi_json (~> 1.0)
     arel (3.0.2)
-    bson (1.8.5)
-    bson_ext (1.8.5)
-      bson (~> 1.8.5)
+    bson (1.8.6)
+    bson_ext (1.8.6)
+      bson (~> 1.8.6)
     builder (3.0.4)
     capistrano (2.15.4)
       highline
@@ -56,7 +56,7 @@ GEM
     coffee-script-source (1.6.2)
     commonjs (0.2.6)
     daemons (1.1.9)
-    database_cleaner (0.9.1)
+    database_cleaner (1.0.1)
     diff-lcs (1.2.3)
     erb2haml (0.1.4)
       haml
@@ -152,11 +152,11 @@ GEM
       omniauth (~> 1.0)
     origin (1.0.11)
     polyglot (0.3.3)
-    pry (0.9.12)
+    pry (0.9.12.2)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
-    pry-rails (0.2.2)
+    pry-rails (0.3.0)
       pry (>= 0.9.10)
     rack (1.4.5)
     rack-cache (1.2)
@@ -213,7 +213,7 @@ GEM
     simple_form (2.1.0)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
-    slop (3.4.4)
+    slop (3.4.5)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -248,35 +248,35 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bson_ext
+  bson_ext (~> 1.8.6)
   capistrano
-  client_side_validations
-  client_side_validations-mongoid
-  client_side_validations-simple_form
-  coderay
-  coffee-rails (~> 3.2.1)
-  database_cleaner
-  erb2haml
-  factory_girl_rails
-  haml (>= 3.0.0)
-  haml-rails
-  html2haml
-  jbuilder
-  jquery-rails
-  jquery-ui-rails
-  less-rails
-  mongoid (>= 2.0.0.beta.19)
-  mongoid-rspec
-  omniauth-google-oauth2
-  pry-rails
+  client_side_validations (~> 3)
+  client_side_validations-mongoid (~> 3)
+  client_side_validations-simple_form (~> 2)
+  coderay (~> 1)
+  coffee-rails (~> 3)
+  database_cleaner (~> 1)
+  erb2haml (~> 0)
+  factory_girl_rails (~> 4)
+  haml (~> 4)
+  haml-rails (~> 0.4)
+  html2haml (~> 1)
+  jbuilder (~> 1)
+  jquery-rails (~> 2)
+  jquery-ui-rails (~> 4)
+  less-rails (~> 2)
+  mongoid (~> 3)
+  mongoid-rspec (~> 1)
+  omniauth-google-oauth2 (~> 0.1)
+  pry-rails (~> 0.3)
   rails (= 3.2.13)
-  redcarpet
-  rspec-rails (>= 2.0.1)
-  sass-rails (~> 3.2.3)
-  settingslogic
-  simple_form
-  therubyracer
-  thin
-  twitter-bootstrap-rails
-  uglifier (>= 1.0.3)
-  unicorn
+  redcarpet (~> 2)
+  rspec-rails (~> 2)
+  sass-rails (~> 3)
+  settingslogic (~> 2)
+  simple_form (~> 2)
+  therubyracer (~> 0.11.4)
+  thin (~> 1)
+  twitter-bootstrap-rails (~> 2)
+  uglifier (~> 2)
+  unicorn (~> 4.0)
