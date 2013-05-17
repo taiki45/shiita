@@ -18,6 +18,10 @@ textarea {
   resize:none;
 }
 
+.full-width {
+  width: 100%;
+}
+
 
 @mixin fixed_container {
   margin: 0px auto;

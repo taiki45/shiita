@@ -11,10 +11,20 @@ class UsersController < ApplicationController
   end
 
   def follow
-    user = User.find_by_part_of(params[:email])
-    current_user.follow(user)
+    current_user.follow(@user)
 
-    @target = user.email
+    @target = @user.email
+    if current_user.save
+      render "share/action"
+    else
+      render "share/action_error"
+    end
+  end
+
+  def unfollow
+    current_user.unfollow(@user)
+
+    @target = @user.email
     if current_user.save
       render "share/action"
     else

@@ -18,7 +18,8 @@ Shiita::Application.routes.draw do
   controller :users do
     get "/users" => :index, as: :users
     get "/users/:email" => :show, as: :user, constraints: email_constraints
-    get "/users/:email/follow" => :follow, as: :user_follow, constraints: email_constraints
+    post "/users/:email/follow" => :follow, as: :user_follow, constraints: email_constraints
+    delete "/users/:email/follow" => :unfollow, as: :user_follow, constraints: email_constraints
     get "/users/:email/stocks" => :stocks, as: :user_stocks, constraints: email_constraints
     get "/users/:email/followings" => :followings, as: :user_followings, constraints: email_constraints
     get "/users/:email/followers" => :followers, as: :user_followers, constraints: email_constraints
