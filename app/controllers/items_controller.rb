@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
 
   before_filter :require_login, except: [:index, :show]
+  before_filter :set_item, except: [:index, :new, :create]
 
   def index
     @items = Item.recent.to_a
@@ -12,8 +13,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @item }
@@ -30,7 +29,6 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @item = Item.find(params[:id])
   end
 
   def create
@@ -49,8 +47,6 @@ class ItemsController < ApplicationController
   end
 
   def update
-    @item = Item.find(params[:id])
-
     respond_to do |format|
       if @item.update_attributes(params[:item])
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }
@@ -63,7 +59,6 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item = Item.find(params[:id])
     @item.destroy
 
     respond_to do |format|
@@ -73,10 +68,18 @@ class ItemsController < ApplicationController
   end
 
   def stock
-    item = Item.find(params[:id])
-    current_user.stock(item)
+    current_user.stock(@item)
+    @target = @item.title
+    if current_user.save
+      render "share/action"
+    else
+      render "share/action_error"
+    end
+  end
 
-    @target = item.title
+  def unstock
+    current_user.unstock(@item)
+    @target = @item.title
     if current_user.save
       render "share/action"
     else
@@ -86,13 +89,19 @@ class ItemsController < ApplicationController
 
   def comment
     comment = Comment.new_with_user(params[:comment].merge(user: current_user))
-    Item.find(params[:id]).comments.push comment
+    @item.comments.push comment
 
     if comment.save
       render partial: "share/comment", object: comment
     else
       render :nothing
     end
+  end
+
+  private
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 
 end

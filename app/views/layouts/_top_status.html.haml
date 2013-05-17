@@ -3,6 +3,6 @@
     = link_to current_user do
       %span logged in as
       %strong= current_user.email
-  %li= link_to "Logout", logout_path
+  %li= link_to "Logout", logout_path, method: :delete
 - else
   %li= link_to "Login", login_path

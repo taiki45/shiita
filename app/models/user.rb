@@ -79,12 +79,30 @@ class User
     end
   end
 
+  def unfollow(other)
+    case other
+    when User
+      followings.delete other if followings.include? other
+    when Tag
+      tags.delete other if tags.include? other
+    end
+  end
+
   def following?(other)
-    followings.include?(other) || tags.include?(other)
+    case other
+    when User
+      followings.include? other
+    when Tag
+      tags.include? other
+    end
   end
 
   def stock(item)
     stocks.push item unless stocks.include? item
+  end
+
+  def unstock(item)
+    stocks.delete item if stocks.include? item
   end
 
   def to_param

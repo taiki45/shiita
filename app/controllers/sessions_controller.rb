@@ -11,10 +11,4 @@ class SessionsController < ApplicationController
     flash[:notice] = "Success to logout."
     redirect_to root_path
   end
-
-  def local_login
-    session[:id] = User.find_by(uid: Shiita::Application.config.local_uid).id
-    flash[:notice] = "Local logged in."
-    redirect_to root_path
-  end
 end
