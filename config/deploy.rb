@@ -5,9 +5,9 @@ def validate_env(*env_keys)
 end
 
 validate_env(*%w(
-  DEPROY_USER
-  DEPROY_SERVER
-  DEPROY_TO_DIR
+  DEPLOY_USER
+  DEPLOY_SERVER
+  DEPLOY_TO_DIR
   SHIITA_USER
   SHIITA_GROUP
   DATABASE_URI
@@ -19,8 +19,8 @@ validate_env(*%w(
 
 set :application, "shiita"
 set :use_sudo, false
-set :user, ENV["DEPROY_USER"]
-set :deploy_to, ENV["DEPROY_TO_DIR"]
+set :user, ENV["DEPLOY_USER"]
+set :deploy_to, ENV["DEPLOY_TO_DIR"]
 set :rails_env, "production"
 set :rake, "rake RAILS_ENV=#{rails_env}"
 server ENV["DEPLOY_SERVER"], :web, :app, :db, primary: true
@@ -54,16 +54,19 @@ after "deploy:setup", "setup:fix_permissions"
 
 namespace :deploy do
 
+  desc "Start unicorn server"
   task :start, :roles => :app do
     run "cd #{current_path} && bundle exec unicorn_rails -c config/unicorn.rb -E #{rails_env} -D"
   end
 
+  desc "Restart unicorn server"
   task :restart, :roles => :app do
     if File.exist? "tmp/pids/unicorn.pid"
       run "cd #{current_path} && kill -s USR2 `cat tmp/pids/unicorn.pid`"
     end
   end
 
+  desc "Stop unicorn server"
   task :stop, :roles => :app do
     run "cd #{current_path} && kill -s QUIT `cat tmp/pids/unicorn.pid`"
   end
