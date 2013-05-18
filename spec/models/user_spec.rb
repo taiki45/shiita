@@ -178,4 +178,18 @@ describe User do
     end
   end
 
+  describe ".validate_domain" do
+    context "with valid domain auth" do
+      before { Settings.stub(:email_domain).and_return("company_name.com") }
+      subject { described_class.validate_domain(auth) }
+      it { should be_true }
+    end
+
+    context "with invalid domain auth" do
+      before { Settings.stub(:email_domain).and_return("invalid.com") }
+      subject { described_class.validate_domain(auth) }
+      it { should be_nil }
+    end
+  end
+
 end

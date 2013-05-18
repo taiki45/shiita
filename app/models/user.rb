@@ -48,6 +48,10 @@ class User
       find_by(email: expanded)
     end
 
+    def validate_domain(auth)
+      auth[:info][:email].match /@#{Settings.email_domain}$/
+    end
+
     private
 
     def find_from_auth(auth)
