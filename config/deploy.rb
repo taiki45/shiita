@@ -8,6 +8,12 @@ validate_env(*%w(
   DEPROY_USER
   DEPROY_SERVER
   DEPROY_TO_DIR
+  SHIITA_USER
+  SHIITA_GROUP
+  DATABASE_URI
+  GOOGLE_KEY
+  GOOGLE_SECRET
+  REMOTE_SHIITA_DOMAIN
 ))
 
 
@@ -15,8 +21,18 @@ set :application, "shiita"
 set :use_sudo, false
 set :user, ENV["DEPROY_USER"]
 set :deploy_to, ENV["DEPROY_TO_DIR"]
+set :rails_env, "production"
 set :rake, "rake RAILS_ENV=#{rails_env}"
 server ENV["DEPLOY_SERVER"], :web, :app, :db, primary: true
+set :default_environment, {
+  "SHIITA_USER" => ENV["SHIITA_USER"],
+  "SHIITA_GROUP" => ENV["SHIITA_GROUP"],
+  "DATABASE_URI" => ENV["DATABASE_URI"],
+  "GOOGLE_KEY" => ENV["GOOGLE_KEY"],
+  "GOOGLE_SECRET" => ENV["GOOGLE_SECRET"],
+  "REMOTE_SHIITA_DOMAIN" => ENV["REMOTE_SHIITA_DOMAIN"]
+}
+
 
 set :scm, :git
 set :branch, "add-deploy-task"
@@ -56,6 +72,7 @@ namespace :deploy do
   task :create_indexes, :roles => :db do
     run "cd #{current_path} && #{rake} db:mongoid:create_indexes"
   end
+  after "deploy:update_code", "deploy:create_indexes"
 
   namespace :assets do
     desc "Run the asset precompilation rake task if assets changed"
