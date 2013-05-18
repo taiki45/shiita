@@ -19,6 +19,10 @@ gem "client_side_validations", "~> 3"
 gem "client_side_validations-mongoid", "~> 3"
 gem "client_side_validations-simple_form", "~> 2"
 
+gem "jquery-rails", "~> 2"
+gem "twitter-bootstrap-rails", "~> 2"
+gem "jquery-ui-rails", "~> 4"
+
 gem "omniauth-google-oauth2", "~> 0.1"
 gem "settingslogic", "~> 2"
 
@@ -39,7 +43,4 @@ group :assets do
   gem "less-rails", "~> 2"
   gem "coffee-rails", "~> 3"
   gem "uglifier", "~> 2"
-  gem "jquery-rails", "~> 2"
-  gem "twitter-bootstrap-rails", "~> 2"
-  gem "jquery-ui-rails", "~> 4"
 end
