@@ -60,6 +60,7 @@ class ItemsController < ApplicationController
 
   def destroy
     @item.destroy
+    @item.tags.select {|tag| tag.items.count <= 0 }.each(&:destroy)
 
     respond_to do |format|
       format.html { redirect_to user_url(@item.user), notice: %(Success to delete "#{@item.title}".) }
