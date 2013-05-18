@@ -1,0 +1,108 @@
+# Fix TODOs for your envirnment
+
+
+# Set your user name and pid path
+user www-data;
+worker_processes 1;
+pid /var/run/nginx.pid;
+
+events {
+    worker_connections 768;
+    # multi_accept on;
+    accept_mutex off; # on if worker_processes > 1
+}
+
+http {
+    sendfile on;
+    tcp_nopush on;
+    tcp_nodelay on;
+    keepalive_timeout 65;
+    types_hash_max_size 2048;
+
+    include /etc/nginx/mime.types;
+    default_type application/octet-stream;
+
+    access_log /var/log/nginx/access.log;
+    error_log /var/log/nginx/error.log;
+
+    gzip on;
+    gzip_disable "msie6";
+
+
+    include /etc/nginx/conf.d/*.conf;
+    include /etc/nginx/sites-enabled/*;
+
+
+    # this can be any application server, not just Unicorn/Rainbows!
+    upstream shiita {
+        # fail_timeout=0 means we always retry an upstream even if it failed
+        # to return a good HTTP response (in case the Unicorn master nukes a
+        # single worker for timing out).
+
+        # for UNIX domain socket setups:
+        server unix:/tmp/unicorn.sock fail_timeout=0;
+
+        # for TCP setups, point these to your backend servers
+        # server 192.168.0.7:8080 fail_timeout=0;
+        # server 192.168.0.8:8080 fail_timeout=0;
+        # server 192.168.0.9:8080 fail_timeout=0;
+    }
+
+
+    server {
+        # enable one of the following if you're on Linux or FreeBSD
+        listen 80 default deferred; # for Linux
+        # listen 80 default accept_filter=httpready; # for FreeBSD
+
+        client_max_body_size 4G;
+        server_name _;
+
+        keepalive_timeout 5;
+
+        # path for static files
+        # TODO: fix this for your envirnment
+        root /path/to/shiita/public;
+
+        # Prefer to serve static files directly from nginx to avoid unnecessary
+        # data copies from the application server.
+        #
+        # try_files directive appeared in in nginx 0.7.27 and has stabilized
+        # over time.  Older versions of nginx (e.g. 0.6.x) requires
+        # "if (!-f $request_filename)" which was less efficient:
+        # http://bogomips.org/unicorn.git/tree/examples/nginx.conf?id=v3.3.1#n127
+        try_files $uri/index.html $uri.html $uri @app;
+
+        location / {
+            # an HTTP header important enough to have its own Wikipedia entry:
+            #   http://en.wikipedia.org/wiki/X-Forwarded-For
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+            # enable this if you forward HTTPS traffic to unicorn,
+            # this helps Rack set the proper URL scheme for doing redirects:
+            # proxy_set_header X-Forwarded-Proto $scheme;
+
+            # pass the Host: header from the client right along so redirects
+            # can be set properly within the Rack application
+            proxy_set_header Host $http_host;
+
+            # we don't want nginx trying to do something clever with
+            # redirects, we set the Host: header above already.
+            proxy_redirect off;
+
+            proxy_pass http://shiita;
+        }
+
+        location ~ ^/(assets|images|javascripts|stylesheets|swfs|system)/ {
+            gzip_static on;
+            expires     max;
+            add_header  Cache-Control public;
+        }
+
+        # Rails error pages
+        error_page 500 502 503 504 /500.html;
+        location = /500.html {
+            # TODO: fix this for your envirnment
+            root /path/to/shiita/public;
+        }
+    }
+}
