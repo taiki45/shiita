@@ -39,10 +39,10 @@ set :default_environment, {
 
 
 set :scm, :git
-set :branch, "add-deploy-task"
-set :repository, "https://github.com/taiki45/shiita.git"
+set :branch, (ENV["SHIITA_BRANCH"] || "master")
+set :repository, (ENV["SHIITA_REPOSITORY"] || "https://github.com/taiki45/shiita.git")
 set :deploy_via, :remote_cache
-set :bundle_without, [:development, :test, :capistrano]
+set :bundle_without, [:development, :test]
 set :keep_releases, 5
 
 # if you want to clean up old releases on each deploy uncomment this:
