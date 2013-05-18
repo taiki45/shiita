@@ -11,6 +11,7 @@ export SHIITA_DOMAIN="email_domain"
 # In production at remote machine
 export SHIITA_USER="your system username"
 export SHIITA_GROUP="your system group"
+export DATABASE_URI="mongodb://yourname@yourhost/shiita"
 
 # For deploy at local machine
 export DEPROY_USER="remote user name"
