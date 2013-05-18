@@ -18,7 +18,7 @@ validate_env(*%w(
 
 
 set :application, "shiita"
-set :use_sudo, false
+set :use_sudo, true
 set :user, ENV["DEPLOY_USER"]
 set :deploy_to, ENV["DEPLOY_TO_DIR"]
 set :rails_env, "production"
@@ -47,7 +47,7 @@ set :keep_releases, 5
 
 namespace :setup do
   task :fix_permissions do
-    sudo "chown -R #{user}.#{user} #{deploy_to}"
+    try_sudo "chown -R #{user}.#{user} #{deploy_to}"
   end
 end
 after "deploy:setup", "setup:fix_permissions"
