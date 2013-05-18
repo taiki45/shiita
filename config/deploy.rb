@@ -1,4 +1,6 @@
 require 'bundler/capistrano'
+require 'capistrano-rbenv'
+set :rbenv_ruby_version, '2.0.0-p195'
 
 def validate_env(*env_keys)
   raise RuntimeError.new("Necessary ENVs are not defined") unless ENV.values_at(*env_keys).all?
@@ -30,7 +32,9 @@ set :default_environment, {
   "DATABASE_URI" => ENV["DATABASE_URI"],
   "GOOGLE_KEY" => ENV["GOOGLE_KEY"],
   "GOOGLE_SECRET" => ENV["GOOGLE_SECRET"],
-  "REMOTE_SHIITA_DOMAIN" => ENV["REMOTE_SHIITA_DOMAIN"]
+  "SHIITA_DOMAIN" => ENV["REMOTE_SHIITA_DOMAIN"],
+  "RBENV_ROOT" => "#{rbenv_path}",
+  "PATH" => "#{rbenv_path}/shims:#{rbenv_path}/bin:$PATH"
 }
 
 

@@ -26,8 +26,6 @@ gem "jquery-ui-rails", "~> 4"
 gem "omniauth-google-oauth2", "~> 0.1"
 gem "settingslogic", "~> 2"
 
-gem "capistrano", group: :development
-
 group :development, :test do
   gem "rspec-rails", "~> 2"
   gem "factory_girl_rails", "~> 4"
@@ -36,6 +34,8 @@ group :development, :test do
   gem "pry-rails", "~> 0.3"
   gem "html2haml", "~> 1"
   gem "erb2haml", "~> 0"
+  gem "capistrano"
+  gem "capistrano-rbenv"
 end
 
 group :assets do
