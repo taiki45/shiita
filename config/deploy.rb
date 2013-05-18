@@ -41,7 +41,7 @@ set :default_environment, {
 set :scm, :git
 set :branch, "add-deploy-task"
 set :repository, "https://github.com/taiki45/shiita.git"
-set :deploy_via, :copy
+set :deploy_via, :remote_cache
 set :bundle_without, [:development, :test, :capistrano]
 set :keep_releases, 5
 
@@ -60,7 +60,7 @@ namespace :deploy do
 
   desc "Start unicorn server"
   task :start, :roles => :app do
-    run "cd #{current_path} && bundle exec unicorn_rails -c config/unicorn.rb -E #{rails_env} -D"
+    run "cd #{current_path} && bundle exec unicorn_rails -c config/unicorn.conf -E #{rails_env} -D"
   end
 
   desc "Restart unicorn server"
@@ -79,18 +79,6 @@ namespace :deploy do
   task :create_indexes, :roles => :db do
     run "cd #{current_path} && #{rake} db:mongoid:create_indexes"
   end
-  after "deploy:update_code", "deploy:create_indexes"
+  before "deploy:restart", "deploy:create_indexes"
 
-  namespace :assets do
-    desc "Run the asset precompilation rake task if assets changed"
-    task :precompile, :roles => :web, :except => { :no_release => true } do
-      from = source.next_revision(current_revision)
-      modified = capture("cd #{latest_release} && #{source.local.log(from)} vendor/assets/ app/assets/ | wc -l").to_i > 0
-      if previous_release.nil? || modified
-        run %Q{cd #{latest_release} && #{rake} #{asset_env} assets:precompile}
-      else
-        logger.info "Skipping asset pre-compilation because there were no asset changes"
-      end
-    end
-  end
 end
