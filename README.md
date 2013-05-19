@@ -10,7 +10,7 @@ We can try private Qiita like service easily. If the service brings much good to
 ## Features
 - Authentication with google account
 - Github flavored markdown
-- Syntax highlighting (Supporting syntaxes depends on [Coderay](http://coderay.rubychan.de/))
+- Syntax highlighting (Supporting syntaxes depends on [CodeRay](http://coderay.rubychan.de/))
 - Tag following
 - User following
 - Stocks like Qiita
@@ -20,7 +20,7 @@ We can try private Qiita like service easily. If the service brings much good to
 ### Not yet
 - UI with Pjax
 - Tag limitation system with suggestion
-- json-based API
+- json-based RESTful API
 - Full text search
 
 ### Maybe
