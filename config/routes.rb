@@ -8,12 +8,15 @@ Shiita::Application.routes.draw do
     end
   end
 
-  controller :tags do
-    get "/tags" => :index, as: :tags
-    get "/tags/:name" => :show, as: :tag
-    get "/tags/:name/followers" => :followers, as: :tag_followers
-    post "/tags/:name/follow" => :follow, as: :tag_follow
-    delete "/tags/:name/follow" => :unfollow, as: :tag_follow
+  scope "tags", controller: :tags do
+    get "" => :index, as: :tags
+
+    scope ":name" do
+      get "" => :show, as: :tag
+      get "followers" => :followers, as: :tag_followers
+      post "follow" => :follow, as: :tag_follow
+      delete "follow" => :unfollow
+    end
   end
 
   scope "users", controller: :users do
