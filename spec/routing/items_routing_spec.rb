@@ -31,5 +31,17 @@ describe ItemsController do
       delete("/items/1").should route_to("items#destroy", :id => "1")
     end
 
+    it "routes to #stock" do
+      post("/items/1/stock").should route_to("items#stock", :id => "1")
+    end
+
+    it "routes to #unstock" do
+      delete("/items/1/stock").should route_to("items#unstock", :id => "1")
+    end
+
+    it "routes to #comment" do
+      post("/items/1/comment").should route_to("items#comment", :id => "1")
+    end
+
   end
 end
