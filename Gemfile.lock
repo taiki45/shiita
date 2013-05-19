@@ -252,8 +252,8 @@ PLATFORMS
 
 DEPENDENCIES
   bson_ext (~> 1.8.6)
-  capistrano
-  capistrano-rbenv
+  capistrano (~> 2)
+  capistrano-rbenv (~> 1)
   client_side_validations (~> 3)
   client_side_validations-mongoid (~> 3)
   client_side_validations-simple_form (~> 2)

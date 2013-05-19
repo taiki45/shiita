@@ -1,30 +1,35 @@
 Shiita::Application.routes.draw do
 
-  email_constraints = { email: /[^\/]+/ }
-
-  resources :items
-  controller :items do
-    post "/items/:id/stock" => :stock, as: :item_stock
-    delete "/items/:id/stock" => :unstock, as: :item_stock
-    post "/items/:id/comment" => :comment, as: :comment_post
+  resources :items do
+    member do
+      post "stock"
+      delete "stock" => :unstock
+      post "comment"
+    end
   end
 
-  controller :tags do
-    get "/tags" => :index, as: :tags
-    get "/tags/:name" => :show, as: :tag
-    post "/tags/:name/follow" => :follow, as: :tag_follow
-    delete "/tags/:name/follow" => :unfollow, as: :tag_follow
-    get "/tags/:name/followers" => :followers, as: :tag_followers
+  scope "tags", controller: :tags do
+    get "" => :index, as: :tags
+
+    scope ":name" do
+      get "" => :show, as: :tag
+      get "followers" => :followers, as: :followers_tag
+      post "follow" => :follow, as: :follow_tag
+      delete "follow" => :unfollow
+    end
   end
 
-  controller :users do
-    get "/users" => :index, as: :users
-    get "/users/:email" => :show, as: :user, constraints: email_constraints
-    post "/users/:email/follow" => :follow, as: :user_follow, constraints: email_constraints
-    delete "/users/:email/follow" => :unfollow, as: :user_follow, constraints: email_constraints
-    get "/users/:email/stocks" => :stocks, as: :user_stocks, constraints: email_constraints
-    get "/users/:email/followings" => :followings, as: :user_followings, constraints: email_constraints
-    get "/users/:email/followers" => :followers, as: :user_followers, constraints: email_constraints
+  scope "users", controller: :users do
+    get "" => :index, as: :users
+
+    scope ":email", constraints: { email: /[^\/]+/ } do
+      get "" => :show, as: :user
+      get "stocks" => :stocks, as: :stocks_user
+      get "followings" => :followings, as: :followings_user
+      get "followers" => :followers, as: :followers_user
+      post "follow" => :follow, as: :follow_user
+      delete "follow" => :unfollow
+    end
   end
 
   controller :sessions do

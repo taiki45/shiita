@@ -10,7 +10,7 @@
 
       %li.nav-header= @tag.name
       %li= link_to "#{@tag.items.count} items", @tag
-      %li= link_to "#{@tag.users.count} followers", :tag_followers
+      %li= link_to "#{@tag.users.count} followers", :followers_tag
 
       - if login?
         %li.divider
@@ -26,14 +26,14 @@
             %ul.dropdown-menu
               %li
                 =link_to "Unfollow",
-                  :tag_follow,
+                  :follow_tag,
                   method: :delete,
                   disable_with: "Wait..",
                   remote: true,
                   id: "action-btn"
 
         - else
-          =link_to :tag_follow,
+          =link_to :follow_tag,
             method: :post,
             disable_with: "Wait..",
             remote: true,
