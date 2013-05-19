@@ -34,8 +34,8 @@ group :development, :test do
   gem "pry-rails", "~> 0.3"
   gem "html2haml", "~> 1"
   gem "erb2haml", "~> 0"
-  gem "capistrano"
-  gem "capistrano-rbenv"
+  gem "capistrano", "~> 2"
+  gem "capistrano-rbenv", "~> 1"
 end
 
 group :assets do
