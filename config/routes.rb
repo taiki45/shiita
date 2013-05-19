@@ -2,11 +2,12 @@ Shiita::Application.routes.draw do
 
   email_constraints = { email: /[^\/]+/ }
 
-  resources :items
-  controller :items do
-    post "/items/:id/stock" => :stock, as: :item_stock
-    delete "/items/:id/stock" => :unstock, as: :item_stock
-    post "/items/:id/comment" => :comment, as: :comment_post
+  resources :items do
+    member do
+      post "stock"
+      delete "stock" => :unstock
+      post "comment"
+    end
   end
 
   controller :tags do
