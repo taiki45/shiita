@@ -11,21 +11,21 @@ Shiita::Application.routes.draw do
   controller :tags do
     get "/tags" => :index, as: :tags
     get "/tags/:name" => :show, as: :tag
+    get "/tags/:name/followers" => :followers, as: :tag_followers
     post "/tags/:name/follow" => :follow, as: :tag_follow
     delete "/tags/:name/follow" => :unfollow, as: :tag_follow
-    get "/tags/:name/followers" => :followers, as: :tag_followers
   end
 
-  controller :users do
-    get "/users" => :index, as: :users
+  scope "users", controller: :users do
+    get "" => :index, as: :users
 
-    scope "/users/:email", constraints: { email: /[^\/]+/ } do
+    scope ":email", constraints: { email: /[^\/]+/ } do
       get "" => :show, as: :user
-      post "/follow" => :follow, as: :user_follow
-      delete "/follow" => :unfollow
-      get "/stocks" => :stocks, as: :user_stocks
-      get "/followings" => :followings, as: :user_followings
-      get "/followers" => :followers, as: :user_followers
+      get "stocks" => :stocks, as: :stocks_user
+      get "followings" => :followings, as: :followings_user
+      get "followers" => :followers, as: :followers_user
+      post "follow" => :follow, as: :follow_user
+      delete "follow" => :unfollow
     end
   end
 

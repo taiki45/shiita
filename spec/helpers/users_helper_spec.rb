@@ -6,10 +6,10 @@ describe UsersHelper do
   describe "generating paths" do
     it { should respond_to(:users_path) }
     it { should respond_to(:user_path) }
-    it { should respond_to(:user_follow_path) }
-    it { should respond_to(:user_stocks_path) }
-    it { should respond_to(:user_followings_path) }
-    it { should respond_to(:user_followers_path) }
+    it { should respond_to(:follow_user_path) }
+    it { should respond_to(:stocks_user_path) }
+    it { should respond_to(:followings_user_path) }
+    it { should respond_to(:followers_user_path) }
   end
 
 end
