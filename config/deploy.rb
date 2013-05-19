@@ -79,6 +79,6 @@ namespace :deploy do
   task :create_indexes, :roles => :db do
     run "cd #{current_path} && #{rake} db:mongoid:create_indexes"
   end
-  before "deploy:restart", "deploy:create_indexes"
+  after "deploy:update", "deploy:create_indexes"
 
 end
