@@ -6,8 +6,8 @@ describe TagsHelper do
   describe "generating paths" do
     it { should respond_to :tags_path }
     it { should respond_to :tag_path }
-    it { should respond_to :tag_followers_path }
-    it { should respond_to :tag_follow_path }
+    it { should respond_to :followers_tag_path }
+    it { should respond_to :follow_tag_path }
   end
 
 end

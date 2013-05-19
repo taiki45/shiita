@@ -13,8 +13,8 @@ Shiita::Application.routes.draw do
 
     scope ":name" do
       get "" => :show, as: :tag
-      get "followers" => :followers, as: :tag_followers
-      post "follow" => :follow, as: :tag_follow
+      get "followers" => :followers, as: :followers_tag
+      post "follow" => :follow, as: :follow_tag
       delete "follow" => :unfollow
     end
   end
