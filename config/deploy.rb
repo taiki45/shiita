@@ -45,9 +45,6 @@ set :deploy_via, :remote_cache
 set :bundle_without, [:development, :test]
 set :keep_releases, 5
 
-# if you want to clean up old releases on each deploy uncomment this:
-# after "deploy:restart", "deploy:cleanup"
-
 
 namespace :setup do
   task :fix_permissions do
