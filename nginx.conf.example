@@ -40,6 +40,14 @@ http {
 
     }
 
+    # Redirect all http request to https
+    server {
+        listen 80 default deferred;
+
+        location / {
+            rewrite ^(.*) https://$http_host$1;
+        }
+    }
 
     server {
         # enable one of the following if you're on Linux or FreeBSD
