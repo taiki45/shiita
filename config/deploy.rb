@@ -78,4 +78,19 @@ namespace :deploy do
   end
   after "deploy:update", "deploy:create_indexes"
 
+  namespace :assets do
+    desc "Run the assets precompilation only if assets changed"
+    task :precompile, :roles => :web, :except => { :no_release => true } do
+      from = source.next_revision(current_revision)
+      modified = capture(
+        "cd #{latest_release} && #{source.local.log(from)} vendor/assets/ app/assets/ | wc -l"
+      ).to_i > 0
+      if previous_release.nil? || modified
+        run %Q{cd #{latest_release} && #{rake} #{asset_env} assets:precompile}
+      else
+        logger.info "Skipping asset pre-compilation because there were no asset changes"
+      end
+    end
+  end
+
 end
