@@ -1,6 +1,5 @@
 # Fix TODOs for your envirnment
 
-
 # Set your user name and pid path
 user www-data;
 worker_processes 1;
@@ -35,24 +34,23 @@ http {
 
     # this can be any application server, not just Unicorn/Rainbows!
     upstream shiita {
-        # fail_timeout=0 means we always retry an upstream even if it failed
-        # to return a good HTTP response (in case the Unicorn master nukes a
-        # single worker for timing out).
 
         # for UNIX domain socket setups:
         server unix:/tmp/unicorn.sock fail_timeout=0;
 
-        # for TCP setups, point these to your backend servers
-        # server 192.168.0.7:8080 fail_timeout=0;
-        # server 192.168.0.8:8080 fail_timeout=0;
-        # server 192.168.0.9:8080 fail_timeout=0;
     }
 
 
     server {
         # enable one of the following if you're on Linux or FreeBSD
-        listen 80 default deferred; # for Linux
+        # listen 80 default deferred; # for Linux
+        listen 443 default deferred; # for Linux
         # listen 80 default accept_filter=httpready; # for FreeBSD
+
+        # TODO: fix your certifications path
+        ssl on;
+        ssl_certificate /your/path/to/server.crt;
+        ssl_certificate_key /your/path/to/server.key;
 
         client_max_body_size 4G;
         server_name _;
@@ -80,10 +78,11 @@ http {
             # enable this if you forward HTTPS traffic to unicorn,
             # this helps Rack set the proper URL scheme for doing redirects:
             # proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_set_header X-Forwarded-Proto https;
 
             # pass the Host: header from the client right along so redirects
             # can be set properly within the Rack application
-            proxy_set_header Host $http_host;
+            #proxy_set_header Host $http_host;
 
             # we don't want nginx trying to do something clever with
             # redirects, we set the Host: header above already.
