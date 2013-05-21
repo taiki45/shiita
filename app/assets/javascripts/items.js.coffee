@@ -19,4 +19,21 @@
       .append('<button class="close" data-dismiss="alert">&times;</button>')
       .show(300)
   )
+
+  add_tag_or_submit = (e) ->
+    field = $("#tag-comp-val")
+    if field.val() == ""
+      true
+    else
+      $(".item_tag_names").find(".controls").append(
+        $("""<label class="checkbox">
+          <input checked="checked" class="check_boxes optional" name="item[tag_names][]" type="checkbox" value="#{field.val()}">#{field.val()}
+          </label>
+          """)
+      )
+      field.val("")
+      false
+
+  $(".edit_item").submit(add_tag_or_submit)
+  $("#tag-comp-btn").click(add_tag_or_submit)
 )(jQuery)

@@ -1,10 +1,14 @@
-= simple_form_for(@item) do |f|
+= simple_form_for @item do |f|
   = f.error_notification
 
   .form-inputs
     = f.input :title, input_html: {class: 'input-block-level'}
     = f.input :source, as: :text, input_html: {class: 'input-block-level', rows: 5}
-    = f.input :tag_names, hint: "Split each tag name by single space", input_html:  {class: 'input-block-level'}
+    = f.input :tag_names, as: :check_boxes, collection: @item.tag_names
+
+  .input-append
+    %input#tag-comp-val{type: "text"}
+    %button#tag-comp-btn.btn{type: "button"} Add tag
 
   .form-actions
     = f.button :submit, disable_with: "Sending..", class: "btn btn-success btn-separate"
