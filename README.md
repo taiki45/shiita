@@ -1,4 +1,4 @@
-# Shiita [![Build Status](https://travis-ci.org/taiki45/shiita.png?branch=master)](https://travis-ci.org/taiki45/shiita)
+# Shiita *ʃiːtə* [![Build Status](https://travis-ci.org/taiki45/shiita.png?branch=master)](https://travis-ci.org/taiki45/shiita)
 Shiita is open source [Qiita](http://qiita.com/) clone, especially for private gourps such as enterprise.
 
 ## Why Shiita?
