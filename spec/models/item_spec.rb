@@ -23,6 +23,7 @@ describe Item do
   it { should validate_presence_of(:source) }
   it { should validate_presence_of(:title) }
   it { should validate_associated(:tags) }
+  it { should validate_presence_of(:tags) }
 
 
   describe "#user" do
