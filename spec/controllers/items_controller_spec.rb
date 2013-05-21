@@ -20,7 +20,7 @@ describe ItemsController do
     {
       "source" => "MyString",
       "title" => "MyTitle",
-      "tag_names" => "Ruby Test",
+      "tag_names" => %w(Ruby Test),
     }
   end
 
