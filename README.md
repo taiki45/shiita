@@ -41,9 +41,11 @@ We can try private Qiita like service easily. If the service brings much good to
 * Install rbenv.
 * Install MongoDB.
 * Install nginx and set `nginx.conf` referring `nginx.conf.example`.
-* Ensure set ENV vars referring `env_sample.sh` and `config/deploy.rb`.
-* run `cap deploy:setup`.
-* run `cap deploy`.
+* Setup certificates for your server.
+* Ensure set ENV vars referring `env_sample.sh` and `config/deploy.rb`, `config/unicorn.conf`.
+* run `cap:deploy:check` on local machine to check necessaries.
+* run `cap deploy:setup` on local machine.
+* run `cap deploy` on local machine.
 
 ## License
 Copyright (c) 2013 Taiki ONO
