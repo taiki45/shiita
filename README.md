@@ -17,7 +17,7 @@ We can try private Qiita like service easily. If the service brings much good to
 - Comments in each Article
 - UI with Ajax
 - Tag limitation system with suggestion
-- Example conf files for working with nginx + unicorn via https
+- Example configuration files for working with nginx + unicorn via https
 
 ### Not yet
 - json-based RESTful API
@@ -46,3 +46,6 @@ We can try private Qiita like service easily. If the service brings much good to
 * run `cap:deploy:check` on local machine to check necessaries.
 * run `cap deploy:setup` on local machine.
 * run `cap deploy` on local machine.
+
+## License
+MIT License. see [LICENSE](LICENSE).
