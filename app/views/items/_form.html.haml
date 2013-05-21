@@ -7,7 +7,7 @@
     = f.input :tag_names, as: :check_boxes, collection: @item.tag_names
 
   .input-append
-    %input#tag-comp-val{type: "text"}
+    %input#tag-comp-val(type="text" data-provide="typeahead" autocomplete="off" data-source="#{Tag.all.map(&:name)}")
     %button#tag-comp-btn.btn{type: "button"} Add tag
 
   .form-actions
