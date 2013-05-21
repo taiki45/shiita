@@ -92,9 +92,10 @@ describe User do
     context "with fixtures" do
       before do
         tag = create :tag
-        item = create :item
+        item = build(:item)
         @user = item.user
-        tag.items.push item
+        item.tags = [tag]
+        item.save
         @user.tags.push tag
       end
 

@@ -3,7 +3,9 @@ require 'spec_helper'
 describe HomeController do
 
   before do
-    @item = create :item
+    @item = build(:item)
+    @item.tags = [create(:tag)]
+    @item.save
     @user = @item.user
   end
 
@@ -23,8 +25,7 @@ describe HomeController do
     context "with login" do
       let(:user) { create :user }
       before do
-        tag = create(:tag).tap {|e| e.items.push(@item); e.save }
-        @user.tags.push tag
+        @user.tags = @item.tags
         @user.save
         session[:id] = @user.id
         controller.stub(:current_user) { @user }
