@@ -15,15 +15,15 @@ class Item
   scope :recent, order_by(update_at: -1)
 
   validates :source, :title, presence: true
-  validates_associated :tags
+  validates :tags, associated: true, presence: true
 
   def tag_names
-    tags.map {|e| e.name }.join(" ")
+    tags.map {|e| e.name }
   end
 
-  def tag_names=(names_string)
-    self.tags = names_string.split(" ").map do |name|
-      Tag.find_or_create_by(name: name)
+  def tag_names=(names)
+    self.tags = names.map do |name|
+      Tag.find_or_create_by(name: name) unless name.empty?
     end
   end
 

@@ -23,18 +23,12 @@ describe Item do
   it { should validate_presence_of(:source) }
   it { should validate_presence_of(:title) }
   it { should validate_associated(:tags) }
+  it { should validate_presence_of(:tags) }
 
-
-  describe "#user" do
-    subject { create :item }
-
-    its(:user) { should_not be_nil }
-    its("user.uid") { should eq 1 }
-  end
 
   describe "#tag_names" do
-    subject { create(:item).tap {|e| e.tags = [create(:tag)] } }
-    its(:tag_names) { should eq subject.tags.map {|e| e.name }.join(" ") }
+    subject { build(:item).tap {|e| e.tags = [create(:tag)] } }
+    its(:tag_names) { should eq subject.tags.map {|e| e.name } }
   end
 
 end
