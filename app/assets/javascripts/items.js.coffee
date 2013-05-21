@@ -36,4 +36,10 @@
 
   $(".edit_item").submit(add_tag_or_submit)
   $("#tag-comp-btn").click(add_tag_or_submit)
+
+  $(".controls").find("input[type=checkbox]").each (i, dom) ->
+    $(dom).change (e) ->
+      unless this.checked
+        $(this).parent("label").remove()
+
 )(jQuery)
