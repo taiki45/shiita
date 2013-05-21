@@ -16,10 +16,10 @@ We can try private Qiita like service easily. If the service brings much good to
 - Stocks like Qiita
 - Comments in each Article
 - UI with Ajax
+- Tag limitation system with suggestion
+- Example conf files for working with nginx + unicorn via https
 
 ### Not yet
-- UI with Pjax
-- Tag limitation system with suggestion
 - json-based RESTful API
 - Full text search
 
@@ -35,6 +35,15 @@ We can try private Qiita like service easily. If the service brings much good to
 * Set ENV variables. `env_sample.sh` is sample.
 * See more detail to get API key in [omniauth-google-oauth2](https://github.com/zquestz/omniauth-google-oauth2).
 * Run `rake db:mongoid:create_indexes` to create indexed on DB.
+
+## Setup for production
+* Ensure your server user can sudo without confirming password (necessary for Capistrano).
+* Install rbenv.
+* Install MongoDB.
+* Install nginx and set `nginx.conf` referring `nginx.conf.example`.
+* Ensure set ENV vars referring `env_sample.sh` and `config/deploy.rb`.
+* run `cap deploy:setup`.
+* run `cap deploy`.
 
 ## License
 Copyright (c) 2013 Taiki ONO
