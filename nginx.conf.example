@@ -85,12 +85,11 @@ http {
 
             # enable this if you forward HTTPS traffic to unicorn,
             # this helps Rack set the proper URL scheme for doing redirects:
-            # proxy_set_header X-Forwarded-Proto $scheme;
-            proxy_set_header X-Forwarded-Proto https;
+            proxy_set_header X-Forwarded-Proto $scheme;
 
             # pass the Host: header from the client right along so redirects
             # can be set properly within the Rack application
-            #proxy_set_header Host $http_host;
+            proxy_set_header Host $http_host;
 
             # we don't want nginx trying to do something clever with
             # redirects, we set the Host: header above already.
