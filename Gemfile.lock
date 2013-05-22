@@ -117,6 +117,8 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mecab-ext (1.0.0)
+      activesupport (~> 3.2.13)
     method_source (0.8.1)
     mime-types (1.23)
     mongoid (3.1.4)
@@ -251,7 +253,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bson_ext (~> 1.8.6)
+  bson_ext (~> 1)
   capistrano (~> 2)
   capistrano-rbenv (~> 1)
   client_side_validations (~> 3)
@@ -269,6 +271,7 @@ DEPENDENCIES
   jquery-rails (~> 2)
   jquery-ui-rails (~> 4)
   less-rails (~> 2)
+  mecab-ext (~> 1)
   mongoid (~> 3)
   mongoid-rspec (~> 1)
   omniauth-google-oauth2 (~> 0.1)

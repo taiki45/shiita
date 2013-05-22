@@ -1,12 +1,12 @@
 source "https://rubygems.org"
 
 gem "rails", "3.2.13"
-
 gem "unicorn", "~> 4.0"
 gem "thin", "~> 1"
 
 gem "mongoid", "~> 3"
-gem "bson_ext", "~> 1.8.6"
+gem "bson_ext", "~> 1"
+gem "mecab-ext", "~> 1"
 
 gem "haml", "~> 4"
 gem "haml-rails", "~> 0.4"
