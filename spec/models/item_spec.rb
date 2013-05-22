@@ -7,13 +7,23 @@ describe Item do
   it { should be_timestamped_document }
 
   it { should belong_to(:user).with_foreign_key(:user_id).of_type(User) }
-  it { should embed_many(:comments).of_type(Comment) }
-  it { should have_and_belong_to_many(:tags).with_foreign_key(:tag_ids).of_type(Tag) }
+
+  it { should embed_many(:comments)
+       .of_type(Comment)
+       .ordered_by(:id)
+  }
+
+  it { should have_and_belong_to_many(:tags)
+       .with_foreign_key(:tag_ids)
+       .of_type(Tag)
+       .ordered_by(:name)
+  }
 
   it { should have_and_belong_to_many(:stocked_users)
        .with_foreign_key(:stocked_user_ids)
        .of_type(User)
        .as_inverse_of(:stocks)
+       .ordered_by(:email)
   }
 
   it { should have_index_for(updated_at: -1) }
