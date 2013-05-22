@@ -7,12 +7,17 @@ describe User do
   it { should have_field(:email).of_type(String) }
   it { should be_timestamped_document }
 
-  it { should have_many(:items).with_foreign_key(:user_id).of_type(Item) }
+  it { should have_many(:items)
+       .with_foreign_key(:user_id)
+       .of_type(Item)
+       .ordered_by(:updated_at)
+  }
 
   it { should have_and_belong_to_many(:tags)
        .with_foreign_key(:tag_ids)
        .of_type(Tag)
        .with_index
+       .ordered_by(:name)
   }
 
   it { should have_and_belong_to_many(:stocks)
@@ -20,6 +25,7 @@ describe User do
        .of_type(Item)
        .as_inverse_of(:stocked_users)
        .with_index
+       .ordered_by(:updated_at)
   }
 
   it { should have_and_belong_to_many(:followings)
@@ -27,6 +33,7 @@ describe User do
        .of_type(described_class)
        .as_inverse_of(:followers)
        .with_index
+       .ordered_by(:email)
   }
 
   it { should have_and_belong_to_many(:followers)
@@ -34,6 +41,7 @@ describe User do
        .of_type(described_class)
        .as_inverse_of(:followings)
        .with_index
+       .ordered_by(:email)
   }
 
   it { should have_index_for(uid: 1) }
