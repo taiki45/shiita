@@ -7,14 +7,14 @@ class ItemsController < ApplicationController
     @items = Item.recent.to_a
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
       format.json { render json: @items }
     end
   end
 
   def show
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @item }
     end
   end
@@ -34,6 +34,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(params[:item])
     @item.user = current_user
+    @item.generate_tokens
 
     respond_to do |format|
       if @item.save
@@ -49,6 +50,7 @@ class ItemsController < ApplicationController
   def update
     respond_to do |format|
       if @item.update_attributes(params[:item])
+        @item.tap {|o| o.generate_tokens }.save
         Tag.all.select {|tag| tag.items.count <= 0 }.each(&:destroy)
 
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }
