@@ -5,6 +5,7 @@ class Item
 
   field :source, type: String
   field :title, type: String
+  field :tokens, type: Array
 
   belongs_to :user, index: true, inverse_of: :items
   embeds_many :comments, order: :id.asc
@@ -12,6 +13,7 @@ class Item
   has_and_belongs_to_many :stocked_users, class_name: "User", inverse_of: :stocks, order: :email.asc
 
   index updated_at: -1
+  index tokens: 1
   scope :recent, order_by(update_at: -1)
 
   validates :source, :title, presence: true
@@ -25,6 +27,10 @@ class Item
     self.tags = names.map do |name|
       Tag.find_or_create_by(name: name) unless name.empty?
     end
+  end
+
+  def generate_tokens
+    self.tokens = Mecab::Ext::Parser.parse(source).surfaces.to_a
   end
 
 end

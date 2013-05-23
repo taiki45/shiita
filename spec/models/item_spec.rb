@@ -4,6 +4,7 @@ describe Item do
 
   it { should have_field(:title).of_type(String) }
   it { should have_field(:source).of_type(String) }
+  it { should have_field(:tokens).of_type(Array) }
   it { should be_timestamped_document }
 
   it { should belong_to(:user).with_foreign_key(:user_id).of_type(User) }
@@ -39,6 +40,41 @@ describe Item do
   describe "#tag_names" do
     subject { build(:item).tap {|e| e.tags = [create(:tag)] } }
     its(:tag_names) { should eq subject.tags.map {|e| e.name } }
+  end
+
+  describe "#generate_tokens" do
+    let(:test_words) { ["test", "words"] }
+    let(:item) do
+      Item.create(
+        title: "test",
+        source: "test words",
+        tags: [Tag.create(name: "a")]
+      )
+    end
+    before do
+      Mecab::Ext::Parser.stub_chain("parse.surfaces.to_a").and_return(test_words)
+    end
+
+    subject do
+      item.tap {|o| o.generate_tokens }.tokens
+    end
+
+    it { should eq test_words }
+
+    if defined? MeCab
+      context "with real MeCab" do
+        before do
+          Mecab::Ext::Parser.unstub(:parse)
+          item.source = "anohter words"
+          item.generate_tokens
+          item.save
+        end
+
+        subject { item.tokens }
+        it { should eq ["anohter", "words"] }
+      end
+    end
+
   end
 
 end
