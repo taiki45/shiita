@@ -6,6 +6,7 @@ gem "thin", "~> 1"
 
 gem "mongoid", "~> 3"
 gem "bson_ext", "~> 1"
+gem "mongoid_rails_migrations", "~> 1.0"
 gem "mecab-ext", "~> 1"
 
 gem "haml", "~> 4"
