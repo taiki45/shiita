@@ -57,33 +57,86 @@ describe Item do
     before do
       Mecab::Ext::Parser.stub_chain("parse.surfaces.map.to_a").and_return(test_words)
     end
+  end
 
-    shared_context "with real MeCab", mecab: :real do
-      before do
-        Mecab::Ext::Parser.unstub(:parse)
-        item.source = "anohter words"
-        item.generate_tokens
-        item.save
-      end
+  shared_context "with real MeCab gem", mecab: :real do
+    include_context "with stubed Mecab", mecab: :stubed
+
+    before do
+      Mecab::Ext::Parser.unstub(:parse)
+      item.source = "anohter words"
+      item.generate_tokens
+      item.save
+    end
+  end
+
+  shared_context "with tokens generated", tokens: :on do
+    include_context "with stubed Mecab", mecab: :stubed
+    before do
+      item.generate_tokens
+      item.save
     end
   end
 
   describe "#generate_tokens", mecab: :stubed do
-    subject do
-      item.tap {|o| o.generate_tokens }.tokens
-    end
+    context %(with source is "test words" and tag name is "tag") do
+      subject do
+        item.tap {|o| o.generate_tokens }.tokens
+      end
 
-    it { should eq ["test", "words", "tag"] }
+      it { should eq ["test", "words", "tag"] }
 
-    if defined? MeCab
-      context "with real MeCab", mecab: :real do
-        subject { item.tokens }
-        it { should eq ["anohter", "words", "tag"] }
+      if defined? MeCab
+        context "with real MeCab", mecab: :real do
+          subject { item.tokens }
+          it { should eq ["anohter", "words", "tag"] }
+        end
       end
     end
   end
 
-  describe ".search" do
+  describe ".search", tokens: :on do
+    context "with no query" do
+      subject { described_class.search(nil) }
+      it { should have(:no).result }
+    end
+
+    context "with empty query" do
+      subject { described_class.search("") }
+      it { should have(:no).result }
+    end
+
+    context "with matched one word query" do
+      before do
+        Mecab::Ext::Parser.stub_chain("parse.surfaces.map.to_a").and_return(["test"])
+      end
+      subject { described_class.search("test").to_a }
+      it { should have(1).result }
+    end
+
+    context "with unmatched one word query" do
+      before do
+        Mecab::Ext::Parser.stub_chain("parse.surfaces.map.to_a").and_return(["unmatched"])
+      end
+      subject { described_class.search("unmatched").to_a }
+      it { should have(:no).result }
+    end
+
+    context "with matched two words query" do
+      before do
+        Mecab::Ext::Parser.stub_chain("parse.surfaces.map.to_a").and_return(["test", "tag"])
+      end
+      subject { described_class.search("test tag").to_a }
+      it { should have(1).result }
+    end
+
+    context "with one matched two words query" do
+      before do
+        Mecab::Ext::Parser.stub_chain("parse.surfaces.map.to_a").and_return(["test", "unmatched"])
+      end
+      subject { described_class.search("test unmatched").to_a }
+      it { should have(:no).result }
+    end
   end
 
 end
