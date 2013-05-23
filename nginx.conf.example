@@ -1,7 +1,7 @@
 # Fix TODOs for your envirnment
 
 # Set your user name and pid path
-user www-data;
+user nginx;
 worker_processes 1;
 pid /var/run/nginx.pid;
 
