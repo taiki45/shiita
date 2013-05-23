@@ -4,6 +4,7 @@ describe ItemsController do
 
   before do
     controller.stub(:current_user) { user }
+    Mecab::Ext::Parser.stub_chain("parse.surfaces.map.to_a").and_return(["MyString"])
   end
 
   let(:user) do

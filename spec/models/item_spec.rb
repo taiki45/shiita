@@ -59,17 +59,6 @@ describe Item do
     end
   end
 
-  shared_context "with real MeCab gem", mecab: :real do
-    include_context "with stubed Mecab", mecab: :stubed
-
-    before do
-      Mecab::Ext::Parser.unstub(:parse)
-      item.source = "anohter words"
-      item.generate_tokens
-      item.save
-    end
-  end
-
   shared_context "with tokens generated", tokens: :on do
     include_context "with stubed Mecab", mecab: :stubed
     before do
@@ -85,13 +74,6 @@ describe Item do
       end
 
       it { should eq ["test", "words", "tag"] }
-
-      if defined? MeCab
-        context "with real MeCab", mecab: :real do
-          subject { item.tokens }
-          it { should eq ["anohter", "words", "tag"] }
-        end
-      end
     end
   end
 
