@@ -42,8 +42,10 @@ describe Item do
     its(:tag_names) { should eq subject.tags.map {|e| e.name } }
   end
 
-  describe "#generate_tokens" do
+
+  shared_context "with stubed Mecab", mecab: :stubed do
     let(:test_words) { ["test", "words"] }
+
     let(:item) do
       Item.create(
         title: "test",
@@ -51,10 +53,22 @@ describe Item do
         tags: [Tag.create(name: "tag")]
       )
     end
+
     before do
       Mecab::Ext::Parser.stub_chain("parse.surfaces.map.to_a").and_return(test_words)
     end
 
+    shared_context "with real MeCab", mecab: :real do
+      before do
+        Mecab::Ext::Parser.unstub(:parse)
+        item.source = "anohter words"
+        item.generate_tokens
+        item.save
+      end
+    end
+  end
+
+  describe "#generate_tokens", mecab: :stubed do
     subject do
       item.tap {|o| o.generate_tokens }.tokens
     end
@@ -62,19 +76,14 @@ describe Item do
     it { should eq ["test", "words", "tag"] }
 
     if defined? MeCab
-      context "with real MeCab" do
-        before do
-          Mecab::Ext::Parser.unstub(:parse)
-          item.source = "anohter words"
-          item.generate_tokens
-          item.save
-        end
-
+      context "with real MeCab", mecab: :real do
         subject { item.tokens }
         it { should eq ["anohter", "words", "tag"] }
       end
     end
+  end
 
+  describe ".search" do
   end
 
 end
