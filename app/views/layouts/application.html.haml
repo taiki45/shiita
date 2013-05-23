@@ -25,8 +25,8 @@
           .container.nav-collapse
             %ul.nav.pull-left
               %li
-                = form_tag "/users", method: :get, class: "navbar-form", id: "top-search" do
-                  = text_field_tag :user_email, nil, {class: "search-query", placeholder: "search by email"}
+                = form_tag "/search", method: :get, class: "navbar-form", id: "top-search" do
+                  = text_field_tag :query, nil, {class: "search-query", placeholder: "Ruby Rails nginx"}
             %ul.nav.pull-right
               = render 'layouts/top_status'
 
