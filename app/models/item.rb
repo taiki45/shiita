@@ -43,7 +43,7 @@ class Item
   end
 
   def generate_tokens
-    self.tokens = tokenize(source)
+    self.tokens = tokenize(source) + tags.map(&:name).map(&:downcase)
   end
 
   private
