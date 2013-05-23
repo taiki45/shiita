@@ -1,0 +1,9 @@
+.page-header
+  %h1
+    %span Search result
+    %small "#{params[:query]}"
+
+- if @items.empty?
+  %p No result
+- else
+  = render partial: "share/item_header", collection: @items, spacer_template: "share/item_spacer"

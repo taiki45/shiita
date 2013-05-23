@@ -17,19 +17,20 @@ We can try private Qiita like service easily. If the service brings much good to
 - Comments in each Article
 - UI with Ajax
 - Tag limitation system with suggestion
+- Full text search with index on Japanese
 - Example configuration files for working with nginx + unicorn via https
 
 ### Not yet
 - json-based RESTful API
-- Full text search
+- LaTeX, MathML, and AsciiMath supports using [MathJax](https://github.com/mathjax/MathJax/)
 
 ### Maybe
 - Client app as Mac app
-- LaTeX, MathML, and AsciiMath supports using [MathJax](https://github.com/mathjax/MathJax/)
 
 ## Requirements
 - Ruby >= 1.9.3 (only MRI support)
 - MongoDB
+- [MeCab](https://code.google.com/p/mecab/) and it's ruby-binding
 
 ## Setup for development
 * Set ENV variables. `env_sample.sh` is sample.
@@ -40,6 +41,7 @@ We can try private Qiita like service easily. If the service brings much good to
 * Ensure your server user can sudo without confirming password (necessary for Capistrano).
 * Install rbenv.
 * Install MongoDB.
+* Install MeCab and it's ruby-binding.
 * Install nginx and set `nginx.conf` referring `nginx.conf.example`.
 * Setup certificates for your server.
 * Ensure set ENV vars referring `env_sample.sh` and `config/deploy.rb`, `config/unicorn.conf`.
