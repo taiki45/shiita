@@ -72,11 +72,19 @@ namespace :deploy do
     run "cd #{current_path} && kill -s QUIT `cat tmp/pids/unicorn.pid`"
   end
 
-  desc "Ensure indexes for MongoDB"
-  task :create_indexes, :roles => :db do
-    run "cd #{current_path} && #{rake} db:mongoid:create_indexes"
+  namespace :db do
+    desc "Migrate DB to head"
+    task :migrate, :roles => :db do
+      run "cd #{current_path} && #{rake} db:migrate"
+    end
+    after "deploy:update", "deploy:db:migrate"
+
+    desc "Ensure indexes for MongoDB"
+    task :create_indexes, :roles => :db do
+      run "cd #{current_path} && #{rake} db:mongoid:create_indexes"
+    end
+    after "deploy:update", "deploy:db:create_indexes"
   end
-  after "deploy:update", "deploy:create_indexes"
 
   namespace :assets do
     desc "Run the assets precompilation only if assets changed"
