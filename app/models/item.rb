@@ -19,6 +19,19 @@ class Item
   validates :source, :title, presence: true
   validates :tags, associated: true, presence: true
 
+  class << self
+    def search(query)
+      return [] if query.blank?
+      all(tokens: tokenize(query)).sort(:updated_at.desc)
+    end
+
+    private
+
+    def tokenize(sentence)
+      Mecab::Ext::Parser.parse(sentence).surfaces.map(&:downcase).to_a
+    end
+  end
+
   def tag_names
     tags.map {|e| e.name }
   end
@@ -30,7 +43,13 @@ class Item
   end
 
   def generate_tokens
-    self.tokens = Mecab::Ext::Parser.parse(source).surfaces.to_a
+    self.tokens = tokenize(source)
+  end
+
+  private
+
+  def tokenize(*args)
+    self.class.__send__(:tokenize, *args)
   end
 
 end

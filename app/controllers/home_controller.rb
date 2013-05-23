@@ -12,4 +12,8 @@ class HomeController < ApplicationController
   def help
     @no_sidebar = true
   end
+
+  def search
+    @items = Item.search(params[:query]).to_a
+  end
 end

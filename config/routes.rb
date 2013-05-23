@@ -38,8 +38,9 @@ Shiita::Application.routes.draw do
     delete '/logout' => :destroy, as: :logout
   end
 
-  %w(about help).each do |name|
-    get "/#{name}" => "home#help"
+  controller :home do
+    get "/help" => :help
+    get "/search" => :search
   end
 
   root to: "home#index"
