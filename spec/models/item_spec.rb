@@ -47,19 +47,19 @@ describe Item do
     let(:item) do
       Item.create(
         title: "test",
-        source: "test words",
-        tags: [Tag.create(name: "a")]
+        source: test_words,
+        tags: [Tag.create(name: "tag")]
       )
     end
     before do
-      Mecab::Ext::Parser.stub_chain("parse.surfaces.to_a").and_return(test_words)
+      Mecab::Ext::Parser.stub_chain("parse.surfaces.map.to_a").and_return(test_words)
     end
 
     subject do
       item.tap {|o| o.generate_tokens }.tokens
     end
 
-    it { should eq test_words }
+    it { should eq ["test", "words", "tag"] }
 
     if defined? MeCab
       context "with real MeCab" do
@@ -71,7 +71,7 @@ describe Item do
         end
 
         subject { item.tokens }
-        it { should eq ["anohter", "words"] }
+        it { should eq ["anohter", "words", "tag"] }
       end
     end
 
