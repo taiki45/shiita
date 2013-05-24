@@ -1,7 +1,7 @@
 Shiita::Application.routes.draw do
 
   resources :items do
-    get 'page/:page', :action => :index, :on => :collection
+    get "page/:page", :action => :index, :on => :collection
 
     member do
       post "stock"
@@ -23,6 +23,7 @@ Shiita::Application.routes.draw do
 
   scope "users", controller: :users do
     get "" => :index, as: :users
+    get "page/:page", :action => :index
 
     scope ":email", constraints: { email: /[^\/]+/ } do
       get "" => :show, as: :user

@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_filter :set_user, except: :index
 
   def index
-    @users = User.order_by(email: 1).page(params[:page]).per(50)
+    @users = User.order_by(email: 1).page(params[:page]).per(USER_PAGING)
   end
 
   def show

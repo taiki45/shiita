@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   private
 
   ITEM_PAGING = 20
+  USER_PAGING = 30
 
   def login?
     session[:id] && current_user
