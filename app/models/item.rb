@@ -7,7 +7,7 @@ class Item
   field :title, type: String
   field :tokens, type: Array
 
-  belongs_to :user, inverse_of: :items
+  belongs_to :user, inverse_of: :items, index: true
   embeds_many :comments, order: :id.asc
   has_and_belongs_to_many :tags, index: true, order: :name.asc
 

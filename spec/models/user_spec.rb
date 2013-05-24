@@ -44,8 +44,8 @@ describe User do
        .ordered_by(:email)
   }
 
-  it { should have_index_for(uid: 1) }
-  it { should have_index_for(email: 1) }
+  it { should have_index_for(uid: 1).with_options(unique: true) }
+  it { should have_index_for(email: 1).with_options(unique: true) }
   it { should have_index_for(tag_ids: 1).with_options(background: true) }
   it { should have_index_for(following_ids: 1).with_options(background: true) }
   it { should have_index_for(follower_ids: 1).with_options(background: true) }
