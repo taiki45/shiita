@@ -7,7 +7,7 @@ class TagsController < ApplicationController
   end
 
   def index
-    @tags = Tag.by_name.to_a
+    @tags = Tag.by_name.page(params[:page])
   end
 
   def followers
