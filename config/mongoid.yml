@@ -34,7 +34,7 @@ development:
     # allow_dynamic_fields: true
 
     # Enable the identity map, needed for eager loading. (default: false)
-    # identity_map_enabled: false
+    identity_map_enabled: true
 
     # Includes the root model name in json serialization. (default: false)
     # include_root_in_json: false
@@ -89,17 +89,13 @@ production:
     # allow_dynamic_fields: true
 
     # Enable the identity map, needed for eager loading. (default: false)
-    # identity_map_enabled: false
+    identity_map_enabled: true
 
     # Includes the root model name in json serialization. (default: false)
     # include_root_in_json: false
 
     # Include the _type field in serializaion. (default: false)
     # include_type_for_serialization: false
-
-    # Preload all models in development, needed when models use
-    # inheritance. (default: false)
-    # preload_models: false
 
     # Protect id and type from mass assignment. (default: true)
     # protect_sensitive_fields: true
