@@ -28,6 +28,7 @@ Shiita::Application.routes.draw do
     scope ":email", constraints: { email: /[^\/]+/ } do
       get "" => :show, as: :user
       get "stocks" => :stocks, as: :stocks_user
+      get "stocks/:page" => :stocks
       get "followings" => :followings, as: :followings_user
       get "followers" => :followers, as: :followers_user
       post "follow" => :follow, as: :follow_user

@@ -11,6 +11,7 @@ class UsersController < ApplicationController
   end
 
   def stocks
+    @stocks = Kaminari.paginate_array(@user.stocks).page(params[:page])
   end
 
   def followers
