@@ -21,6 +21,10 @@ describe UsersController do
       get("/users").should route_to("users#index")
     end
 
+    it "routes to #index with pagination" do
+      get("/users/page/1").should route_to("users#index", page: "1")
+    end
+
     it "routes to #follow" do
       post("/users/test/follow").should route_to("users#follow", email: "test")
     end
@@ -35,6 +39,10 @@ describe UsersController do
 
     it "routes to #stocks" do
       get("/users/test/stocks").should route_to("users#stocks", email: "test")
+    end
+
+    it "routes to #stocks with pagination" do
+      get("/users/test/stocks/1").should route_to("users#stocks", email: "test", page: "1")
     end
 
     it "routes to #followings" do

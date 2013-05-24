@@ -7,6 +7,10 @@ describe ItemsController do
       get("/items").should route_to("items#index")
     end
 
+    it "routes to #index with pagination" do
+      get("/items/page/1").should route_to("items#index", page: "1")
+    end
+
     it "routes to #new" do
       get("/items/new").should route_to("items#new")
     end
