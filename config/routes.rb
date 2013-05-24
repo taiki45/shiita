@@ -1,6 +1,8 @@
 Shiita::Application.routes.draw do
 
   resources :items do
+    get "page/:page", :action => :index, :on => :collection
+
     member do
       post "stock"
       delete "stock" => :unstock
@@ -13,6 +15,7 @@ Shiita::Application.routes.draw do
 
     scope ":name" do
       get "" => :show, as: :tag
+      get ":page" => :show
       get "followers" => :followers, as: :followers_tag
       post "follow" => :follow, as: :follow_tag
       delete "follow" => :unfollow
@@ -21,10 +24,12 @@ Shiita::Application.routes.draw do
 
   scope "users", controller: :users do
     get "" => :index, as: :users
+    get "page/:page", :action => :index
 
     scope ":email", constraints: { email: /[^\/]+/ } do
       get "" => :show, as: :user
       get "stocks" => :stocks, as: :stocks_user
+      get "stocks/:page" => :stocks
       get "followings" => :followings, as: :followings_user
       get "followers" => :followers, as: :followers_user
       post "follow" => :follow, as: :follow_user
@@ -43,6 +48,7 @@ Shiita::Application.routes.draw do
     get "/search" => :search
   end
 
+  get "page/:page" => "home#index"
   root to: "home#index"
 
 end

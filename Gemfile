@@ -11,6 +11,7 @@ gem "mecab-ext", "~> 1"
 
 gem "haml", "~> 4"
 gem "haml-rails", "~> 0.4"
+gem "kaminari", "~> 0.14"
 gem "redcarpet", "~> 2"
 gem "coderay", "~> 1"
 gem "therubyracer", "~> 0.11.4"

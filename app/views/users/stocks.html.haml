@@ -9,4 +9,6 @@
     %span= login? && @user == current_user ? "Your stocks" : "Stocks"
     %small= @user.email
 
-= render partial: "share/item_header", collection: @user.stocks, spacer_template: "share/item_spacer"
+= render partial: "share/item_header", collection: @stocks, spacer_template: "share/item_spacer"
+
+= paginate @stocks

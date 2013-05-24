@@ -4,3 +4,5 @@
     %small order by email address
 
 = render partial: "share/user_table", locals: {users: @users}
+
+= paginate @users

@@ -14,7 +14,7 @@ class Item
 
   index updated_at: -1
   index tokens: 1
-  scope :recent, order_by(update_at: -1)
+  scope :recent, order_by(updated_at: -1)
 
   validates :source, :title, presence: true
   validates :tags, associated: true, presence: true
