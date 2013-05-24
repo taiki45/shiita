@@ -68,10 +68,9 @@ class User
   end
 
 
-  def following_items(limit = 20)
+  def following_items
     item_ids = [tags, followings].map {|e| e.map {|ee| ee.item_ids } }.flatten.uniq
-    result = Item.order_by(updated_at: -1).limit(limit).find(*item_ids)
-    Array === result ? result : result ? [result] : []
+    Array.wrap(Item.order_by(updated_at: -1).find(*item_ids))
   end
 
   def follow(other)

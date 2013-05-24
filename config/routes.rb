@@ -48,6 +48,7 @@ Shiita::Application.routes.draw do
     get "/search" => :search
   end
 
+  get "page/:page" => "home#index"
   root to: "home#index"
 
 end
