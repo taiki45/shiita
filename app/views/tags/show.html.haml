@@ -8,4 +8,6 @@
   %h1
     %span= @tag.name
 
-= render partial: "share/item_header", collection: @tag.items, spacer_template: "share/item_spacer"
+= render partial: "share/item_header", collection: @items, spacer_template: "share/item_spacer"
+
+= paginate @items

@@ -4,6 +4,7 @@ class TagsController < ApplicationController
   before_filter :set_tag, except: :index
 
   def show
+    @items = Kaminari.paginate_array(@tag.items).page(params[:page])
   end
 
   def index
