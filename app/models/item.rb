@@ -7,14 +7,15 @@ class Item
   field :title, type: String
   field :tokens, type: Array
 
-  belongs_to :user, index: true, inverse_of: :items
+  belongs_to :user, inverse_of: :items
   embeds_many :comments, order: :id.asc
   has_and_belongs_to_many :tags, index: true, order: :name.asc
 
   has_and_belongs_to_many :stocked_users,
     class_name: "User",
     inverse_of: :stocks,
-    order: :email.asc
+    order: :email.asc,
+    index: true
 
   index updated_at: -1
   index tokens: 1
