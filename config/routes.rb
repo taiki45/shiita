@@ -1,6 +1,8 @@
 Shiita::Application.routes.draw do
 
   resources :items do
+    get 'page/:page', :action => :index, :on => :collection
+
     member do
       post "stock"
       delete "stock" => :unstock

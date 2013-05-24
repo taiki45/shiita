@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
 
   private
 
+  ITEM_PAGING = 20
+
   def login?
     session[:id] && current_user
   end
