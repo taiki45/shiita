@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   before_filter :set_item, except: [:index, :new, :create]
 
   def index
-    @items = Item.recent.page(params[:page]).per(ITEM_PAGING)
+    @items = Item.recent.page(params[:page])
 
     respond_to do |format|
       format.html
