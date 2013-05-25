@@ -18,7 +18,6 @@ We can try private Qiita like service easily. If the service brings much good to
 - User following
 - Stocks like Qiita
 - Comments in each Article
-- UI with Ajax
 - Tag limitation system with suggestion
 - Full text search with index on Japanese and English
 - Example configuration files for working with nginx + unicorn via https
