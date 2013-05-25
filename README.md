@@ -31,13 +31,19 @@ We can try private Qiita like service easily. If the service brings much good to
 ## How to write using TeX?
 Shiita extends github flavored markdown a little bit.
 
+You can write with inline style as
+
 ```
-You can write with inline style as `$ -b \pm \sqrt{b^2 - 4ac} \over 2a $`. Wrap your formulae by `$ and $` .
+Inline styel is `$ -b \pm \sqrt{b^2 - 4ac} \over 2a $` .
 ```
+
+```
+Wrap your formulae by `$ and $` .
+```
+
+To write with block style, just notice the code block is TeX.
 
 <pre>
-And you can write with block style. Just notice the codeblock is TeX.
-
 ```tex
 f(a,b) = \int_a^b \frac{1 + x}{a + x^2 + x^3} dx
 ```
