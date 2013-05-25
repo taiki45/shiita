@@ -8,13 +8,13 @@ describe Tag do
   it { should have_and_belong_to_many(:users)
        .of_type(User)
        .with_foreign_key(:user_ids)
-       .ordered_by(:email)
+       .ordered_by(:email.asc)
   }
 
   it { should have_and_belong_to_many(:items)
        .of_type(Item)
        .with_foreign_key(:item_ids)
-       .ordered_by(:updated_at)
+       .ordered_by(:updated_at.desc)
   }
 
   it { should have_index_for(name: 1) }
