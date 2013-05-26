@@ -17,20 +17,26 @@ class TagsController < ApplicationController
   def follow
     current_user.follow(@tag)
     @target = @tag.name
-    if current_user.save
-      render "share/action"
-    else
-      render "share/action_error"
+
+    respond_to do |format|
+      if current_user.save
+        format.js { render "share/action" }
+      else
+        format.js { render "share/action_error" }
+      end
     end
   end
 
   def unfollow
     current_user.unfollow(@tag)
     @target = @tag.name
-    if current_user.save
-      render "share/action"
-    else
-      render "share/action_error"
+
+    respond_to do |format|
+      if current_user.save
+        format.js { render "share/action" }
+      else
+        format.js { render "share/action_error" }
+      end
     end
   end
 
