@@ -5,7 +5,7 @@ class HomeController < ApplicationController
 
     @no_sidebar = false
     @items = current_user.following_items.page(params[:page])
-    @items = Item.order_by(updated_at: -1).page(params[:page]) if @items.empty?
+    @items = Item.order_by(updated_at: -1).page(params[:page]) if @items.count < 1
     render :home
   end
 
