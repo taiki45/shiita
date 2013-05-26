@@ -58,26 +58,48 @@ describe TagsController do
   describe "PUT follow" do
     before { tag.users = [] }
 
-    it "adds the tag to current_user.tag" do
-      put :follow, {name: tag.to_param}, valid_session
-      controller.__send__(:current_user).tags.should be_include tag
+    context "with success" do
+      it "adds the tag to current_user.tag" do
+        put :follow, {name: tag.to_param}, valid_session
+        controller.__send__(:current_user).tags.should be_include tag
+      end
+
+      it "assigns requested tag name" do
+        put :follow, {name: tag.to_param}, valid_session
+        assigns(:target).should eq tag.name
+      end
     end
 
-    it "assigns requested tag name" do
-      put :follow, {name: tag.to_param}, valid_session
-      assigns(:target).should eq tag.name
+    context "with failed" do
+      before { controller.__send__(:current_user).should_receive(:save).and_return(false) }
+
+      it "response unprocessable_entity" do
+        put :follow, {name: tag.to_param}, valid_session
+        response.code.should eq "406"
+      end
     end
   end
 
   describe "DELETE follow" do
-    it "adds the tag to current_user.tag" do
-      delete :unfollow, {name: tag.to_param}, valid_session
-      controller.__send__(:current_user).tags.should_not be_include tag
+    context "with success" do
+      it "adds the tag to current_user.tag" do
+        delete :unfollow, {name: tag.to_param}, valid_session
+        controller.__send__(:current_user).tags.should_not be_include tag
+      end
+
+      it "assigns requested tag name" do
+        delete :unfollow, {name: tag.to_param}, valid_session
+        assigns(:target).should eq tag.name
+      end
     end
 
-    it "assigns requested tag name" do
-      delete :unfollow, {name: tag.to_param}, valid_session
-      assigns(:target).should eq tag.name
+    context "with failed" do
+      before { controller.__send__(:current_user).should_receive(:save).and_return(false) }
+
+      it "response unprocessable_entity" do
+        delete :unfollow, {name: tag.to_param}, valid_session
+        response.code.should eq "406"
+      end
     end
   end
 
