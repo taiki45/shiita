@@ -13,7 +13,7 @@ describe SessionsController do
 
       it "redirects to root" do
         get :callback
-        response.should redirect_to(controller: :home, action: :index)
+        expect(response).to redirect_to(controller: :home, action: :index)
       end
     end
 
@@ -25,12 +25,12 @@ describe SessionsController do
         )
       end
 
-      it "sets user id to session[:id]" do
+      it "sets user id to session" do
         get :callback
         expect(session[:id]).to eq 5
       end
 
-      it "sets success message to flash" do
+      it "sets success message" do
         get :callback
         expect(flash[:notice]).to match /Success/
       end
@@ -42,8 +42,27 @@ describe SessionsController do
 
       it "redirects to root" do
         get :callback
-        response.should redirect_to(controller: :home, action: :index)
+        expect(response).to redirect_to(controller: :home, action: :index)
       end
+    end
+  end
+
+  describe "#destroy" do
+    before { session[:test] = "value" }
+
+    it "deletes all session values" do
+      delete :destroy
+      expect(session[:test]).to be_nil
+    end
+
+    it "sets success message" do
+      delete :destroy
+      expect(flash[:notice]).to match /Success/
+    end
+
+    it "redirects to root" do
+      delete :destroy
+      expect(response).to redirect_to(controller: :home, action: :index)
     end
   end
 
