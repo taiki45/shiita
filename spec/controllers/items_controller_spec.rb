@@ -25,6 +25,12 @@ describe ItemsController do
     }
   end
 
+  describe "GET index" do
+    it "assigns all items" do
+      get :index
+      assigns(:items).should eq Item.recent.limit(25).skip(0)
+    end
+  end
 
   describe "GET show" do
     it "assigns the requested item as @item" do
