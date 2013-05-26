@@ -54,7 +54,7 @@ class ItemsController < ApplicationController
         Tag.all.select {|tag| tag.items.count <= 0 }.each(&:destroy)
 
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }
-        format.json { head :no_content }
+        format.json { render json: @item, status: :updated, location: @item }
       else
         format.html { render action: "edit" }
         format.json { render json: @item.errors, status: :unprocessable_entity }
@@ -75,20 +75,30 @@ class ItemsController < ApplicationController
   def stock
     current_user.stock(@item)
     @target = @item.title
-    if current_user.save
-      render "share/action"
-    else
-      render "share/action_error"
+
+    respond_to do |format|
+      if current_user.save
+        format.js { render "share/action" }
+        format.json { render json: {target: @item, source: current_user}, status: :stocked }
+      else
+        format.js { render "share/action_error" }
+        format.json { render json: current_user.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   def unstock
     current_user.unstock(@item)
     @target = @item.title
-    if current_user.save
-      render "share/action"
-    else
-      render "share/action_error"
+
+    respond_to do |format|
+      if current_user.save
+        format.js { render "share/action" }
+        format.json { render json: {target: @item, source: current_user}, status: :unstocked }
+      else
+        format.js { "share/action_error" }
+        format.json { render json: current_user.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -96,10 +106,14 @@ class ItemsController < ApplicationController
     comment = Comment.new_with_user(params[:comment].merge(user: current_user))
     @item.comments.push comment
 
-    if comment.save
-      render partial: "share/comment", object: comment
-    else
-      render nothing: true, status: 400
+    respond_to do |format|
+      if comment.save
+        format.html { render partial: "share/comment", object: comment }
+        format.json { render json: comment, status: :commented }
+      else
+        format.html { render nothing: true, status: 400 }
+        format.json { render json: @item.errors, status: :unprocessable_entity }
+      end
     end
   end
 
