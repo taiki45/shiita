@@ -38,4 +38,29 @@ describe SyntaxHighlighting do
     end
   end
 
+  describe "#codespan" do
+    context "with usual codespan" do
+      subject { described_class.new.codespan("test") }
+      it { should match /code/ }
+      it { should match /test/ }
+    end
+
+    context "with tex code using 2 $" do
+      subject { described_class.new.codespan("$ test $") }
+      it { should_not match /\$/ }
+      it { should match /script/ }
+      it { should match /math\/tex/ }
+      it { should match /test/ }
+    end
+
+    context "with invalid tex code using 1 $" do
+      subject { described_class.new.codespan("$ test") }
+      it { should match /\$/ }
+      it { should_not match /script/ }
+      it { should_not match /math\/tex/ }
+      it { should match /code/ }
+      it { should match /test/ }
+    end
+  end
+
 end
