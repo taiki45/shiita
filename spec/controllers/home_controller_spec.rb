@@ -36,9 +36,9 @@ describe HomeController do
         assigns(:no_sidebar).should be_false
       end
 
-      it "assigns all following items" do
+      it "assigns all following items with paging" do
         get :index
-        assigns(:items).should eq @user.following_items
+        assigns(:items).should eq @user.following_items.page(nil)
       end
     end
   end
