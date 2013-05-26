@@ -22,9 +22,6 @@ We can try private Qiita like service easily. If the service brings much good to
 - Full text search with index on Japanese and English
 - Example configuration files for working with nginx + unicorn via https
 
-### Not yet
-- json-based RESTful API
-
 ### Maybe
 - Client app as Mac app
 
