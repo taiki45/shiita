@@ -40,4 +40,18 @@ describe ApplicationController do
     end
   end
 
+  describe "rescue_from" do
+    before do
+      raise_action = ->{ raise Mongoid::Errors::DocumentNotFound.new(User, {id: :dummy}) }
+      ApplicationController.__send__(:define_method, :test, raise_action)
+    end
+
+    context "with DocumentNotFound" do
+      it "reders error page" do
+        get :test
+        response.code.should eq "404"
+      end
+    end
+  end
+
 end
