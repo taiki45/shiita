@@ -4,7 +4,7 @@ class HomeController < ApplicationController
     render :index and return unless login?
 
     @no_sidebar = false
-    @items = Kaminari.paginate_array(current_user.following_items).page(params[:page])
+    @items = current_user.following_items.page(params[:page])
     @items = Item.order_by(updated_at: -1).page(params[:page]) if @items.empty?
     render :home
   end

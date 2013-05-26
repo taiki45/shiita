@@ -69,8 +69,9 @@ class User
 
 
   def following_items
-    item_ids = [tags, followings].map {|e| e.map {|ee| ee.item_ids } }.flatten.uniq
-    Array.wrap(Item.order_by(updated_at: -1).find(*item_ids))
+    Item.order_by(:updated_at.desc)
+      .or(:tag_ids.in => tags.map {|tag| tag.id })
+      .or(:user_id.in => followings.map {|user| user.id }.push(id))
   end
 
   def follow(other)
