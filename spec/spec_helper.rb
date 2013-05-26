@@ -1,5 +1,11 @@
 ENV["RAILS_ENV"] ||= 'test'
 
+require 'coveralls'
+require 'simplecov'
+Coveralls.wear! 'rails'
+SimpleCov.formatter = Coveralls::SimpleCov::Formatter
+SimpleCov.start 'rails'
+
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'

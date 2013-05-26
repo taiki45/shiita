@@ -11,7 +11,7 @@
 .sass-cache
 capybara-*.html
 .rvmrc
-/coverage/
+/coverage
 **.orig
 /spec/tmp/*
 rerun.txt
