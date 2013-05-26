@@ -43,4 +43,25 @@ describe HomeController do
     end
   end
 
+  describe "GET help" do
+    it "returns http success" do
+      get :help
+      response.should be_success
+    end
+  end
+
+  describe "GET search" do
+    before { Item.should_receive(:search).and_return([@item]) }
+
+    it "returns http success" do
+      get :search
+      response.should be_success
+    end
+
+    it "assigns search result" do
+      get :search, {query: @item.tags[0].name}
+      assigns(:items).should be_include @item
+    end
+  end
+
 end
