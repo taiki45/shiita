@@ -33,7 +33,8 @@ group :development, :test do
   gem "factory_girl_rails", "~> 4"
   gem "database_cleaner", "~> 1"
   gem "mongoid-rspec", "~> 1"
-  gem "simplecov", "~> 0.7", require: false
+  gem "simplecov", "~> 0", require: false
+  gem 'coveralls', "~> 0", require: false
   gem "pry-rails", "~> 0.3"
   gem "html2haml", "~> 1"
   gem "erb2haml", "~> 0"
