@@ -33,10 +33,6 @@ You can write with inline style as
 Inline styel is `$ -b \pm \sqrt{b^2 - 4ac} \over 2a $` .
 ```
 
-```
-Wrap your formulae by `$ and $` .
-```
-
 To write with block style, just notice the code block is TeX.
 
 <pre>
@@ -53,6 +49,7 @@ f(a,b) = \int_a^b \frac{1 + x}{a + x^2 + x^3} dx
 ## Setup for development
 * Set ENV variables. `env_sample.sh` is sample.
 * See more detail to get API key in [omniauth-google-oauth2](https://github.com/zquestz/omniauth-google-oauth2).
+* Run `rake db:migrate` if you run shiita before.
 * Run `rake db:mongoid:create_indexes` to create indexed on DB.
 
 ## Setup for production
