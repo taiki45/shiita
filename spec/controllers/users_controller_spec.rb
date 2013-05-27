@@ -85,11 +85,19 @@ describe UsersController do
   end
 
   describe "DELETE follow" do
+    before { controller.__send__(:current_user).follow(other) }
+
     context "with success" do
-      it "adds the user to current_user.user" do
-        delete :unfollow, {email: other.to_param}, valid_session
-        controller.__send__(:current_user).followings.should_not be_include other
-        other.followers.should_not be_include user
+      it "drops the user to current_user.user" do
+        expect {
+          delete :unfollow, {email: other.to_param}, valid_session
+        }.to change { User.find(controller.__send__(:current_user).id).followings.count }.by -1
+      end
+
+      it "drops the user from other's followers" do
+        expect {
+          delete :unfollow, {email: other.to_param}, valid_session
+        }.to change { other.followers.count }.by -1
       end
 
       it "assigns requested user email" do
