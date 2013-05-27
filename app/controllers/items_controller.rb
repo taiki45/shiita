@@ -77,7 +77,7 @@ class ItemsController < ApplicationController
     @target = @item.title
 
     respond_to do |format|
-      format.js { render "share/action" }
+      render_js(format, current_user)
     end
   end
 
@@ -86,7 +86,7 @@ class ItemsController < ApplicationController
     @target = @item.title
 
     respond_to do |format|
-      format.js { render "share/action" }
+      render_js(format, current_user)
     end
   end
 
