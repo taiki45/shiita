@@ -115,15 +115,32 @@ describe User do
   describe "#following?" do
     let(:user) { create :user }
     let(:other) { create :user, uid: 2, email: "other@example.com" }
-    subject { user.following? other }
+    let(:tag) { create :tag }
 
-    context "when not following other" do
-      it { should be_false }
+    context "when confirm with other" do
+      subject { user.following? other }
+
+      context "when not following other" do
+        it { should be_false }
+      end
+
+      context "when following other" do
+        before { user.follow(other) }
+        it { should be_true }
+      end
     end
 
-    context "when following other" do
-      before { user.follow(other) }
-      it { should be_true }
+    context "when confirm with tag" do
+      subject { user.following? tag }
+
+      context "when not following the tag" do
+        it { should be_false }
+      end
+
+      context "when following the tag" do
+        before { user.follow(tag) }
+        it { should be_true }
+      end
     end
   end
 
