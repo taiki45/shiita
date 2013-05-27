@@ -25,11 +25,7 @@ class UsersController < ApplicationController
     @target = @user.email
 
     respond_to do |format|
-      if current_user.save
-        format.js { render "share/action" }
-      else
-        format.js { render "share/action_error" }
-      end
+      render_js(format, current_user)
     end
   end
 
@@ -38,11 +34,7 @@ class UsersController < ApplicationController
     @target = @user.email
 
     respond_to do |format|
-      if current_user.save
-        format.js { render "share/action" }
-      else
-        format.js { render "share/action_error" }
-      end
+      render_js(format, current_user)
     end
   end
 
@@ -50,6 +42,14 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find_by_part_of(params[:email])
+  end
+
+  def render_js(format, user)
+    if current_user.save
+      format.js { render "share/action" }
+    else
+      format.js { render "share/action_error" }
+    end
   end
 
 end
