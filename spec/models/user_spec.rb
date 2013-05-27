@@ -127,6 +127,42 @@ describe User do
     end
   end
 
+  describe "#follow" do
+    context "when follow other" do
+      let(:user) { create :user }
+      let(:other) { create :user, uid: 2, email: "other@example.com" }
+
+      it "adds following to user" do
+        expect {
+          user.follow(other)
+        }.to change { user.followings.count }.by(1)
+      end
+
+      it "adds follower to other" do
+        expect {
+          user.follow(other)
+        }.to change { other.followers.count }.by(1)
+      end
+    end
+
+    context "when follow tag" do
+      let(:user) { create :user }
+      let(:tag) { create :tag }
+
+      it "adds following tags to user" do
+        expect {
+          user.follow(tag)
+        }.to change { user.tags.count }.by(1)
+      end
+
+      it "adds followers to tag" do
+        expect {
+          user.follow(tag)
+        }.to change { tag.users.count }.by(1)
+      end
+    end
+  end
+
 
   let(:auth) do
     {
