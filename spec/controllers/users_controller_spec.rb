@@ -36,6 +36,13 @@ describe UsersController do
     end
   end
 
+  describe "GET stocks" do
+    it "assigns requested user" do
+      get :stocks, {email: user.to_param}, valid_session
+      assigns(:user).should eq user
+    end
+  end
+
   describe "GET followers" do
     it "assigns requested user's followers" do
       get :followers, {email: user.to_param}, valid_session
