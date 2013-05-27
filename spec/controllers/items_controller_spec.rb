@@ -126,6 +126,13 @@ describe ItemsController do
         put :update, {id: item.to_param, item: valid_attributes}, valid_session
         response.should redirect_to(item)
       end
+
+      it "destroys empty tags" do
+        item.tags.push Tag.create(name: "test2")
+        expect {
+          put :update, {id: item.to_param, item: valid_attributes}, valid_session
+        }.to change { Tag.all.count }.by -1
+      end
     end
 
     describe "with invalid params" do
@@ -160,6 +167,12 @@ describe ItemsController do
     it "redirects to the items list" do
       delete :destroy, {:id => item.to_param}, valid_session
       response.should redirect_to(user_url(user))
+    end
+
+    it "destroys empty tags" do
+      expect {
+        delete :destroy, {:id => item.to_param}, valid_session
+      }.to change { Tag.all.count }.by -2
     end
 
     it "has success message in flash" do
