@@ -77,13 +77,7 @@ class ItemsController < ApplicationController
     @target = @item.title
 
     respond_to do |format|
-      if current_user.save
-        format.js { render "share/action" }
-        format.json { render json: {target: @item, source: current_user}, status: :stocked }
-      else
-        format.js { render "share/action_error" }
-        format.json { render json: current_user.errors, status: :unprocessable_entity }
-      end
+      format.js { render "share/action" }
     end
   end
 
@@ -92,13 +86,7 @@ class ItemsController < ApplicationController
     @target = @item.title
 
     respond_to do |format|
-      if current_user.save
-        format.js { render "share/action" }
-        format.json { render json: {target: @item, source: current_user}, status: :unstocked }
-      else
-        format.js { "share/action_error" }
-        format.json { render json: current_user.errors, status: :unprocessable_entity }
-      end
+      format.js { render "share/action" }
     end
   end
 
@@ -109,10 +97,8 @@ class ItemsController < ApplicationController
     respond_to do |format|
       if comment.save
         format.html { render partial: "share/comment", object: comment }
-        format.json { render json: comment, status: :commented }
       else
         format.html { render nothing: true, status: 400 }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
       end
     end
   end

@@ -14,6 +14,7 @@ describe ItemsController do
       email: "test@example.com"
     )
   end
+  let(:current_user) { controller.__send__(:current_user) }
   let(:item) { Item.create! valid_attributes }
   let(:redirect_path) { "home#index" }
   let(:valid_session) { {id: 1} }
@@ -165,6 +166,49 @@ describe ItemsController do
       delete :destroy, {:id => item.to_param}, valid_session
       flash[:notice].should match /delete/
       flash[:notice].should match /#{item.title}/
+    end
+  end
+
+  describe "PUT stock" do
+    before { current_user.tap {|o| o.stocks = [] }.save }
+
+    it "lets current user stock the item" do
+      expect(current_user.stocks).to have(:no).item
+      put :stock, {id: item.to_param}, valid_session
+      expect(current_user.stocks).to have(1).item
+    end
+  end
+
+  describe "DELETE stock" do
+    before { current_user.tap {|o| o.stocks.push item }.save }
+
+    it "lets current user unstock the item" do
+      expect(current_user.stocks).to have(1).item
+      delete :unstock, {id: item.to_param}, valid_session
+      expect(current_user.stocks).to have(:no).item
+    end
+  end
+
+  describe "PUT comment" do
+    it "assigns requested item" do
+      put :comment, {id: item.to_param, comment: {content: "test"}}, valid_session
+      assigns(:item).should eq item
+    end
+
+    it "comments the item" do
+      expect(Item.find(item.id).comments).to have(:no).comments
+      put :comment, {id: item.to_param, comment: {content: "test"}}, valid_session
+      expect(Item.find(item.id).comments).to have(1).comment
+    end
+
+    context "with failure" do
+      before { Comment.any_instance.should_receive(:save).twice.and_return(false) }
+
+      it "" do
+        expect(Item.find(item.id).comments).to have(:no).comments
+        put :comment, {id: item.to_param, comment: {content: "test"}}, valid_session
+        expect(Item.find(item.id).comments).to have(:no).comment
+      end
     end
   end
 
