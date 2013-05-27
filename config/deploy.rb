@@ -83,7 +83,7 @@ namespace :deploy do
     task :create_indexes, :roles => :db do
       run "cd #{current_path} && #{rake} db:mongoid:create_indexes"
     end
-    after "deploy:update", "deploy:db:create_indexes"
+    after "deploy:db:migrate", "deploy:db:create_indexes"
   end
 
   namespace :assets do
