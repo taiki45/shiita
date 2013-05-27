@@ -44,8 +44,8 @@ class UsersController < ApplicationController
     @user = User.find_by_part_of(params[:email])
   end
 
-  def render_js(format, user)
-    if current_user.save
+  def render_js(format, source)
+    if source.save
       format.js { render "share/action" }
     else
       format.js { render "share/action_error" }

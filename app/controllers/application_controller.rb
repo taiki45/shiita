@@ -24,4 +24,12 @@ class ApplicationController < ActionController::Base
     redirect_to "home#index" unless login?
   end
 
+  def render_js(format, source)
+    if source.save
+      format.js { render "share/action" }
+    else
+      format.js { render "share/action_error" }
+    end
+  end
+
 end

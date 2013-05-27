@@ -19,11 +19,7 @@ class TagsController < ApplicationController
     @target = @tag.name
 
     respond_to do |format|
-      if current_user.save
-        format.js { render "share/action" }
-      else
-        format.js { render "share/action_error" }
-      end
+      render_js(format, current_user)
     end
   end
 
@@ -32,11 +28,7 @@ class TagsController < ApplicationController
     @target = @tag.name
 
     respond_to do |format|
-      if current_user.save
-        format.js { render "share/action" }
-      else
-        format.js { render "share/action_error" }
-      end
+      render_js(format, current_user)
     end
   end
 
