@@ -164,8 +164,37 @@ describe User do
     }
   end
 
-  describe "#create_from_auth" do
-    context "with given fixture" do
+  describe ".find_or_create_from_auth" do
+    context "with auth fixture" do
+      before do
+      end
+
+      context "when auth one user saved" do
+        before do
+          User.should_receive(:find_from_auth).and_return(create(:user))
+          User.should_not_receive(:create_from_auth)
+        end
+
+        it "calls .find_from_auth" do
+          User.find_or_create_from_auth(auth)
+        end
+      end
+
+      context "when not saved auth one user" do
+        before do
+          User.should_receive(:find_from_auth).and_return(nil)
+          User.should_receive(:create_from_auth).and_return(create(:user))
+        end
+
+        it "calls .create_from_auth" do
+          User.find_or_create_from_auth(auth)
+        end
+      end
+    end
+  end
+
+  describe ".create_from_auth" do
+    context "with auth fixture" do
       subject { described_class.__send__ :create_from_auth, auth }
 
       its(:uid) { should eq 123456789012345678901 }
@@ -177,8 +206,8 @@ describe User do
     end
   end
 
-  describe "#find_from_auth" do
-    context "with given fixture" do
+  describe ".find_from_auth" do
+    context "with auth fixture" do
       let(:saved_one) { described_class.__send__ :create_from_auth, auth }
 
       subject { described_class.__send__ :find_from_auth, auth }
