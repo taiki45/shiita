@@ -29,8 +29,8 @@ class User
     index: true,
     order: :email.asc
 
-  index uid: 1
-  index email: 1
+  index({uid: 1}, unique: true)
+  index({email: 1,}, unique: true)
 
   validates :uid, presence: true
   validates :name, presence: true

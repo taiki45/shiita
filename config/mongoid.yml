@@ -97,10 +97,6 @@ production:
     # Include the _type field in serializaion. (default: false)
     # include_type_for_serialization: false
 
-    # Preload all models in development, needed when models use
-    # inheritance. (default: false)
-    # preload_models: false
-
     # Protect id and type from mass assignment. (default: true)
     # protect_sensitive_fields: true
 
