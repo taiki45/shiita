@@ -60,8 +60,15 @@ describe TagsController do
 
     context "with success" do
       it "adds the tag to current_user.tag" do
-        put :follow, {name: tag.to_param}, valid_session
-        controller.__send__(:current_user).tags.should be_include tag
+        expect {
+          put :follow, {name: tag.to_param}, valid_session
+        }.to change { User.find(controller.__send__(:current_user).id).tags.count }.by 1
+      end
+
+      it "adds current user to tags followers" do
+        expect {
+          put :follow, {name: tag.to_param}, valid_session
+        }.to change { Tag.find(tag.id).users.count }.by 1
       end
 
       it "assigns requested tag name" do
@@ -82,9 +89,16 @@ describe TagsController do
 
   describe "DELETE follow" do
     context "with success" do
-      it "adds the tag to current_user.tag" do
-        delete :unfollow, {name: tag.to_param}, valid_session
-        controller.__send__(:current_user).tags.should_not be_include tag
+      it "removes the tag from current user's tags" do
+        expect {
+          delete :unfollow, {name: tag.to_param}, valid_session
+        }.to change { User.find(controller.__send__(:current_user).id).tags.count }.by -1
+      end
+
+      it "removes current user from the tag's followers" do
+        expect {
+          delete :unfollow, {name: tag.to_param}, valid_session
+        }.to change { Tag.find(tag.id).users.count }.by -1
       end
 
       it "assigns requested tag name" do
