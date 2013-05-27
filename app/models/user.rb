@@ -77,18 +77,18 @@ class User
   def follow(other)
     case other
     when User
-      followings.push other unless followings.include? other
+      follow_user(other)
     when Tag
-      tags.push other unless tags.include? other
+      follow_tag(other)
     end
   end
 
   def unfollow(other)
     case other
     when User
-      followings.delete other if followings.include? other
+      unfollow_user(other)
     when Tag
-      tags.delete other if tags.include? other
+      unfollow_tag(other)
     end
   end
 
@@ -114,6 +114,22 @@ class User
   end
 
   private
+
+  def follow_user(other)
+    followings.push other unless followings.include? other
+  end
+
+  def follow_tag(tag)
+    tags.push tag unless tags.include? tag
+  end
+
+  def unfollow_user(other)
+    followings.delete other if followings.include? other
+  end
+
+  def unfollow_tag(tag)
+    tags.delete tag if tags.include? tag
+  end
 
   def uniqueness_of_uid
     errors.add(:unique_uid, "uid: #{uid} is not unique.") if self.class.where(uid: uid).count > 0
