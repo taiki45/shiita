@@ -61,11 +61,16 @@ describe UsersController do
     before { user.followings = [] }
 
     context "with success" do
-      it "adds the user to current_user.user" do
-        put :follow, {email: other.to_param}, valid_session
-        controller.__send__(:current_user).followings.should be_include other
-        flesh_other = User.find(other.id)
-        flesh_other.followers.should be_include user
+      it "adds other to current user's followings" do
+        expect {
+          put :follow, {email: other.to_param}, valid_session
+        }.to change { User.find(controller.__send__(:current_user).id).followings.count }.by 1
+      end
+
+      it "adds current_user to other's followers" do
+        expect {
+          put :follow, {email: other.to_param}, valid_session
+        }.to change { User.find(other.id).followers.count }.by 1
       end
 
       it "assigns requested user email" do
