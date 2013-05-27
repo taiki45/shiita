@@ -1,6 +1,13 @@
 %h3= link_to item_header.title, item_header
 %ul
   %li
+    %span tags:
+    - item_header.tags.each do |tag|
+      = link_to tag do
+        %span.badge
+          %i.icon-tag
+          = tag.name
+  %li
     %span author:
     %span= link_to item_header.user.email, item_header.user
   %li update at: #{item_header.updated_at}

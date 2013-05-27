@@ -11,6 +11,7 @@ gem "mecab-ext", "~> 1"
 
 gem "haml", "~> 4"
 gem "haml-rails", "~> 0.4"
+gem "kaminari", "~> 0.14"
 gem "redcarpet", "~> 2"
 gem "coderay", "~> 1"
 gem "therubyracer", "~> 0.11.4"
@@ -32,6 +33,8 @@ group :development, :test do
   gem "factory_girl_rails", "~> 4"
   gem "database_cleaner", "~> 1"
   gem "mongoid-rspec", "~> 1"
+  gem "simplecov", "~> 0", require: false
+  gem 'coveralls', "~> 0", require: false
   gem "pry-rails", "~> 0.3"
   gem "html2haml", "~> 1"
   gem "erb2haml", "~> 0"

@@ -10,14 +10,14 @@ describe User do
   it { should have_many(:items)
        .with_foreign_key(:user_id)
        .of_type(Item)
-       .ordered_by(:updated_at)
+       .ordered_by(:updated_at.desc)
   }
 
   it { should have_and_belong_to_many(:tags)
        .with_foreign_key(:tag_ids)
        .of_type(Tag)
        .with_index
-       .ordered_by(:name)
+       .ordered_by(:name.asc)
   }
 
   it { should have_and_belong_to_many(:stocks)
@@ -25,7 +25,7 @@ describe User do
        .of_type(Item)
        .as_inverse_of(:stocked_users)
        .with_index
-       .ordered_by(:updated_at)
+       .ordered_by(:updated_at.desc)
   }
 
   it { should have_and_belong_to_many(:followings)
@@ -33,7 +33,7 @@ describe User do
        .of_type(described_class)
        .as_inverse_of(:followers)
        .with_index
-       .ordered_by(:email)
+       .ordered_by(:email.asc)
   }
 
   it { should have_and_belong_to_many(:followers)
@@ -41,7 +41,7 @@ describe User do
        .of_type(described_class)
        .as_inverse_of(:followings)
        .with_index
-       .ordered_by(:email)
+       .ordered_by(:email.asc)
   }
 
   it { should have_index_for(uid: 1).with_options(unique: true) }

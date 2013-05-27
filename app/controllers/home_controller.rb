@@ -4,8 +4,8 @@ class HomeController < ApplicationController
     render :index and return unless login?
 
     @no_sidebar = false
-    @items = current_user.following_items(20)
-    @items = Item.order_by(updated_at: -1).limit(10).all if @items.empty?
+    @items = current_user.following_items.page(params[:page])
+    @items = Item.order_by(updated_at: -1).page(params[:page]) if @items.count < 1
     render :home
   end
 

@@ -4,10 +4,11 @@ class TagsController < ApplicationController
   before_filter :set_tag, except: :index
 
   def show
+    @items = Kaminari.paginate_array(@tag.items).page(params[:page])
   end
 
   def index
-    @tags = Tag.by_name.to_a
+    @tags = Tag.by_name.page(params[:page])
   end
 
   def followers
@@ -16,20 +17,26 @@ class TagsController < ApplicationController
   def follow
     current_user.follow(@tag)
     @target = @tag.name
-    if current_user.save
-      render "share/action"
-    else
-      render "share/action_error"
+
+    respond_to do |format|
+      if current_user.save
+        format.js { render "share/action" }
+      else
+        format.js { render "share/action_error" }
+      end
     end
   end
 
   def unfollow
     current_user.unfollow(@tag)
     @target = @tag.name
-    if current_user.save
-      render "share/action"
-    else
-      render "share/action_error"
+
+    respond_to do |format|
+      if current_user.save
+        format.js { render "share/action" }
+      else
+        format.js { render "share/action_error" }
+      end
     end
   end
 

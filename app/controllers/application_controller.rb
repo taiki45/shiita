@@ -1,8 +1,14 @@
 class ApplicationController < ActionController::Base
+
   protect_from_forgery
   helper_method :login?, :current_user
 
+  rescue_from Mongoid::Errors::DocumentNotFound,
+    with: ->{ render "public/404", layout: false, status: 404 }
+
   private
+
+  USER_PAGING = 30
 
   def login?
     session[:id] && current_user
@@ -17,4 +23,5 @@ class ApplicationController < ActionController::Base
   def require_login
     redirect_to "home#index" unless login?
   end
+
 end

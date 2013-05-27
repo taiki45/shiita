@@ -68,10 +68,10 @@ class User
   end
 
 
-  def following_items(limit = 20)
-    item_ids = [tags, followings].map {|e| e.map {|ee| ee.item_ids } }.flatten.uniq
-    result = Item.order_by(updated_at: -1).limit(limit).find(*item_ids)
-    Array === result ? result : result ? [result] : []
+  def following_items
+    Item.order_by(:updated_at.desc)
+      .or(:tag_ids.in => tags.map {|tag| tag.id })
+      .or(:user_id.in => followings.map {|user| user.id }.push(id))
   end
 
   def follow(other)

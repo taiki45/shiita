@@ -7,6 +7,10 @@ describe TagsController do
       get("/tags/test").should route_to("tags#show", name: "test")
     end
 
+    it "routes to #show with pagination" do
+      get("/tags/test/page/1").should route_to("tags#show", name: "test", page: "1")
+    end
+
     it "routes to #index" do
       get("/tags").should route_to("tags#index")
     end
