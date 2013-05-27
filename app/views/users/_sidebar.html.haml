@@ -29,7 +29,7 @@
         %li.divider
 
         - if current_user.following? user
-          .btn-group.full-width
+          .btn-group.full-width#action-btn-parent
             = link_to "#", class: "btn dropdown-toggle btn-info btn-block", "data-toggle" => "dropdown" do
               %i.icon-heart
               %span Following &raquo;
