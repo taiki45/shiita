@@ -170,12 +170,10 @@ describe ItemsController do
   end
 
   describe "PUT stock" do
-    before { current_user.tap {|o| o.stocks = [] }.save }
-
     it "lets current user stock the item" do
-      expect(current_user.stocks).to have(:no).item
-      put :stock, {id: item.to_param}, valid_session
-      expect(current_user.stocks).to have(1).item
+      expect {
+        put :stock, {id: item.to_param}, valid_session
+      }.to change { current_user.stocks.count }.by 1
     end
   end
 
@@ -183,9 +181,9 @@ describe ItemsController do
     before { current_user.tap {|o| o.stocks.push item }.save }
 
     it "lets current user unstock the item" do
-      expect(current_user.stocks).to have(1).item
-      delete :unstock, {id: item.to_param}, valid_session
-      expect(current_user.stocks).to have(:no).item
+      expect {
+        delete :unstock, {id: item.to_param}, valid_session
+      }.to change { current_user.stocks.count }.by -1
     end
   end
 
@@ -196,18 +194,18 @@ describe ItemsController do
     end
 
     it "comments the item" do
-      expect(Item.find(item.id).comments).to have(:no).comments
-      put :comment, {id: item.to_param, comment: {content: "test"}}, valid_session
-      expect(Item.find(item.id).comments).to have(1).comment
+      expect {
+        put :comment, {id: item.to_param, comment: {content: "test"}}, valid_session
+      }.to change { Item.find(item.id).comments.count }.by 1
     end
 
     context "with failure" do
       before { Comment.any_instance.should_receive(:save).twice.and_return(false) }
 
-      it "" do
-        expect(Item.find(item.id).comments).to have(:no).comments
-        put :comment, {id: item.to_param, comment: {content: "test"}}, valid_session
-        expect(Item.find(item.id).comments).to have(:no).comment
+      it "doesn't comment the item" do
+        expect {
+          put :comment, {id: item.to_param, comment: {content: "test"}}, valid_session
+        }.to change { Item.find(item.id).comments.count }.by 0
       end
     end
   end
