@@ -32,8 +32,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(params[:item])
-    @item.user = current_user
+    @item = Item.new(params[:item].merge({user: current_user}))
     @item.generate_tokens
 
     respond_to do |format|
