@@ -24,6 +24,8 @@ class Item
   validates :source, :title, presence: true
   validates :tags, associated: true, presence: true
 
+  before_save :generate_tokens
+
   class << self
     def search(query)
       return [] if query.blank?

@@ -33,7 +33,6 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(params[:item].merge({user: current_user}))
-    @item.generate_tokens
 
     respond_to do |format|
       if @item.save
@@ -49,7 +48,6 @@ class ItemsController < ApplicationController
   def update
     respond_to do |format|
       if @item.update_attributes(params[:item])
-        @item.tap {|o| o.generate_tokens }.save
         delete_empty_item_tag(Tag.all)
 
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }

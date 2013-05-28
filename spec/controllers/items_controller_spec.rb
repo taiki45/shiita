@@ -4,7 +4,7 @@ describe ItemsController do
 
   before do
     controller.stub(:current_user) { user }
-    Mecab::Ext::Parser.stub_chain("parse.surfaces.map.to_a").and_return(["MyString"])
+    Mecab::Ext::Parser.stub_chain("parse.surfaces.map.to_a").and_return(["mystring"])
   end
 
   let(:user) do
@@ -83,6 +83,11 @@ describe ItemsController do
         assigns(:item).should be_persisted
       end
 
+      it "assigns a newly item with tokens generated" do
+        post :create, {item: valid_attributes}, valid_session
+        assigns(:item).tokens.should eq ["mystring", "ruby", "test"]
+      end
+
       it "redirects to the created item" do
         post :create, {item: valid_attributes}, valid_session
         response.should redirect_to Item.last
@@ -120,6 +125,11 @@ describe ItemsController do
       it "assigns the requested item as @item" do
         put :update, {id: item.to_param, item: valid_attributes, }, valid_session
         assigns(:item).should eq(item)
+      end
+
+      it "assigns updated item with tokens generated" do
+        put :update, {id: item.to_param, item: valid_attributes, }, valid_session
+        assigns(:item).tokens.should eq ["mystring", "ruby", "test"]
       end
 
       it "redirects to the item" do
