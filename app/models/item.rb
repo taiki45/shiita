@@ -26,6 +26,14 @@ class Item
 
   before_save :generate_tokens
 
+  after_update do |document|
+    delete_empty_item_tag(Tag.all)
+  end
+
+  after_destroy do |document|
+    delete_empty_item_tag(document.tags)
+  end
+
   class << self
     def search(query)
       return [] if query.blank?
@@ -57,6 +65,10 @@ class Item
 
   def tokenize(*args)
     self.class.__send__(:tokenize, *args)
+  end
+
+  def delete_empty_item_tag(tag_list)
+    tag_list.select {|tag| tag.items.count <= 0 }.each(&:destroy)
   end
 
 end

@@ -48,8 +48,6 @@ class ItemsController < ApplicationController
   def update
     respond_to do |format|
       if @item.update_attributes(params[:item])
-        delete_empty_item_tag(Tag.all)
-
         format.html { redirect_to @item, notice: 'Item was successfully updated.' }
         format.json { render json: @item, status: :updated, location: @item }
       else
@@ -61,7 +59,6 @@ class ItemsController < ApplicationController
 
   def destroy
     @item.destroy
-    delete_empty_item_tag(@item.tags)
 
     respond_to do |format|
       format.html { redirect_to user_url(@item.user), notice: %(Success to delete "#{@item.title}".) }
@@ -104,10 +101,6 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
-  end
-
-  def delete_empty_item_tag(tags)
-    tags.select {|tag| tag.items.count <= 0 }.each(&:destroy)
   end
 
 end
