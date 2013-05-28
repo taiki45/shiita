@@ -38,6 +38,7 @@ RSpec.configure do |config|
 
   config.before(:each) do
     DatabaseCleaner.clean
+    Mecab::Ext::Parser.stub_chain("parse.surfaces.map.to_a").and_return(["mystring"])
   end
 
   config.include FactoryGirl::Syntax::Methods
